@@ -1,0 +1,16 @@
+package com.jacob.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jacob.model.Blog;
+import com.jacob.repository.BlogRepository;
+
+public class BlogService {
+	 
+	 @Autowired
+	 private BlogRepository blogRepository;
+
+	public void saveBlog(Blog blog) {
+		  blogRepository.save(blog);
+	}
+}

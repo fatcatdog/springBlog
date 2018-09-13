@@ -1,0 +1,21 @@
+package com.jacob.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.jacob.model.Blog;
+
+@Repository("blogRepository")
+public interface BlogRepository extends JpaRepository<Blog, Long> {
+ 
+ Blog findByid(int id);
+ 
+ List<Blog> findAll(); 
+ 
+ void delete(int id);
+ 
+ 
+ 
+}

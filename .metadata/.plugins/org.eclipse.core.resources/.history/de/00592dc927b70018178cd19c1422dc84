@@ -1,0 +1,39 @@
+package com.jacob.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jacob.model.Upvote;
+import com.jacob.repository.UpvoteRepository;
+
+public class UpvoteServiceImpl implements UpvoteService {
+
+	 @Autowired
+	 private UpvoteRepository upvoteRepository;
+
+	@Override
+	public void saveUpvote(Upvote upvote) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Upvote> getAllUpvotes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Upvote getUpvote(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteUpvote(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

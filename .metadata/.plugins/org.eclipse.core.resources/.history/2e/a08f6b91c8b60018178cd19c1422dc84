@@ -1,0 +1,5 @@
+package com.jacob.repository;
+
+public class UserRepository {
+
+}

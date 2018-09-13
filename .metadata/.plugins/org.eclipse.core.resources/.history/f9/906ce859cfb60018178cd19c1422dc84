@@ -1,0 +1,18 @@
+package com.jacob.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jacob.model.Blog;
+import com.jacob.repository.BlogRepository;
+
+@Service("blogService")
+public class BlogService {
+	 
+	 @Autowired
+	 private BlogRepository blogRepository;
+
+	public void saveBlog(Blog blog) {
+		  blogRepository.save(blog);
+	}
+}
