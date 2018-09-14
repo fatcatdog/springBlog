@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .and().rememberMe()
    .tokenRepository(persistentTokenRepository())
    .tokenValiditySeconds(60*60)
-   .and().exceptionHandling().accessDeniedPage("/access_denied");
+   .and().exceptionHandling().accessDeniedPage("/errors/access_denied");
  }
  
  @Bean

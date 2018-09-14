@@ -1,0 +1,103 @@
+package com.jacob.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.jacob.model.Blog;
+import com.jacob.model.Upvote;
+
+@Transactional
+@Repository
+public class UpvoteDAO {
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public UpvoteDAO(JdbcTemplate jdbcTemplate) {
+	  this.jdbcTemplate = jdbcTemplate;
+    }
+    
+	public void saveUpvote(Upvote upvote) {
+		String sql = "INSERT INTO upvote (id, author_id, blog_id) values (?, ?, ?)";
+	   jdbcTemplate.update(sql, upvote.getId(), upvote.getAuthor_id(), upvote.getBlog_id());    	
+    }
+	
+	public List<Upvote> getAllUpvotes(){
+    	String sql = "SELECT id, author_id, blog_id FROM upvote";
+    	RowMapper<Upvote> rowMapper = new BeanPropertyRowMapper<Upvote>(Upvote.class);
+  	   return this.jdbcTemplate.query(sql, rowMapper);
+	}
+	
+	public Upvote getUpvote(int id) {
+		String sql = "SELECT id, author_id, blog_id FROM upvote WHERE id = ?";
+   	 	RowMapper<Upvote> rowMapper = new BeanPropertyRowMapper<Upvote>(Upvote.class);
+		 Upvote upvote = jdbcTemplate.queryForObject(sql, rowMapper, id);
+		return upvote; 
+	}
+	
+	public void deleteUpvote(int id) {
+		String sql = "DELETE FROM upvote WHERE id=?";
+    	jdbcTemplate.update(sql, id);
+	}
+	
+	public int countUpvotes(int blogId) {
+		int count = 0; 
+		
+		List<Upvote> allVotes = getAllUpvotes();
+		
+		for(int i = 0; i < allVotes.size(); i++) {
+			if(allVotes.get(i).getBlog_id() == blogId) {
+				count++;
+			}
+		}
+		return count; 
+	} 
+	
+	public boolean checkIfUserHasVotedOnThisBlogYet(int userId, int blogId) {
+		boolean haveTheyVotedYet = false; 
+		List<Upvote> allVotes = getAllUpvotes();
+		List<Upvote> allUpvotesWithThisBlog = new ArrayList<Upvote>();
+
+		for(int i = 0; i < allVotes.size(); i++) { 
+			if (allVotes.get(i).getBlog_id() == blogId) {
+				allUpvotesWithThisBlog.add(allVotes.get(i));
+			}
+		}
+		
+		for(int i = 0; i < allUpvotesWithThisBlog.size(); i++) { 
+			if(allUpvotesWithThisBlog.get(i).getAuthor_id() == userId) {
+				haveTheyVotedYet = true; 
+				return true; 
+			}
+		}
+		
+		return haveTheyVotedYet;
+	}
+	
+	public int getUserUpvoteByUserIdAndBlogId(int userId, int blogId) {
+		List<Upvote> allVotes = getAllUpvotes();
+		List<Upvote> allUpvotesWithThisBlog = new ArrayList<Upvote>();
+
+		for(int i = 0; i < allVotes.size(); i++) { 
+			if (allVotes.get(i).getBlog_id() == blogId) {
+				allUpvotesWithThisBlog.add(allVotes.get(i));
+			}
+		}
+		
+		for(int i = 0; i < allUpvotesWithThisBlog.size(); i++) { 
+			if(allUpvotesWithThisBlog.get(i).getAuthor_id() == userId) {
+				return allUpvotesWithThisBlog.get(i).getId();
+			}
+		}
+		
+		System.out.println("Something went very wront UpvoteDAO.getUserUpvoteByUserIdAndBlogId(int userId, int blogId)");
+		return -1; 
+	}
+    
+}

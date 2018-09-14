@@ -1,0 +1,59 @@
+package com.jacob.jdbcService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jacob.dao.UpvoteDAO;
+import com.jacob.model.Upvote;
+
+@Service
+public class UpvoteService  implements UpvoteServiceInterface {
+
+	@Autowired
+	private UpvoteDAO upvoteDao;
+	
+	@Override
+	public void saveUpvote(Upvote upvote) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Upvote> getAllUpvotes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Upvote getUpvote(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteUpvote(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int countUpvotes(int blogId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean checkIfUserHasVotedOnThisBlogYet(int userId, int blogId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getUserUpvoteByUserIdAndBlogId(int userId, int blogId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

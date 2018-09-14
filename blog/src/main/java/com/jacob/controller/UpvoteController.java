@@ -18,9 +18,9 @@ import com.jacob.model.Upvote;
 import com.jacob.model.User;
 import com.jacob.repository.BlogRepository;
 import com.jacob.repository.UpvoteRepository;
-import com.jacob.service.BlogService;
-import com.jacob.service.UpvoteService;
-import com.jacob.service.UserService;
+import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.UpvoteService;
+import com.jacob.jdbcService.UserService;
 
 @Controller
 @RequestMapping("vote")
@@ -34,8 +34,8 @@ public class UpvoteController {
 	 @Autowired 
 	 private UpvoteService upvoteService; 
 	 
-	 @Autowired
-    private UpvoteRepository upvoteRepository;
+//	 @Autowired
+//    private UpvoteRepository upvoteRepository;
 	 
 	 @RequestMapping(value = "up/{id}", method=RequestMethod.GET)
 	 public ModelAndView createUpvote(@PathVariable(value = "id",  required =false) int id) {
@@ -101,7 +101,7 @@ public class UpvoteController {
 
 			int ourIdToDelete = upvoteService.getUserUpvoteByUserIdAndBlogId(tempUser.getId(), tempBlog.getId());
 			
-			upvoteRepository.deleteById(ourIdToDelete);		  
+			upvoteService.deleteUpvote(ourIdToDelete);		  
 		  } 
 		  
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));

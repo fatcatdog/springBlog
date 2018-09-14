@@ -1,0 +1,24 @@
+package com.jacob.mapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.jacob.model.Blog;
+import com.jacob.model.Upvote;
+
+public class UpvoteMapper implements RowMapper<Upvote> {
+	@Override
+	public Upvote mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		Upvote upvote = new Upvote();
+		
+		blog.setId((rs.getInt("id")));
+		blog.setAuthor_id((rs.getInt("author_id")));
+		blog.setTitle((rs.getString("title")));
+		blog.setContent(rs.getString("content"));
+		return blog;
+	}
+
+}

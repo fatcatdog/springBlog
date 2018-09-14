@@ -8,32 +8,32 @@ import org.springframework.stereotype.Service;
 import com.jacob.model.Blog;
 import com.jacob.repository.BlogRepository;
 
-@Service("blogService")
+//@Service("blogService")
 public class BlogServiceImpl implements BlogService {
 	 
-	 @Autowired
-	 private BlogRepository blogRepository;
-
-	 @Override
-	public void saveBlog(Blog blog) {
-		  blogRepository.save(blog);
-	}
-	 
-	 @Override
-	public List<Blog> getAllBlogs(){
-		List<Blog> ourBlogs = blogRepository.findAll(); 
-		return ourBlogs; 
-	}
-	
-	 @Override
-	 public Blog getBlog(int id) {
-		Blog tempBlog = blogRepository.findById(id);
-		
-		return tempBlog; 
-	}
-	 
-	 @Override
-	 public void deleteBlog(long id) {
-		 blogRepository.deleteById(id);
-	 }
+//	 @Autowired
+//	 private BlogRepository blogRepository;
+//
+//	 @Override
+//	public void saveBlog(Blog blog) {
+//		  blogRepository.save(blog);
+//	}
+//	 
+//	 @Override
+//	public List<Blog> getAllBlogs(){
+//		List<Blog> ourBlogs = blogRepository.findAll(); 
+//		return ourBlogs; 
+//	}
+//	
+//	 @Override
+//	 public Blog getBlog(int id) {
+//		Blog tempBlog = blogRepository.findById(id);
+//		
+//		return tempBlog; 
+//	}
+//	 
+//	 @Override
+//	 public void deleteBlog(long id) {
+//		 blogRepository.deleteById(id);
+//	 }
 }

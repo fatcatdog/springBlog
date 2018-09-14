@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.UpvoteService;
+import com.jacob.jdbcService.UserService;
 import com.jacob.model.Blog;
 import com.jacob.model.Upvote;
 import com.jacob.model.User;
 import com.jacob.repository.BlogRepository;
-import com.jacob.service.BlogService;
-import com.jacob.service.UpvoteService;
-import com.jacob.service.UserService;
 
 @Controller
 @RequestMapping("blog")
@@ -34,9 +34,9 @@ public class BlogController {
 	 
 	 @Autowired
 	 private UpvoteService upvoteService;
-	
-	 @Autowired
-    private BlogRepository blogRepository;
+//	
+//	 @Autowired
+//    private BlogRepository blogRepository;
 
 	 
 	 @RequestMapping(value= {"create"}, method=RequestMethod.GET)
@@ -103,7 +103,7 @@ public class BlogController {
 //		 long number = temp.getId();
 		 
 		 System.out.println(id);
-		 blogRepository.deleteById(id);
+		 blogService.deleteBlog(id);
 		 
 		 
 		 

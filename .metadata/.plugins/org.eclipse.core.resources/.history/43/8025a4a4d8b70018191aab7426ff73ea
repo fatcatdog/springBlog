@@ -1,0 +1,32 @@
+package com.jacob.jdbcService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jacob.dao.BlogDAO;
+import com.jacob.dao.UserDAO;
+import com.jacob.model.User;
+
+@Service
+public class UserService implements UserServiceInterface {
+
+	@Autowired
+	private UserDAO userDao;
+	
+	@Override
+	public User findUserByEmail(String email) {
+		return userDao.findUserByEmail(email);
+	}
+
+	@Override
+	public User findUserById(int Id) {
+		return userDao.findUserById(id);
+	}
+
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

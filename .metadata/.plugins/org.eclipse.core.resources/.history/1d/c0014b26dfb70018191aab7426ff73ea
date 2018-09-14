@@ -1,0 +1,54 @@
+package com.jacob.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.jacob.model.User;
+
+@Transactional
+@Repository
+public class UserDAO {
+    private final JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    public UserDAO(JdbcTemplate jdbcTemplate) {
+	  this.jdbcTemplate = jdbcTemplate;
+    }
+    
+	 public User findUserByEmail(String email) {
+			String sql = "SELECT id, email, firstname, lastname, password, active FROM user WHERE email = ?";
+	    	 RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
+			 User user = jdbcTemplate.queryForObject(sql, rowMapper, email);
+			return user; 
+	 }
+
+	 
+	 public User findUserById(int id) {
+			String sql = "SELECT id, email, firstname, lastname, password, active FROM user WHERE id = ?";
+	    	 RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
+			 User user = jdbcTemplate.queryForObject(sql, rowMapper, id);
+			return user; 
+	 }
+	 
+	 public int getANewId() {
+		 String sql = "SELECT MAX(id) from user";
+		 int number = jdbcTemplate.queryForObject(sql, Integer.class);
+
+		 
+	 }
+	 
+	 public void saveUser(User user) {
+		 user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		  String sql = "INSERT INTO user (id, email, firstname, lastname, password, active) values (?, ?, ?, ?, ?, ?)";
+		  jdbcTemplate.update(sql, user.getId(), user.getEmail(), user.getFirstname(), user.getLastname(), user.getPassword(), 1);    	
+	 }
+
+}

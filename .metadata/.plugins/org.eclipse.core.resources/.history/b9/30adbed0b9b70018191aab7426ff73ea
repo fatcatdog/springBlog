@@ -1,0 +1,7 @@
+package com.jacob.mapper;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public static final class BlogMapper implements RowMapper<Blog>{
+
+}

@@ -1,0 +1,28 @@
+package com.jacob.jdbcService;
+
+import org.springframework.stereotype.Service;
+
+import com.jacob.model.User;
+
+@Service
+public class UserService implements UserServiceInterface {
+
+	@Override
+	public User findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findUserById(int Id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
