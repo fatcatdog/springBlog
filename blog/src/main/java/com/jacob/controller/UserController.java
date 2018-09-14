@@ -38,7 +38,7 @@ public class UserController {
  public ModelAndView login() {
   ModelAndView model = new ModelAndView();
   
-  model.setViewName("user/login");
+  model.setViewName("login");
   return model;
  }
  
@@ -143,7 +143,7 @@ public class UserController {
   
   model.addObject("blogs", ourBlogs); 
   model.addObject("authorNames", ourAuthors);
-  model.setViewName("home/home");
+  model.setViewName("home");
   return model;
  }
  

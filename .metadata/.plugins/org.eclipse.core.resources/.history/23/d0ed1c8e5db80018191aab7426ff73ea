@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<html lang="en">
+
+<body>
+
+<form action="@{/login}" method="POST">
+        Email: <input type="text" name="email">
+    <br />
+         Last Name: <input type="text" name="last_name" />
+    <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>

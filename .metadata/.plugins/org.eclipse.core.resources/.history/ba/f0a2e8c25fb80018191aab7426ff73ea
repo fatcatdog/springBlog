@@ -1,0 +1,3 @@
+<jsp:include page="index.css"/>
+
+<div><h1>BlogCity</h1><div>

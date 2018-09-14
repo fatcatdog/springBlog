@@ -1,0 +1,3 @@
+<jsp:include page="css/header.css"/>
+
+<div class="header-title"><h1>BlogCity</h1></div>
