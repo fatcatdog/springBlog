@@ -16,13 +16,14 @@ import com.jacob.model.Blog;
 public class BlogDAO {
     private final JdbcTemplate jdbcTemplate;
     
+  
     @Autowired
     public BlogDAO(JdbcTemplate jdbcTemplate) {
 	  this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<Blog> getAllBlogs() {
-    	String sql = "SELECT id, author_id, title, content FROM blog";
+    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content FROM blog INNER JOIN upvote ON blog.id = upvote.blog_id GROUP BY upvote.blog_id ORDER BY COUNT(upvote.blog_id) DESC";
 	   RowMapper<Blog> rowMapper = new BeanPropertyRowMapper<Blog>(Blog.class);
 	   return this.jdbcTemplate.query(sql, rowMapper);
     }
@@ -47,7 +48,6 @@ public class BlogDAO {
     public void deleteBlog(long id) {
     	String sql = "DELETE FROM blog WHERE id=?";
     	jdbcTemplate.update(sql, id);
-    } 
-
+    }
 	
 }

@@ -55,17 +55,8 @@ public class UserDAO {
 	 }
 	 
 	 public void saveUser(User user) {
-		 
-		 System.out.println("userDAO info: :)");
-		 System.out.println(user.getActive());
-		 System.out.println(user.getId());
-		 System.out.println(user.getFirstname());
-		 System.out.println(user.getLastname());
-		 System.out.println(user.getEmail());
-		 System.out.println(user.getPassword());
-		 
+		
 		 user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		 System.out.println(user.getPassword());
 
 		 user.setActive(1);
 		 

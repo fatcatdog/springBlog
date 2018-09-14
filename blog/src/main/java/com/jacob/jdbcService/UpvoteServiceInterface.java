@@ -9,7 +9,7 @@ public interface UpvoteServiceInterface {
 	public void saveUpvote(Upvote upvote);
 	
 	public List<Upvote> getAllUpvotes();
-	
+		
 	public Upvote getUpvote(int id);
 	
 	public void deleteUpvote(int id);

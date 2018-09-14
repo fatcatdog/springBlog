@@ -7,7 +7,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -62,7 +61,6 @@ public class UserController {
 	  } else {
 		   userExists = null; 
 	  }
-		  System.out.println("heyhey");
 
 		  if(userExists != null) {
 		   bindingResult.rejectValue("email", "error.user", "This email already exists!");
@@ -141,14 +139,10 @@ public class UserController {
   
   List<Blog> ourBlogs =  blogService.getAllBlogs(); 
   
-//  List<String> titles = getBlogTitlesFromBlogList(ourBlogs);
   List<String> ourAuthors = getAuthorNamesFromDb(ourBlogs);
-//  List<String> stringValueOfBlogIds = getBlogIdsFromBlogList(ourBlogs);
   
-// List<List<String>> ourInfoToDisplayOnHomePage = combineLists(stringValueOfBlogIds, ourAuthors, titles);
   model.addObject("blogs", ourBlogs); 
   model.addObject("authorNames", ourAuthors);
-// model.addObject(ourInfoToDisplayOnHomePage);
   model.setViewName("home/home");
   return model;
  }
