@@ -23,7 +23,7 @@ public class BlogDAO {
     }
 
     public List<Blog> getAllBlogs() {
-    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content FROM blog INNER JOIN upvote ON blog.id = upvote.blog_id GROUP BY upvote.blog_id ORDER BY COUNT(upvote.blog_id) DESC";
+    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content FROM blog LEFT JOIN upvote ON blog.id = upvote.blog_id GROUP BY blog.id ORDER BY COUNT(blog.id) DESC";
 	   RowMapper<Blog> rowMapper = new BeanPropertyRowMapper<Blog>(Blog.class);
 	   return this.jdbcTemplate.query(sql, rowMapper);
     }

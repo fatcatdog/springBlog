@@ -1,0 +1,11 @@
+<div>
+<h1>Footer</h1>
+</div>
+<div>
+     <form action="logout" method="GET">
+    <input type="submit" value="Log Out" />
+    </form>
+    <c:url value="/home" var="homeLink" />
+	<a href="${homeLink}">Guest Book</a>
+
+    </div>

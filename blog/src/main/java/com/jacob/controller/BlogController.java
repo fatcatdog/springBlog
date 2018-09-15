@@ -20,7 +20,7 @@ import com.jacob.model.Blog;
 import com.jacob.model.User;
 
 @Controller
-@RequestMapping("blog")
+@RequestMapping()
 public class BlogController {
 
 	 @Autowired
@@ -37,7 +37,7 @@ public class BlogController {
 		 
 	  ModelAndView model = new ModelAndView();
 	  model.addObject("tempBlog", new Blog());
-	   model.setViewName("blog/create");
+	   model.setViewName("create");
 	  
 	  return model;
 	 }
@@ -53,6 +53,62 @@ public class BlogController {
 	 @RequestMapping(value = "/delete/{id}", method=RequestMethod.GET)
 	 public ModelAndView deleteBlog(@PathVariable(value = "id", required =false) int id) {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  User tempUser = userService.findUserByEmail(auth.getName());
+		  ModelAndView model = new ModelAndView();
+		  Blog tempBlog =  blogService.getBlog(id);
+		  User tempBlogAuthor = userService.findUserById(tempBlog.getAuthor_id());
+
+		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog); 
+		  
+		  if (!access) {
+			  System.out.println("Wrong user!!!!");
+			  model.setViewName("access_denied");
+			  return model; 
+		  }
+
+		  model.setViewName("delete");
+		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
+		  model.addObject("blogObject", tempBlog);
+		  model.addObject("id", id);
+		  model.addObject("authorName", tempBlogAuthor.getFirstname() + " " + tempBlogAuthor.getLastname());
+		  model.addObject("authorEmail", tempBlogAuthor.getEmail());
+		  model.addObject("title", tempBlog.getTitle());
+		  model.addObject("content", tempBlog.getContent());
+		  
+		  return model;
+	 }
+	 
+	 
+	 @RequestMapping(value = "/blog/{id}", method=RequestMethod.GET)
+	 public ModelAndView viewBlog(@PathVariable(value = "id",  required =false) int id) {
+		  Blog tempBlog =  blogService.getBlog(id);
+
+		 User author = userService.findUserById(tempBlog.getAuthor_id());
+		 
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  User tempUser = userService.findUserByEmail(auth.getName());
+		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog); 
+
+		  
+		  ModelAndView model = new ModelAndView();
+		  model.addObject("blogObject", tempBlog);
+		  model.addObject("crudRights", access);
+		  model.addObject("blogId", tempBlog.getId());
+		  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
+		  model.addObject("authorEmail", author.getEmail());
+		  model.addObject("title", tempBlog.getTitle());
+		  model.addObject("content", tempBlog.getContent());
+		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
+
+		  model.setViewName("blog");
+		  
+		  return model;
+	 }
+	 
+	 @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
+	 public ModelAndView editBlog(@PathVariable(value = "id", required =false) int id) {
+
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  User tempAuthor = userService.findUserByEmail(auth.getName());
 		  ModelAndView model = new ModelAndView();
 		  Blog tempBlog =  blogService.getBlog(id);
@@ -60,32 +116,28 @@ public class BlogController {
 		  boolean access = checkIfUserShouldBeAbleToUpdate(tempAuthor, tempBlog); 
 		  
 		  if (!access) {
-			  System.out.println("Wrong user!!!!");
-			  model.setViewName("errors/access_denied");
+			  System.out.println("Not your blog to edit!!!!!");
+			  model.setViewName("access_denied");
 			  return model; 
 		  }
 		  
-		  model.addObject("blogObject", tempBlog);
-		  model.addObject("id", tempBlog.getId());
+		  model.setViewName("edit");
+		  model.addObject("blogId", tempBlog.getId());
 		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
-		  model.addObject("authorEmail", tempAuthor.getEmail());
 		  model.addObject("title", tempBlog.getTitle());
 		  model.addObject("content", tempBlog.getContent());
-
-		  model.setViewName("blog/delete");
+		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 		  
-		  return model;
+//		  System.out.println("id: " + tempBlog.getId());
+//		  System.out.println("author_id: " + tempBlog.getAuthor_id());
+//		  System.out.println("title: " + tempBlog.getTitle());
+//		  System.out.println("content: " + tempBlog.getContent());
+		  
+		  return model; 
+		  
 	 }
 	 
-	 @RequestMapping(value = "/deleteTheBlog/{id}", method=RequestMethod.GET)
-	 public ModelAndView deleteTheBlog(@PathVariable(value = "id", required =false) int id) {
-		 
-		 blogService.deleteBlog(id);
-		 		 
-	  return new ModelAndView("redirect:/home/home");
-	 }
-	 
-	 @RequestMapping(value="/saveBlog", method=RequestMethod.POST)
+	 @RequestMapping(value="saveBlog", method=RequestMethod.POST)
 	 public ModelAndView save(@ModelAttribute("tempBlog") Blog temp) {
 		 
 	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -94,38 +146,29 @@ public class BlogController {
 	  temp.setAuthor_id(tempAuthorId);
 	  blogService.saveBlog(temp);
 	 
-	  return new ModelAndView("redirect:/home/home");
+	  return new ModelAndView("redirect:/home");
 	 }
 	 
 	 
-	 @RequestMapping(value = "{id}", method=RequestMethod.GET)
-	 public ModelAndView viewBlog(@PathVariable(value = "id",  required =false) int id) {
-		  Blog tempBlog =  blogService.getBlog(id);
-
-		 User author = userService.findUserById(tempBlog.getAuthor_id());
-		  ModelAndView model = new ModelAndView();
-		  model.addObject("blogObject", tempBlog);
-
-		  model.addObject("blogId", tempBlog.getId());
-		  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
-		  model.addObject("authorEmail", author.getEmail());
-		  model.addObject("title", tempBlog.getTitle());
-		  model.addObject("content", tempBlog.getContent());
-		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
-
-		  model.setViewName("blog/blog");
-		  
-		  return model;
+	 @RequestMapping(value = "/deleteTheBlog", method=RequestMethod.POST)
+	 public ModelAndView deleteTheBlog(@ModelAttribute("id") int id) {
+		 
+		 blogService.deleteBlog(id);
+		 		 
+	  return new ModelAndView("redirect:/home");
 	 }
 	 
-	 @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
-	 public ModelAndView updateBlog(@PathVariable(value = "id", required =false) int id) {
-
-		  ModelAndView model = new ModelAndView();
-
-		  model.setViewName("blog/edit");
+	 @RequestMapping(value="updateBlog", method=RequestMethod.POST)
+	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp) {
+		  System.out.println("blogController updateBlog Update method called");		  
 		  
-		  return model;
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	  User tempAuthor = userService.findUserByEmail(auth.getName());
+	  int tempAuthorId = tempAuthor.getId();
+	  
+	  blogService.updateBlog(temp);
+	 
+	  return new ModelAndView("redirect:/home");
 	 }
 	 
 	 

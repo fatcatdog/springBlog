@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
  private final String USERS_QUERY = "select email, password, active from user where email=?";
  private final String ROLES_QUERY = "select u.email, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.email=?";
 
+ 
  @Override
  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
   auth.jdbcAuthentication()
@@ -46,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .antMatchers("/home/**").hasAuthority("ADMIN").anyRequest()
    .authenticated().and().csrf().disable()
    .formLogin().loginPage("/login").failureUrl("/login?error=true")
-   .defaultSuccessUrl("/home/home")
+   .defaultSuccessUrl("/home")
    .usernameParameter("email")
    .passwordParameter("password")
    .and().logout()
@@ -55,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .and().rememberMe()
    .tokenRepository(persistentTokenRepository())
    .tokenValiditySeconds(60*60)
-   .and().exceptionHandling().accessDeniedPage("/errors/access_denied");
+   .and().exceptionHandling().accessDeniedPage("/access_denied");
  }
  
  @Bean

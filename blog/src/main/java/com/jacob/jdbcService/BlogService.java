@@ -1,16 +1,12 @@
 package com.jacob.jdbcService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jacob.dao.BlogDAO;
+import com.jacob.dao.UpvoteDAO;
 import com.jacob.model.Blog;
 import com.jacob.model.Upvote;
 
@@ -21,11 +17,15 @@ public class BlogService implements BlogServiceInterface {
 	private BlogDAO blogDao;
 	
 	@Autowired
-	private UpvoteService upvoteService;
+	private UpvoteDAO upvoteDAO;
 	
 	@Override
 	public void saveBlog(Blog blog) {
 		blogDao.saveBlog(blog);
+	}
+	
+	public void updateBlog(Blog blog) {
+		blogDao.updateBlog(blog);
 	}
 
 	@Override
@@ -40,17 +40,15 @@ public class BlogService implements BlogServiceInterface {
 	}
 
 	@Override
-	public void deleteBlog(long id) {
+	public void deleteBlog(int id) {
+		List<Upvote> ourBlogsVotes = upvoteDAO.getAllUpvotesForABlog(id);
+		
+		for(int i = 0; i < ourBlogsVotes.size(); i++) {
+			int tempVoteId = ourBlogsVotes.get(i).getId();
+			System.out.println(tempVoteId);
+			upvoteDAO.deleteUpvote(tempVoteId);
+		}
+		
 		blogDao.deleteBlog(id);	
 	}
-	
-//	@Override 
-//	public List<Blog> getAllBlogsSortedByUpvotes(){
-//		 List<Blog> allBlogs = blogDao.getAllBlogs();
-//		 List<Upvote> allUpvotes = upvoteService.getAllUpvotes(); 
-//		 
-//		 
-//	}
-
-
 }

@@ -935,3 +935,9 @@ java.lang.IllegalArgumentException: can not get a buffer without a document refe
 
 !ENTRY org.eclipse.jface.text 2 0 2018-09-14 16:31:03.931
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-14 20:58:21.728
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-14 20:58:21.730
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

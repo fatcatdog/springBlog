@@ -33,6 +33,12 @@ public class UpvoteDAO {
   	   return this.jdbcTemplate.query(sql, rowMapper);
 	}
 	
+	public List<Upvote> getAllUpvotesForABlog(int id){
+		String sql = "SELECT id, author_id, blog_id FROM upvote WHERE blog_id = ? ";
+    	RowMapper<Upvote> rowMapper = new BeanPropertyRowMapper<Upvote>(Upvote.class);
+  	   return this.jdbcTemplate.query(sql, rowMapper, id);
+	}
+	
 	public Upvote getUpvote(int id) {
 		String sql = "SELECT id, author_id, blog_id FROM upvote WHERE id = ?";
    	 	RowMapper<Upvote> rowMapper = new BeanPropertyRowMapper<Upvote>(Upvote.class);
@@ -78,6 +84,12 @@ public class UpvoteDAO {
 		
 		return haveTheyVotedYet;
 	}
+	
+	 public int getANewId() {
+		 String sql = "SELECT MAX(id) from upvote";
+		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);
+		 return (number + 1); 
+	 }
 	
 	public int getUserUpvoteByUserIdAndBlogId(int userId, int blogId) {
 		List<Upvote> allVotes = getAllUpvotes();

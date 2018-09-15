@@ -1,11 +1,13 @@
 package com.jacob.jdbcService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jacob.dao.UpvoteDAO;
+import com.jacob.model.Blog;
 import com.jacob.model.Upvote;
 
 @Service("upvoteService")
@@ -38,8 +40,19 @@ public class UpvoteService  implements UpvoteServiceInterface {
 
 	@Override
 	public int countUpvotes(int blogId) {
+		
 		return upvoteDao.countUpvotes(blogId);
 	}
+	
+	public List<Integer> getUpvoteCountsForEachBlogInAList(List<Blog> blogs){
+		List<Integer> ourUpvoteCounts = new ArrayList<Integer>();
+		
+		for(int i = 0; i < blogs.size(); i++) {
+			ourUpvoteCounts.add(countUpvotes(blogs.get(i).getId()));
+		}
+		return ourUpvoteCounts;
+	}
+
 
 	@Override
 	public boolean checkIfUserHasVotedOnThisBlogYet(int userId, int blogId) {

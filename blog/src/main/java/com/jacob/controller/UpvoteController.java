@@ -64,7 +64,7 @@ public class UpvoteController {
 		  }
 
 		  
-	  model.setViewName("blog/blog");
+	  model.setViewName("blog");
 	  return model;
 	 }
 	 
@@ -98,7 +98,7 @@ public class UpvoteController {
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 
 		  
-	  model.setViewName("blog/blog");
+	  model.setViewName("blog");
 	  return model;
 	 }
 	
