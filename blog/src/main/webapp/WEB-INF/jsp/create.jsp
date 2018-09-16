@@ -7,7 +7,7 @@
 
 <body>
 
-<h1>Create</h1>
+<h1>Create Blog</h1>
 
 <form action="saveBlog" method="post">
         <input type="hidden" name="*{id}"/>

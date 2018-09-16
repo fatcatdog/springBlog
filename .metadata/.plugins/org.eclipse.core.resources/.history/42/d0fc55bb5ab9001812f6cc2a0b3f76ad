@@ -1,0 +1,47 @@
+package com.jacob.jdbcService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jacob.dao.BlogDAO;
+import com.jacob.model.Comment;
+
+@Service("commentService")
+public class CommentService  implements CommentServiceInterface  {
+
+	@Autowired
+	private CommentDao commentDao;
+	
+	@Override
+	public Comment getComment(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteComment(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveComment(Comment comment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Comment> getAllCommentsForABlog(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getANewId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

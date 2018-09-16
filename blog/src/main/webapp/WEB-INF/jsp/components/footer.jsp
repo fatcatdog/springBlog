@@ -7,5 +7,6 @@
    
 <c:url value="/logout" var="logoutLink"></c:url>
 <a href="${logoutLink}">Log Out</a>
+
 </center>
 </div>

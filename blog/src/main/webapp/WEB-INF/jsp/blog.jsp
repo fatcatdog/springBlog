@@ -8,7 +8,7 @@
 
 <body>
 
-<h1>${title} - ${tempUpvoteCount}</h1>
+<h1>${title} - Upvotes ${tempUpvoteCount} - Comments Count: ${listOfCommentsSize}</h1>
 <h4>By ${authorName}</h4>
 <Br/>
 <p>${content}</p>
@@ -24,6 +24,27 @@
 <Br/>
 
 <h4>Author can be contacted at <a href="mailto:${authorEmail}">${authorEmail}</a></h4>
+<Br/>
+<h1>Comments</h1>
+<Br/>
+
+
+
+<Br/>
+
+<h1>Create Comment</h1>
+
+
+<c:url var="save_comment_url"  value="/saveComment/${blogId}" />
+<form action="${save_comment_url}" method="post">
+      <p>Comment Content<br>
+       <input type="text" name="content">
+      </p>
+    <input type="submit" value="Publish Comment" />
+</form>
+<Br/>
+<h3>Currently Signed in as ${currentUserEmail}</h3> 
+<Br/>
 
 </body>
 <%@ include file="components/footer.jsp" %>  
