@@ -64,5 +64,10 @@ public class UpvoteService  implements UpvoteServiceInterface {
 		return upvoteDao.getUserUpvoteByUserIdAndBlogId(userId, blogId);
 	}
 
+	@Override
+	public List<Upvote> getAllUpvotesForABlog(int blogId){
+		return upvoteDao.getAllUpvotesForABlog(blogId);
+	}
+
 
 }

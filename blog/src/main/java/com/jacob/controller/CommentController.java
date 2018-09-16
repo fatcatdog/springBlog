@@ -41,6 +41,7 @@ public class CommentController {
 		 comment.setBlog_id(id);
 		 commentService.saveComment(comment);
 			 
-	  return new ModelAndView("redirect:/home");
+	  return new ModelAndView("redirect:/blog/" + id);
+	  
 	 }
 }

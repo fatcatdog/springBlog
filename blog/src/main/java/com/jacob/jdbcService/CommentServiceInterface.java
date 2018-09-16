@@ -14,6 +14,7 @@ public interface CommentServiceInterface {
 	public List<Comment> getAllCommentsForABlog(int id);
 	public List<Integer> getAllCommentsCount(List<Blog> blogs);
 	public int getANewId();	
+	public int getCommentCountForABlog(int blogId);	
 	public User getAuthorFromComment(int id); 
 	public List<String> getAuthorsOfCommentsForABlog(int id);
 	public List<String> getContentOfCommentsForABlog(int id);

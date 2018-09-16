@@ -7,6 +7,7 @@
 
 <head>
 <style>
+
 body {
     color: maroon;
 	 margin: auto;
@@ -19,13 +20,13 @@ body {
 
     }
 
-
 </style>
 </head>
-<%@ include file="components/header.jsp" %>  
+<h1>BlogCity</h1>
 
 <body>
     <div>
+    
 <h5>Please Log In</h5>
 
 <form action="login" method="post">
@@ -45,11 +46,14 @@ body {
     <form action="signup" method="GET">    
     <input type="submit" value="Sign Up" />
     </form>
+    <p>${msg}</p>
         </div>
-                 <br />
-                 <br />
-                 <br />
-                 <br />
 </body>
-<%@ include file="components/footer.jsp" %>  
+         <br />
+<div>
+<h1>BlogCity</h1>
+<h4>Created by Jacob Duchen</h4>
+<p><a href="mailto:duchenjacob@gmail.com">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
+<a href="${homeLink}">Login</a></p>
+</div>
 </html>

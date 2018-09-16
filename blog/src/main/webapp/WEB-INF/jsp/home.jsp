@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html lang="en">
 
 <head>
 
@@ -10,14 +11,13 @@
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 </head>
 
-<html lang="en">
 <%@ include file="components/header.jsp" %>  
 
 <body>
 
     <div class="mainContent">
     <div>
-  <h2 align="center">Signed in as: ${userName}</h2>
+  <h2 align="center">Welcome back ${userName}</h2>
     <form action="create" method="GET">
   		<input type="submit" value="Create Blog" />
     </form>       

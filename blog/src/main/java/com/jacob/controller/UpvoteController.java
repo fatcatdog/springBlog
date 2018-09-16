@@ -73,12 +73,13 @@ public class UpvoteController {
 
 		  if(blogComments.size() == 0) {
 			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+			  model.addObject("listOfCommentsSize", blogComments.size());
 			  
 		  } else {
 			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
 			  model.addObject("ourCommentAuthors", commentsAuthors);
 			  model.addObject("comments", blogComments);
-
+			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
 		  
 	  model.setViewName("blog");
@@ -110,14 +111,14 @@ public class UpvoteController {
 		  
 		  if(blogComments.size() == 0) {
 			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+			  model.addObject("listOfCommentsSize", blogComments.size());
 			  
 		  } else {
 			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
 			  model.addObject("ourCommentAuthors", commentsAuthors);
 			  model.addObject("comments", blogComments);
-
+			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
-		  
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 
 		  

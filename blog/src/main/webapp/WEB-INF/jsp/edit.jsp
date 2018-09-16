@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<link href="css/everythingelse.css" rel="stylesheet">
-<link href="css/header.css" rel="stylesheet">
-<link href="css/footer.css" rel="stylesheet">
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <html lang="en">
+
+<head>
+
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+</head>
+
 <%@ include file="components/header.jsp" %>  
 
 <body>
+    <div class="mainContent">
 
-<h1>${title} - ${tempUpvoteCount}</h1>
+<h1>${title}</h1>
+<p>Upvotes: ${tempUpvoteCount}</p>
 <h4>By ${authorName}</h4>
 <Br/>
 <Br/>
@@ -34,7 +41,7 @@
 
 
 
-
+</div>
 </body>
 <%@ include file="components/footer.jsp" %>  
 

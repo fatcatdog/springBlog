@@ -74,6 +74,7 @@ public class BlogController {
 		  }
 
 		  model.setViewName("delete");
+		  model.addObject("listOfCommentsSize", commentService.getCommentCountForABlog(id));
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 		  model.addObject("blogObject", tempBlog);
 		  model.addObject("id", id);
@@ -108,11 +109,18 @@ public class BlogController {
 			  model.addObject("comments", blogComments);
 			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
+		  
 		  model.addObject("currentUserId", tempUser.getId());
 		  model.addObject("currentUserEmail", tempUser.getEmail());
 		  model.addObject("blogObject", tempBlog);
 		  model.addObject("crudRights", access);
 		  model.addObject("blogId", tempBlog.getId());
+		  
+		  if ((author.getFirstname() + author.getLastname()).length() == 0) {
+			  model.addObject("authorName", "Anonymous");
+		  } else {
+			  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
+		  }
 		  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
 		  model.addObject("authorEmail", author.getEmail());
 		  model.addObject("title", tempBlog.getTitle());

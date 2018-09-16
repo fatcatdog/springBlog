@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jacob.dao.BlogDAO;
 import com.jacob.dao.CommentDAO;
 import com.jacob.model.Blog;
 import com.jacob.model.Comment;
@@ -72,7 +71,14 @@ public class CommentService  implements CommentServiceInterface  {
 		List<Comment> ourComments =  getAllCommentsForABlog(id);
 		
 		for(int i = 0; i < ourComments.size(); i++) {
-			ourListOfCommentAuthors.add(userService.findUserById(ourComments.get(i).getAuthor_id()).getFirstname() + " " + userService.findUserById(ourComments.get(i).getAuthor_id()).getLastname());
+			String tempName = userService.findUserById(ourComments.get(i).getAuthor_id()).getFirstname() + " " + userService.findUserById(ourComments.get(i).getAuthor_id()).getLastname();
+			
+			if (tempName.length() == 1) {
+				ourListOfCommentAuthors.add("Anonymous");
+
+			} else {
+				ourListOfCommentAuthors.add(tempName);
+			}
 		}
 		
 		return ourListOfCommentAuthors;
@@ -89,6 +95,13 @@ public class CommentService  implements CommentServiceInterface  {
 		}
 		
 		return ourListOfCommentOfBlog;
+	}
+	
+	@Override
+	public int getCommentCountForABlog(int blogId) {
+		int total = getAllCommentsForABlog(blogId).size();
+		
+		return total;
 	}
 
 

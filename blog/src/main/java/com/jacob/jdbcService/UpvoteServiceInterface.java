@@ -11,6 +11,8 @@ public interface UpvoteServiceInterface {
 	
 	public List<Upvote> getAllUpvotes();
 	
+	public List<Upvote> getAllUpvotesForABlog(int blogId);
+	
 	public List<Integer> getUpvoteCountsForEachBlogInAList(List<Blog> blogs);
 		
 	public Upvote getUpvote(int id);
