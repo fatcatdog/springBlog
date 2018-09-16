@@ -1,5 +1,7 @@
 package com.jacob.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UpvoteService;
 import com.jacob.jdbcService.UserService;
 import com.jacob.model.Blog;
+import com.jacob.model.Comment;
 import com.jacob.model.User;
 
 @Controller
@@ -31,6 +35,9 @@ public class BlogController {
 	 
 	 @Autowired
 	 private UpvoteService upvoteService;
+	 
+	 @Autowired
+	 private CommentService commentService;
 	 
 	 @RequestMapping(value= {"create"}, method=RequestMethod.GET)
 	 public ModelAndView createBlog(@Valid User user, BindingResult bindingResult) {
@@ -81,16 +88,26 @@ public class BlogController {
 	 
 	 @RequestMapping(value = "/blog/{id}", method=RequestMethod.GET)
 	 public ModelAndView viewBlog(@PathVariable(value = "id",  required =false) int id) {
-		  Blog tempBlog =  blogService.getBlog(id);
+		  ModelAndView model = new ModelAndView();
 
+		  Blog tempBlog =  blogService.getBlog(id);
+		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
 		 User author = userService.findUserById(tempBlog.getAuthor_id());
 		 
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  User tempUser = userService.findUserByEmail(auth.getName());
 		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog); 
 
-		  
-		  ModelAndView model = new ModelAndView();
+		  if(blogComments.size() == 0) {
+			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+			  model.addObject("listOfCommentsSize", blogComments.size());
+
+		  } else {
+			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
+			  model.addObject("ourCommentAuthors", commentsAuthors);
+			  model.addObject("comments", blogComments);
+			  model.addObject("listOfCommentsSize", blogComments.size());
+		  }
 		  model.addObject("currentUserId", tempUser.getId());
 		  model.addObject("currentUserEmail", tempUser.getEmail());
 		  model.addObject("blogObject", tempBlog);

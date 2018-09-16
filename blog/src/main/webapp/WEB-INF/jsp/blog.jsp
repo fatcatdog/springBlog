@@ -3,13 +3,25 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<head>
+
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+</head>
+
 <html lang="en">
 <%@ include file="components/header.jsp" %>  
-
 <body>
 
-<h1>${title} - Upvotes ${tempUpvoteCount} - Comments Count: ${listOfCommentsSize}</h1>
-<h4>By ${authorName}</h4>
+<div class="mainContent">
+<div>
+
+<h1>${title}</h1> 
+<Br/>
+<p>Upvotes ${tempUpvoteCount}</p>
+<p>Comments Count: ${listOfCommentsSize}</p>
+<p>By ${authorName}<p>
 <Br/>
 <p>${content}</p>
 <Br/>
@@ -24,11 +36,14 @@
 <Br/>
 
 <h4>Author can be contacted at <a href="mailto:${authorEmail}">${authorEmail}</a></h4>
-<Br/>
 <h1>Comments</h1>
-<Br/>
-
-
+<h4>${commentListEmpty}</h4>
+	  <c:forEach items="${comments}" var="comment" varStatus="status">
+	  
+	    <c:out value="${comment} - By ${ourCommentAuthors[status.index]}" />
+	    
+	    
+	  </c:forEach>	  
 
 <Br/>
 
@@ -45,7 +60,8 @@
 <Br/>
 <h3>Currently Signed in as ${currentUserEmail}</h3> 
 <Br/>
-
+</div>
+</div>
 </body>
 <%@ include file="components/footer.jsp" %>  
 

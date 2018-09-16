@@ -1,5 +1,5 @@
 
-<div>
-<center><h1>BlogCity</h1><center>
+<div class="header-title">
+<h1>BlogCity</h1>
 
 </div>

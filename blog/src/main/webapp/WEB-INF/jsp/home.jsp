@@ -3,29 +3,38 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<head>
+
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+</head>
+
 <html lang="en">
 <%@ include file="components/header.jsp" %>  
 
 <body>
 
-  <h2 align="center">What is up ${userName}</span>, welcome back to BlogCity. To read, write, upvote, or comment(if jacob codes that)?</h2>
-	<h3 align="center">    
-	</h3>
-	<center>
-	
+    <div class="mainContent">
+    <div>
+  <h2 align="center">Signed in as: ${userName}</h2>
     <form action="create" method="GET">
   		<input type="submit" value="Create Blog" />
     </form>       
-    </center>
-    
+    <Br/>
+    </div>
 	  <c:forEach items="${blogs}" var="blog" varStatus="status">
 	  
-		<a href="/blog/${blog.id}">Read</a>
+		<a href="/blog/${blog.id}">
 
-	    <c:out value="${blog.title} - written by - ${authorNames[status.index]} - Upvotes: ${upvotes[status.index]}"/><br />
-	  </c:forEach>	  
+	    <c:out value="${blog.title} - by ${authorNames[status.index]} - Upvotes: ${upvotes[status.index]} - Comments: ${comments[status.index]}"/><br /><br />
+	  </a>
+	  </c:forEach>	
+     </div>
+	    
   
 </body>
+
 <%@ include file="components/footer.jsp" %>  
 
 </html>

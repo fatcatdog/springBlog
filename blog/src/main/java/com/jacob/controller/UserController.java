@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jacob.model.Blog;
+import com.jacob.model.Comment;
 import com.jacob.model.User;
 import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UpvoteService;
 import com.jacob.jdbcService.UserService;
 
@@ -33,6 +35,9 @@ public class UserController {
  
  @Autowired
  private UpvoteService upvoteService;
+ 
+ @Autowired
+ private CommentService commentService;
  
  
  @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
@@ -148,12 +153,12 @@ System.out.println("signup confirm password: bob - " + confirmpassword);
   model.addObject("userName", user.getFirstname() + " " + user.getLastname());
   
   List<Blog> ourBlogs =  blogService.getAllBlogs(); 
-  
   List<String> ourAuthors = getAuthorNamesFromDb(ourBlogs);
+  List<Integer> ourUpvoteCounts = upvoteService.getUpvoteCountsForEachBlogInAList(ourBlogs);
+  List<Integer> ourCommentCounts = commentService.getAllCommentsCount(ourBlogs);
   
-  List<Integer> outUpvoteCounts = upvoteService.getUpvoteCountsForEachBlogInAList(ourBlogs);
-
-  model.addObject("upvotes", outUpvoteCounts); 
+  model.addObject("upvotes", ourUpvoteCounts); 
+  model.addObject("comments", ourCommentCounts); 
   model.addObject("blogs", ourBlogs); 
   model.addObject("authorNames", ourAuthors);
   model.setViewName("home");

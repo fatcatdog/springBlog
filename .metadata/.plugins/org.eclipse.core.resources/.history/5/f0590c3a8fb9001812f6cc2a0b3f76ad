@@ -1,0 +1,6 @@
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+
+<div>
+<center><h1>BlogCity</h1><center>
+
+</div>

@@ -1,5 +1,7 @@
 package com.jacob.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +16,7 @@ import com.jacob.model.Upvote;
 import com.jacob.model.User;
 
 import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UpvoteService;
 import com.jacob.jdbcService.UserService;
 
@@ -29,6 +32,9 @@ public class UpvoteController {
 	 @Autowired 
 	 private UpvoteService upvoteService; 
 	 
+	 @Autowired
+	 private CommentService commentService;
+	 
 //	 @Autowired
 //    private UpvoteRepository upvoteRepository;
 	 
@@ -37,10 +43,12 @@ public class UpvoteController {
 		 
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  User tempUser = userService.findUserByEmail(auth.getName());
-		  
+
 		  ModelAndView model = new ModelAndView();
-		  
 		  Blog tempBlog =  blogService.getBlog(id);
+
+		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
+
 	
 		  User author = userService.findUserById(tempBlog.getAuthor_id());
 		 
@@ -63,6 +71,15 @@ public class UpvoteController {
 			  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));			  
 		  }
 
+		  if(blogComments.size() == 0) {
+			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+			  
+		  } else {
+			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
+			  model.addObject("ourCommentAuthors", commentsAuthors);
+			  model.addObject("comments", blogComments);
+
+		  }
 		  
 	  model.setViewName("blog");
 	  return model;
@@ -77,16 +94,12 @@ public class UpvoteController {
 		  ModelAndView model = new ModelAndView();
 		  
 		  Blog tempBlog =  blogService.getBlog(id);
+
+		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
 	
 		  User author = userService.findUserById(tempBlog.getAuthor_id());
 		 
-		  model.addObject("blogObject", tempBlog);
-
-		  model.addObject("blogId", tempBlog.getId());
-		  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
-		  model.addObject("authorEmail", author.getEmail());
-		  model.addObject("title", tempBlog.getTitle());
-		  model.addObject("content", tempBlog.getContent());
+		 
 	  
 		  if(upvoteService.checkIfUserHasVotedOnThisBlogYet(tempUser.getId(), id)) {
 
@@ -95,10 +108,27 @@ public class UpvoteController {
 			upvoteService.deleteUpvote(ourIdToDelete);		  
 		  } 
 		  
+		  if(blogComments.size() == 0) {
+			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+			  
+		  } else {
+			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
+			  model.addObject("ourCommentAuthors", commentsAuthors);
+			  model.addObject("comments", blogComments);
+
+		  }
+		  
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 
 		  
 	  model.setViewName("blog");
+	  model.addObject("blogObject", tempBlog);
+
+	  model.addObject("blogId", tempBlog.getId());
+	  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
+	  model.addObject("authorEmail", author.getEmail());
+	  model.addObject("title", tempBlog.getTitle());
+	  model.addObject("content", tempBlog.getContent());
 	  return model;
 	 }
 	

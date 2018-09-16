@@ -44,6 +44,12 @@ public class CommentDAO {
   	   return this.jdbcTemplate.query(sql, rowMapper, id);
 	}
 	
+	public List<Comment> getAllComments(){
+		String sql = "SELECT id, author_id, blog_id, content FROM comment";
+    	RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<Comment>(Comment.class);
+  	   return this.jdbcTemplate.query(sql, rowMapper);
+	}
+	
 	 public int getANewId() {
 		 String sql = "SELECT MAX(id) from comment";
 		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);

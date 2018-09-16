@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<html lang="en">
+
+<%@ include file="components/header.jsp" %>  
+<head>
+<style>
+body {
+    background-color: linen;
+}
+
+headerTitle {
+    color: maroon;
+	 margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+} 
+</style>
+</head>
+<body>
+    <div class="headerTitle">
+
+<form action="login" method="post">
+        Email: <input type="text" name="email">
+    <br />
+         Password: <input type="password" name="password" />
+             <br />
+         
+    <input type="submit" value="Login" />
+</form>
+    <form action="signup" method="GET">
+    <input type="submit" value="Sign Up" />
+    </form>
+        </div>
+    
+</body>
+<%@ include file="components/footer.jsp" %>  
+</html>

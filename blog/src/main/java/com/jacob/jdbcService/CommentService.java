@@ -1,19 +1,26 @@
 package com.jacob.jdbcService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jacob.dao.BlogDAO;
 import com.jacob.dao.CommentDAO;
+import com.jacob.model.Blog;
 import com.jacob.model.Comment;
+import com.jacob.model.User;
 
 @Service("commentService")
 public class CommentService  implements CommentServiceInterface  {
 
 	@Autowired
 	private CommentDAO commentDao;
-	
+
+	@Autowired
+	private UserService userService;
+
 	@Override
 	public Comment getComment(int id) {
 		return commentDao.getComment(id);
@@ -28,6 +35,20 @@ public class CommentService  implements CommentServiceInterface  {
 	public void saveComment(Comment comment) {
 		commentDao.saveComment(comment);
 	}
+	
+	@Override 
+	public List<Integer> getAllCommentsCount(List<Blog> blogs) {
+		List<Integer> ourCommentsCount = new ArrayList<Integer>();
+		
+		for(int i = 0; i < blogs.size(); i++) {
+			
+			int num = commentDao.getAllCommentsForABlog(blogs.get(i).getId()).size();
+			System.out.println(num); 
+			ourCommentsCount.add(num);		
+		}
+		return ourCommentsCount; 
+	}
+
 
 	@Override
 	public List<Comment> getAllCommentsForABlog(int id) {
@@ -38,5 +59,37 @@ public class CommentService  implements CommentServiceInterface  {
 	public int getANewId() {
 		return commentDao.getANewId();
 	}
+	
+	@Override
+	public User getAuthorFromComment(int id) {
+		return userService.findUserById(id);
+	}
+
+	@Override
+	public List<String> getAuthorsOfCommentsForABlog(int id){
+		List<String> ourListOfCommentAuthors = new ArrayList<String>();
+		
+		List<Comment> ourComments =  getAllCommentsForABlog(id);
+		
+		for(int i = 0; i < ourComments.size(); i++) {
+			ourListOfCommentAuthors.add(userService.findUserById(ourComments.get(i).getAuthor_id()).getFirstname() + " " + userService.findUserById(ourComments.get(i).getAuthor_id()).getLastname());
+		}
+		
+		return ourListOfCommentAuthors;
+	}
+	
+	@Override
+	public List<String> getContentOfCommentsForABlog(int id){
+		List<String> ourListOfCommentOfBlog = new ArrayList<String>();
+		
+		List<Comment> ourComments =  getAllCommentsForABlog(id);
+		
+		for(int i = 0; i < ourComments.size(); i++) {
+			ourListOfCommentOfBlog.add(ourComments.get(i).getContent());
+		}
+		
+		return ourListOfCommentOfBlog;
+	}
+
 
 }

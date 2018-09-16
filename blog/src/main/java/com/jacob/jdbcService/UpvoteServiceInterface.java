@@ -18,7 +18,7 @@ public interface UpvoteServiceInterface {
 	public void deleteUpvote(int id);
 	
 	public int countUpvotes(int blogId); 
-	
+		
 	public boolean checkIfUserHasVotedOnThisBlogYet(int userId, int blogId);
 	
 	public int getUserUpvoteByUserIdAndBlogId(int userId, int blogId);

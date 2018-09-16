@@ -36,9 +36,6 @@ public class CommentController {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 User tempAuthor = userService.findUserByEmail(auth.getName());
 
-	  //	  int tempAuthorId = tempAuthor.getId();
-//	  temp.setAuthor_id(tempAuthorId);
-//	  blogService.saveBlog(temp);
 		 comment.setId(commentService.getANewId());
 		 comment.setAuthor_id(tempAuthor.getId());
 		 comment.setBlog_id(id);

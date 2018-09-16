@@ -17,4 +17,5 @@ public interface BlogServiceInterface {
 	public Blog getBlog(int id);
 	
 	public void deleteBlog(int id);
+	
 }
