@@ -1,0 +1,22 @@
+package com.jacob.dao.tests;
+
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jacob.configuration.SecurityConfiguration;
+import com.jacob.dao.CommentDAO;
+
+@RunWith(SpringRunner.class)
+@ComponentScan(basePackages={"com.jacob"})
+@SpringBootTest(classes = { CommentDAO.class, SecurityConfiguration.class })
+@EnableConfigurationProperties
+public class CommentDAOTest {
+
+	@Autowired
+	private CommentDAO commentDao;
+	
+}

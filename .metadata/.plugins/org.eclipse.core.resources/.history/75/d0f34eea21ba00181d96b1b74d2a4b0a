@@ -1,0 +1,11 @@
+package com.jacob.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class BlogDAOTest {
+	
+	@Autowired
+	private BlogDAO blogDao;
+	
+	
+}

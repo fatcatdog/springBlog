@@ -1,0 +1,18 @@
+package com.jacob.dao.test;
+
+import org.junit.BeforeClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.jacob.dao.BlogDAO;
+
+public class BlogDAOTest {
+	
+BlogDAO blogDao; 
+@BeforeClass
+@Autowired
+public BlogDAO(JdbcTemplate jdbcTemplate) {
+  this.jdbcTemplate = jdbcTemplate;
+}
+
+}

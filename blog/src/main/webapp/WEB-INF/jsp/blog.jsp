@@ -22,6 +22,7 @@
 <p>By ${authorName}</p>
 <p><a href="/vote/up/${blogId}">Upvote</a> <a href="/vote/down/${blogId}">Downvote</a> <a href="/delete/${blogId}">Delete</a> <a href="/edit/${blogId}">Edit</a>
 </p>
+<p>Content:</p>
 <p>${content}</p>
 
 <h4>Author can be contacted at: <a href="mailto:${authorEmail}">${authorEmail}</a></h4>

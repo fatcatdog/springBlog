@@ -25,7 +25,8 @@
 
         Title: <input type="text" name="title">
     <br />
-         Content: <input type="text" name="content" />
+        Content:<textarea id="content" name="content" rows="5" cols="30"></textarea>
+         
    <br />
          
     <input type="submit" value="Publish" />

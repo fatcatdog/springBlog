@@ -1,0 +1,35 @@
+package com.jacob.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.jacob.configuration.SecurityConfiguration;
+import com.jacob.model.Blog;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = { BlogDAO.class, SecurityConfiguration.class })
+@EnableConfigurationProperties
+public class BlogDAOTest {
+	Blog expected;
+	Blog actual;
+
+	@Autowired
+	private BlogDAO blogDao;
+	
+	@Test
+	public void testBlogDaoGetBlogById() {
+		
+		expected = new Blog(20, 40 , "tom", "Green");
+		 actual = blogDao.getBlog(20);
+		assertEquals(expected.getTitle(), actual.getTitle());		
+	}
+	
+}

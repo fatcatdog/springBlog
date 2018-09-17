@@ -1,0 +1,20 @@
+package com.jacob.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+import com.jacob.model.Blog;
+
+public class BlogDAOTest {
+	
+	@Autowired
+	private BlogDAO blogDao;
+
+	@Test
+	public void sum_with3numbers() {
+	
+		assertEquals(expected.getTitle(), actual.getTitle());		
+	}
+	
+}

@@ -1,0 +1,53 @@
+package com.jacob.dao.tests;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jacob.configuration.SecurityConfiguration;
+import com.jacob.dao.UpvoteDAO;
+import com.jacob.model.Comment;
+import com.jacob.model.Upvote;
+
+@RunWith(SpringRunner.class)
+@ComponentScan(basePackages={"com.jacob"})
+@SpringBootTest(classes = { UpvoteDAO.class, SecurityConfiguration.class })
+@EnableConfigurationProperties
+public class UpvoteDAOTest {
+	Upvote expected;
+	Upvote actual;
+	
+	@Autowired
+	private UpvoteDAO upvoteDao;
+	
+	@Test
+	public void testUpVoteUp() {
+		expected = new Upvote(1, 2, 3);
+		actual = commentDao.getComment(6);
+		assertEquals(expected.getContent(), actual.getContent());		
+	}
+	
+	@Test
+	public void testDownVoteUp() {
+		expected = new Comment(67, 1, 6, "never commented before");
+		commentDao.saveComment(expected);
+		
+		actual = Upvote.getComment(67);
+		assertEquals(expected.getContent(), actual.getContent());
+	}
+	
+	@Test
+	public void getCount() {
+		expected = new Comment(67, 1, 6, "never commented before");
+		commentDao.saveComment(expected);
+		
+		actual = Upvote.getComment(67);
+		assertEquals(expected.getContent(), actual.getContent());
+	}
+}

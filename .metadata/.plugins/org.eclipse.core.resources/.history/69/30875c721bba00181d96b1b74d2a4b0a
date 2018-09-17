@@ -1,0 +1,12 @@
+package com.jacob.dao.test;
+
+
+public class BlogDAOTest {
+
+	@Test
+	public void testSetDBConfiguration() throws Exception {
+		
+		
+	}
+
+}

@@ -11,6 +11,7 @@ final class CommentMapper implements RowMapper<Comment>{
 
 	@Override
 	public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
+		
 		Comment comment = new Comment();
 		comment.setId((rs.getInt("id")));
 		comment.setAuthor_id((rs.getInt("author_id")));

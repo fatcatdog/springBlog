@@ -1,17 +1,17 @@
-package com.jacob.service;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.jacob.model.Blog;
-import com.jacob.model.Upvote;
-import com.jacob.repository.UpvoteRepository;
+//package com.jacob.service;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import com.jacob.model.Blog;
+//import com.jacob.model.Upvote;
+//import com.jacob.repository.UpvoteRepository;
 
 //@Service("upvoteService")
-public class UpvoteServiceImpl implements UpvoteService {
+//public class UpvoteServiceImpl implements UpvoteService {
 
 //	 @Autowired
 //	 private UpvoteRepository upvoteRepository;
@@ -105,4 +105,4 @@ public class UpvoteServiceImpl implements UpvoteService {
 //		return -1; 
 //	}
 
-}
+//}

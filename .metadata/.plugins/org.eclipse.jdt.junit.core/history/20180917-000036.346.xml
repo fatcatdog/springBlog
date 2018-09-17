@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CommentDAOTest" project="blog" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.jacob.dao.tests.CommentDAOTest" time="0.418">
+    <testcase name="testPostCommentById" classname="com.jacob.dao.tests.CommentDAOTest" time="0.409"/>
+    <testcase name="testGetCommentById" classname="com.jacob.dao.tests.CommentDAOTest" time="0.008"/>
+  </testsuite>
+</testrun>

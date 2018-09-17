@@ -1,0 +1,35 @@
+package com.jacob.dao;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
+import static org.assertj.core.api.Assertions.*;
+import com.jacob.model.Blog;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = BlogDAO.class, secure = false)
+public class BlogDAOTest {
+    private final JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    public void BlogDAO(JdbcTemplate jdbcTemplate) {
+	  this.jdbcTemplate = jdbcTemplate;
+    }
+    
+    BlogDAO blogDao;
+
+	@Test
+	public void getBlogTest() {
+		System.out.println("Test ran?");
+		Blog expected = new Blog(20, 40, "tom", "green"); 
+
+		Blog actual = blogDao.getBlog(20);
+		
+		assertThat(expected.getTitle())
+		.isEqualTo(actual.getTitle());
+	}
+	
+}

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jacob.model.Blog;
-import com.jacob.model.Comment;
 import com.jacob.model.User;
 import com.jacob.jdbcService.BlogService;
 import com.jacob.jdbcService.CommentService;

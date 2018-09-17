@@ -9,19 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import com.jacob.model.Blog;
 
 final class BlogMapper implements RowMapper<Blog>{
-
-//	 @Id
-//	 @GeneratedValue(strategy = GenerationType.AUTO)
-//	 private int id;
-//	 
-//	 @Column(name = "author_id")
-//	 private int author_id;
-//	 
-//	 @Column(name = "title")
-//	 private String title; 
-//	 
-//	 @Column(name = "content")
-//	 private String content;
 	 
 	@Override
 	public Blog mapRow(ResultSet rs, int rowNum) throws SQLException {

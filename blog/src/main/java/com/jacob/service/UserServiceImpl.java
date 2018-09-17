@@ -1,19 +1,19 @@
-package com.jacob.service;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import com.jacob.model.Role;
-import com.jacob.model.User;
-import com.jacob.repository.RoleRepository;
-import com.jacob.repository.UserRepository;
-import java.util.Arrays;
-import java.util.HashSet;
+//package com.jacob.service;
+//
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.stereotype.Service;
+//
+//import com.jacob.model.Role;
+//import com.jacob.model.User;
+//import com.jacob.repository.RoleRepository;
+//import com.jacob.repository.UserRepository;
+//import java.util.Arrays;
+//import java.util.HashSet;
 
 //@Service("userService")
-public class UserServiceImpl implements UserService {
+//public class UserServiceImpl implements UserService {
 // 
 // @Autowired
 // private UserRepository userRepository;
@@ -43,4 +43,4 @@ public class UserServiceImpl implements UserService {
 //  userRepository.save(user);
 // }
 
-}
+//}

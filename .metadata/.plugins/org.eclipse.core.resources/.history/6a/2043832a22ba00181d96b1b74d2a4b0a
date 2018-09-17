@@ -1,0 +1,27 @@
+package com.jacob.dao;
+
+import org.junit.After;
+import org.junit.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class BlogDAOTest {
+	
+	@Autowired
+	private BlogDAO blogDao;
+	
+	@Before
+	public void before() {
+		System.out.println("Before");
+	}
+
+	@After
+	public void after() {
+		System.out.println("After");
+	}
+	
+	@Test
+	public void sum_with3numbers() {
+		
+	}
+	
+}

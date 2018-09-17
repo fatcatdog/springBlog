@@ -1,0 +1,33 @@
+package com.jacob.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.jacob.jdbcService.BlogService;
+import com.jacob.model.Blog;
+
+public class BlogDAOTest {
+	Blog expected;
+	Blog actual;
+
+//	@Before
+//	public void setUp() {
+//	 expected = new Blog(20, 40 , "poo", "Green");
+//	 actual = blogService.getBlog(20);
+//	}
+	
+	@Test
+	public void sum_with3numbers() {
+		
+		
+		 BlogService blogService;
+		
+		expected = new Blog(20, 40 , "poo", "Green");
+		 actual = blogService.getBlog(20);
+		assertEquals(expected.getTitle(), actual.getTitle());		
+	}
+	
+}

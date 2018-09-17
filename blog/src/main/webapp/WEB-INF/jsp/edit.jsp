@@ -29,8 +29,10 @@
 	 <p>Title<br>
         <input type="text" name="title" size="50" value="${title}"/>
       </p>
-      <p>Content<br>
-        <input type="text" name="content" size="200" value="${content}"/>
+      <p>Previous Content</p>
+      ${content}
+      <p>Your new Content<br>
+       	<textarea id="content" name="content" rows="5" cols="30"></textarea>
       </p>
       
 	<input type="submit" value="Commit Edit Of Your Blog" />

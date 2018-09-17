@@ -1,10 +1,10 @@
-package com.jacob.service;
-
-import java.util.List;
-
-import com.jacob.model.Upvote;
-
-public interface UpvoteService {
+//package com.jacob.service;
+//
+//import java.util.List;
+//
+//import com.jacob.model.Upvote;
+//
+//public interface UpvoteService {
 
 //	public void saveUpvote(Upvote upvote);
 //	
@@ -19,4 +19,4 @@ public interface UpvoteService {
 //	public boolean checkIfUserHasVotedOnThisBlogYet(int userId, int blogId);
 //	
 //	public int getUserUpvoteByUserIdAndBlogId(int userId, int blogId);
-}
+//}

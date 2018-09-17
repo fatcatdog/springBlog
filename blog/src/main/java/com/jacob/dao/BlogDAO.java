@@ -16,7 +16,6 @@ import com.jacob.model.Blog;
 public class BlogDAO {
     private final JdbcTemplate jdbcTemplate;
     
-  
     @Autowired
     public BlogDAO(JdbcTemplate jdbcTemplate) {
 	  this.jdbcTemplate = jdbcTemplate;

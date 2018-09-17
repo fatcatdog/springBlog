@@ -21,6 +21,7 @@ body {
     }
 
 </style>
+
 </head>
 <h1>BlogCity</h1>
 

@@ -34,18 +34,17 @@ public class CommentService  implements CommentServiceInterface  {
 	public void saveComment(Comment comment) {
 		commentDao.saveComment(comment);
 	}
-	
-	@Override 
+
+	@Override
 	public List<Integer> getAllCommentsCount(List<Blog> blogs) {
 		List<Integer> ourCommentsCount = new ArrayList<Integer>();
-		
+
 		for(int i = 0; i < blogs.size(); i++) {
-			
+
 			int num = commentDao.getAllCommentsForABlog(blogs.get(i).getId()).size();
-			System.out.println(num); 
 			ourCommentsCount.add(num);		
 		}
-		return ourCommentsCount; 
+		return ourCommentsCount;
 	}
 
 
@@ -58,7 +57,7 @@ public class CommentService  implements CommentServiceInterface  {
 	public int getANewId() {
 		return commentDao.getANewId();
 	}
-	
+
 	@Override
 	public User getAuthorFromComment(int id) {
 		return userService.findUserById(id);
@@ -67,12 +66,12 @@ public class CommentService  implements CommentServiceInterface  {
 	@Override
 	public List<String> getAuthorsOfCommentsForABlog(int id){
 		List<String> ourListOfCommentAuthors = new ArrayList<String>();
-		
+
 		List<Comment> ourComments =  getAllCommentsForABlog(id);
-		
+
 		for(int i = 0; i < ourComments.size(); i++) {
 			String tempName = userService.findUserById(ourComments.get(i).getAuthor_id()).getFirstname() + " " + userService.findUserById(ourComments.get(i).getAuthor_id()).getLastname();
-			
+
 			if (tempName.length() == 1) {
 				ourListOfCommentAuthors.add("Anonymous");
 
@@ -80,27 +79,27 @@ public class CommentService  implements CommentServiceInterface  {
 				ourListOfCommentAuthors.add(tempName);
 			}
 		}
-		
+
 		return ourListOfCommentAuthors;
 	}
-	
+
 	@Override
 	public List<String> getContentOfCommentsForABlog(int id){
 		List<String> ourListOfCommentOfBlog = new ArrayList<String>();
-		
+
 		List<Comment> ourComments =  getAllCommentsForABlog(id);
-		
+
 		for(int i = 0; i < ourComments.size(); i++) {
 			ourListOfCommentOfBlog.add(ourComments.get(i).getContent());
 		}
-		
+
 		return ourListOfCommentOfBlog;
 	}
-	
+
 	@Override
 	public int getCommentCountForABlog(int blogId) {
 		int total = getAllCommentsForABlog(blogId).size();
-		
+
 		return total;
 	}
 

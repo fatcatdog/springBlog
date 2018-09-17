@@ -20,7 +20,6 @@ import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UpvoteService;
 import com.jacob.jdbcService.UserService;
 import com.jacob.model.Blog;
-import com.jacob.model.Comment;
 import com.jacob.model.User;
 
 @Controller
@@ -29,34 +28,34 @@ public class BlogController {
 
 	 @Autowired
 	 private BlogService blogService;
-	 
+
 	 @Autowired
 	 private UserService userService;
-	 
+
 	 @Autowired
 	 private UpvoteService upvoteService;
-	 
+
 	 @Autowired
 	 private CommentService commentService;
-	 
+
 	 @RequestMapping(value= {"create"}, method=RequestMethod.GET)
 	 public ModelAndView createBlog(@Valid User user, BindingResult bindingResult) {
-		 
+
 	  ModelAndView model = new ModelAndView();
 	  model.addObject("tempBlog", new Blog());
 	   model.setViewName("create");
-	  
+
 	  return model;
 	 }
-	 
+
 	 public boolean checkIfUserShouldBeAbleToUpdate(User user, Blog blog) {
 		 if (blog.getAuthor_id() == user.getId()) {
-			  return true; 
+			  return true;
 		  } else {
 			  return false;
 		  }
 	 }
-	 
+
 	 @RequestMapping(value = "/delete/{id}", method=RequestMethod.GET)
 	 public ModelAndView deleteBlog(@PathVariable(value = "id", required =false) int id) {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -65,12 +64,12 @@ public class BlogController {
 		  Blog tempBlog =  blogService.getBlog(id);
 		  User tempBlogAuthor = userService.findUserById(tempBlog.getAuthor_id());
 
-		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog); 
-		  
+		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog);
+
 		  if (!access) {
 			  System.out.println("Wrong user!!!!");
 			  model.setViewName("access_denied");
-			  return model; 
+			  return model;
 		  }
 
 		  model.setViewName("delete");
@@ -82,11 +81,11 @@ public class BlogController {
 		  model.addObject("authorEmail", tempBlogAuthor.getEmail());
 		  model.addObject("title", tempBlog.getTitle());
 		  model.addObject("content", tempBlog.getContent());
-		  
+
 		  return model;
 	 }
-	 
-	 
+
+
 	 @RequestMapping(value = "/blog/{id}", method=RequestMethod.GET)
 	 public ModelAndView viewBlog(@PathVariable(value = "id",  required =false) int id) {
 		  ModelAndView model = new ModelAndView();
@@ -94,10 +93,10 @@ public class BlogController {
 		  Blog tempBlog =  blogService.getBlog(id);
 		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
 		 User author = userService.findUserById(tempBlog.getAuthor_id());
-		 
+
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		  User tempUser = userService.findUserByEmail(auth.getName());
-		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog); 
+		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog);
 
 		  if(blogComments.size() == 0) {
 			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
@@ -109,13 +108,13 @@ public class BlogController {
 			  model.addObject("comments", blogComments);
 			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
-		  
+
 		  model.addObject("currentUserId", tempUser.getId());
 		  model.addObject("currentUserEmail", tempUser.getEmail());
 		  model.addObject("blogObject", tempBlog);
 		  model.addObject("crudRights", access);
 		  model.addObject("blogId", tempBlog.getId());
-		  
+
 		  if ((author.getFirstname() + author.getLastname()).length() == 0) {
 			  model.addObject("authorName", "Anonymous");
 		  } else {
@@ -128,10 +127,10 @@ public class BlogController {
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 
 		  model.setViewName("blog");
-		  
+
 		  return model;
 	 }
-	 
+
 	 @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
 	 public ModelAndView editBlog(@PathVariable(value = "id", required =false) int id) {
 
@@ -139,60 +138,56 @@ public class BlogController {
 		  User tempAuthor = userService.findUserByEmail(auth.getName());
 		  ModelAndView model = new ModelAndView();
 		  Blog tempBlog =  blogService.getBlog(id);
-		 
-		  boolean access = checkIfUserShouldBeAbleToUpdate(tempAuthor, tempBlog); 
-		  
+
+		  boolean access = checkIfUserShouldBeAbleToUpdate(tempAuthor, tempBlog);
+
 		  if (!access) {
 			  System.out.println("Not your blog to edit!!!!!");
 			  model.setViewName("access_denied");
-			  return model; 
+			  return model;
 		  }
-		  
+
 		  model.setViewName("edit");
 		  model.addObject("blogId", tempBlog.getId());
 		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
 		  model.addObject("title", tempBlog.getTitle());
 		  model.addObject("content", tempBlog.getContent());
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
-		  
-//		  System.out.println("id: " + tempBlog.getId());
-//		  System.out.println("author_id: " + tempBlog.getAuthor_id());
-//		  System.out.println("title: " + tempBlog.getTitle());
-//		  System.out.println("content: " + tempBlog.getContent());
-		  
-		  return model; 
-		  
+
+
+		  return model;
+
 	 }
-	 
+
 	 @RequestMapping(value="saveBlog", method=RequestMethod.POST)
 	 public ModelAndView save(@ModelAttribute("tempBlog") Blog temp) {
-		 
+
 	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	  User tempAuthor = userService.findUserByEmail(auth.getName());
 	  int tempAuthorId = tempAuthor.getId();
 	  temp.setAuthor_id(tempAuthorId);
 	  blogService.saveBlog(temp);
-	 
+
 	  return new ModelAndView("redirect:/home");
 	 }
-	 
-	 
+
+
 	 @RequestMapping(value = "/deleteTheBlog", method=RequestMethod.POST)
 	 public ModelAndView deleteTheBlog(@ModelAttribute("id") int id) {
-		 
+
 		 blogService.deleteBlog(id);
-		 		 
+
 	  return new ModelAndView("redirect:/home");
 	 }
-	 
+
 	 @RequestMapping(value="updateBlog", method=RequestMethod.POST)
 	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp) {
-		  System.out.println("blogController updateBlog Update method called");		  		  
+		  System.out.println("blogController updateBlog Update method called");
 		  blogService.updateBlog(temp);
 		  return new ModelAndView("redirect:/home");
 	 }
-	 
-	 
-	 
-	 
+
+
+
+
 }

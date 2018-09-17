@@ -21,6 +21,17 @@ public class Upvote {
  @Column(name = "blog_id")
  private int blog_id;
 
+public Upvote(int id, int author_id, int blog_id) {
+	super();
+	this.id = id;
+	this.author_id = author_id;
+	this.blog_id = blog_id;
+}
+
+public Upvote() {
+	super();
+}
+
 public int getId() {
 	return id;
 }

@@ -20,6 +20,18 @@ public class Comment {
  
  @Column(name = "content")
  private String content;
+ 
+ 
+
+public Comment(int id, int author_id, int blog_id, String content) {
+	super();
+	this.id = id;
+	this.author_id = author_id;
+	this.blog_id = blog_id;
+	this.content = content;
+}
+
+public Comment() {}
 
 public int getId() {
 	return id;

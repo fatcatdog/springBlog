@@ -34,13 +34,13 @@ public class Blog {
 //	this.content = content;
 //}
 //
-//public Blog(int id, int author_id, String title, String content) {
-//	super();
-//	this.id = id;
-//	this.author_id = author_id;
-//	this.title = title;
-//	this.content = content;
-//}
+public Blog(int id, int author_id, String title, String content) {
+	super();
+	this.id = id;
+	this.author_id = author_id;
+	this.title = title;
+	this.content = content;
+}
 
 public int getId() {
 	return id;

@@ -23,11 +23,8 @@
 <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.jacob.model.User"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-<fullyQualifiedTypeName name="com.jacob.dao.BlogDAO"/>
 <fullyQualifiedTypeName name="com.jacob.dao.UserDAO"/>
 <fullyQualifiedTypeName name="com.jacob.jdbcService.BlogService"/>
 <fullyQualifiedTypeName name="com.jacob.jdbcService.UserService"/>
@@ -39,9 +36,19 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="com.jacob.model.Blog"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.jacob.jdbcService.UpvoteService"/>
 <fullyQualifiedTypeName name="com.jacob.dao.UpvoteDAO"/>
 <fullyQualifiedTypeName name="com.jacob.model.Upvote"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.jacob.jdbcService.CommentService"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.jacob.model.Comment"/>
+<fullyQualifiedTypeName name="com.jacob.model.User"/>
+<fullyQualifiedTypeName name="com.jacob.dao.CommentDAO"/>
+<fullyQualifiedTypeName name="javax.xml.stream.events.Comment"/>
+<fullyQualifiedTypeName name="com.jacob.dao.BlogDAO"/>
+<fullyQualifiedTypeName name="org.junit.BeforeClass"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="com.jacob.model.Blog"/>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
 </qualifiedTypeNameHistroy>

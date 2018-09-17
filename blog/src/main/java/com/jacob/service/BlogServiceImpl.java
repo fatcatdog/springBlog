@@ -1,15 +1,15 @@
-package com.jacob.service;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.jacob.model.Blog;
-import com.jacob.repository.BlogRepository;
+//package com.jacob.service;
+//
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import com.jacob.model.Blog;
+//import com.jacob.repository.BlogRepository;
 
 //@Service("blogService")
-public class BlogServiceImpl implements BlogService {
+//public class BlogServiceImpl implements BlogService {
 	 
 //	 @Autowired
 //	 private BlogRepository blogRepository;
@@ -36,4 +36,4 @@ public class BlogServiceImpl implements BlogService {
 //	 public void deleteBlog(long id) {
 //		 blogRepository.deleteById(id);
 //	 }
-}
+//}

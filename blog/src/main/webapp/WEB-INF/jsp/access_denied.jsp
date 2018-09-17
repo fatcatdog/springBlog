@@ -27,7 +27,7 @@ body {
 <body>
     <div>
 <h1>Something went wrong</h1>
-<p>Sorry about that. Please <a href="mailto:duchenjacob@gmail.com">tell the developer </a> what went wrong, try <c:url value="/home" var="homeLink"></c:url><a href="${homeLink}"> login, </a> or just try again.</p>
+<p>Sorry about that. Please <a href="mailto:duchenjacob@gmail.com">tell the developer </a> what went wrong, <c:url value="/home" var="homeLink"></c:url><a href="${homeLink}">try login, or just try again</a>.</p>
 <p><a href="mailto:duchenjacob@gmail.com">Feedback</a> which is greatly appreciated can be given to us <a href="mailto:duchenjacob@gmail.com">here</a>.</p>
 
     </div>
