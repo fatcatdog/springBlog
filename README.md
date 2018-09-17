@@ -47,6 +47,8 @@ Things that are still being worked on:
 
 -The UX and CSS is very poor and needs to be updated
 
+-There is still much refactoring in the Controllers and Services that could be done to make the project more readable and efficient
+
 -I am in the process of removing JPA from the security configuration as JDBC is wanted. JPA is used to configure Spring Security and datasource currently. JDBC is used for the rest of the projects CRUD functionality.
 
 -I used mySql during the development of the project and plan on replacing it with Oracle.
