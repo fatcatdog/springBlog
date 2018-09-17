@@ -1,4 +1,4 @@
-This project, "CityBlog", is a blog system built with SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
+This project, "BlogCity", is a blog system built with SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
 <br/>
 <br/>
 To get the project running:
