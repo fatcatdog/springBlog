@@ -3,9 +3,15 @@ This project, "CityBlog", is a blog system built with SpringBoot, SpringMVC, Spr
 To get the project running:
 
 -Git clone this repo
+
 -Create a database
+
 -Run each script in the appropriate sql scripts folder
+
 -Import project in your preferred Java IDE
+
+-Add your user credentials application.properties (database name, username, password)
+
 -Run project as SpringBoot project however you like
 
 Here are a few of my initial user stories that I used when planning the project:
@@ -13,10 +19,15 @@ Here are a few of my initial user stories that I used when planning the project:
 General User Stories
 
 -Users can read blogs
+
 -Users can write blogs
+
 -Users can update and delete their own blogs
+
 -Users can comment and upvote blogs of other authors.
+
 -Users need to login to use system.
+
 -Users need to signup to use system.
 
 More Specific User Stories
