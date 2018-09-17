@@ -39,6 +39,6 @@ body {
 <h1>BlogCity</h1>
 <h4>Created by Jacob Duchen</h4>
 <p><a href="mailto:duchenjacob@gmail.com">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
-<a href="${homeLink}">Login</a></p>
+<a href="${homeLink}">Home</a></p>
 </div>
 </html>

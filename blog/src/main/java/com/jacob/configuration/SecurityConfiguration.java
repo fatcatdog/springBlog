@@ -1,8 +1,7 @@
 //@Author: Jacob Duchen
-
+//Spring Security is still a bit of a mystery to me be honest. Boilerplate login and signup can be acheived by using these common configuration settings. But I do not really understand what is happening under the hood here. 
 
 package com.jacob.configuration;
-
 
 import javax.sql.DataSource;
 

@@ -1,5 +1,5 @@
 //@Author: Jacob Duchen
-
+//upvote controller does have CRUD functionality 
 
 package com.jacob.controller;
 
@@ -26,6 +26,7 @@ import com.jacob.jdbcService.UserService;
 @Controller
 @RequestMapping("vote")
 public class UpvoteController {
+	
 	 @Autowired
 	 private BlogService blogService;
 	 
@@ -38,31 +39,41 @@ public class UpvoteController {
 	 @Autowired
 	 private CommentService commentService;
 	 
-//	 @Autowired
-//    private UpvoteRepository upvoteRepository;
-	 
+	 private User getCurrentAuthUser() {
+		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security 
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 
+		 //getting user object from spring security Authentication object 
+		  User tempUser = userService.findUserByEmail(auth.getName());
+		 return tempUser;
+	 }
+
+	 //upvote method
 	 @RequestMapping(value = "up/{id}", method=RequestMethod.GET)
 	 public ModelAndView createUpvote(@PathVariable(value = "id",  required =false) int id) {
 		 
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		  User tempUser = userService.findUserByEmail(auth.getName());
+		  User tempUser = getCurrentAuthUser();
 
 		  ModelAndView model = new ModelAndView();
+		  
+		  //getting blog from our path variable blog id 
 		  Blog tempBlog =  blogService.getBlog(id);
 
+		  //getting all comments related to our blog to display
+		  //this can be refactored as we have the same functionality in view/blog
 		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
 
 	
 		  User author = userService.findUserById(tempBlog.getAuthor_id());
 		 
 		  model.addObject("blogObject", tempBlog);
-
 		  model.addObject("blogId", tempBlog.getId());
 		  model.addObject("authorName", author.getFirstname() + " " + author.getLastname());
 		  model.addObject("authorEmail", author.getEmail());
 		  model.addObject("title", tempBlog.getTitle());
 		  model.addObject("content", tempBlog.getContent());
 	  
+		  //if user has not already upvoted on blog, we save upvote 
 		  if(!upvoteService.checkIfUserHasVotedOnThisBlogYet(tempUser.getId(), id)) {
 			  Upvote tempUpvote = new Upvote(); 
 			  tempUpvote.setAuthor_id(tempUser.getId());
@@ -71,30 +82,33 @@ public class UpvoteController {
 			  upvoteService.saveUpvote(tempUpvote);
 			  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));			  
 		  } else {
+			  //if user already upvoted, we dont save upvote
 			  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));			  
 		  }
 
+		  //getting appropriate information for view if we have no comments
 		  if(blogComments.size() == 0) {
 			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
 			  model.addObject("listOfCommentsSize", blogComments.size());
-			  
 		  } else {
+			  //if we have comments, we pull info out of comments to pass to view
 			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
 			  model.addObject("ourCommentAuthors", commentsAuthors);
 			  model.addObject("comments", blogComments);
 			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
-		  
+		  //returning view
 	  model.setViewName("blog");
 	  return model;
 	 }
 	 
+	 //lots of duplicate code to be refactored here (sharing code with up method
 	 @RequestMapping(value = "down/{id}", method=RequestMethod.GET)
 	 public ModelAndView createDownVote(@PathVariable(value = "id",  required =false) int id) {
 		 
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		  User tempUser = userService.findUserByEmail(auth.getName());
-		  
+		 //getting current user from Spring Security 
+		  User tempUser = getCurrentAuthUser();
+
 		  ModelAndView model = new ModelAndView();
 		  
 		  Blog tempBlog =  blogService.getBlog(id);
@@ -103,8 +117,7 @@ public class UpvoteController {
 	
 		  User author = userService.findUserById(tempBlog.getAuthor_id());
 		 
-		 
-	  
+		  //if user has an upvote on this blog, we allow the user to delete upvote
 		  if(upvoteService.checkIfUserHasVotedOnThisBlogYet(tempUser.getId(), id)) {
 
 			int ourIdToDelete = upvoteService.getUserUpvoteByUserIdAndBlogId(tempUser.getId(), tempBlog.getId());
@@ -112,19 +125,22 @@ public class UpvoteController {
 			upvoteService.deleteUpvote(ourIdToDelete);		  
 		  } 
 		  
-		  if(blogComments.size() == 0) {
-			  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
-			  model.addObject("listOfCommentsSize", blogComments.size());
-			  
-		  } else {
-			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
-			  model.addObject("ourCommentAuthors", commentsAuthors);
-			  model.addObject("comments", blogComments);
-			  model.addObject("listOfCommentsSize", blogComments.size());
-		  }
-		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
+	  //info for our view which should be refactored
+	//if not comments, we supply a string saying no comments 
+	  if(blogComments.size() == 0) {
+		  model.addObject("commentListEmpty", "Sorry there are no comments as of now :(");
+		  model.addObject("listOfCommentsSize", blogComments.size());
+	  } else {
+		  //pulling information from each comment to display
+		  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
+		  model.addObject("ourCommentAuthors", commentsAuthors);
+		  model.addObject("comments", blogComments);
+		  model.addObject("listOfCommentsSize", blogComments.size());
+	  }
+	  
+	  //more information for view  
+	  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
 
-		  
 	  model.setViewName("blog");
 	  model.addObject("blogObject", tempBlog);
 

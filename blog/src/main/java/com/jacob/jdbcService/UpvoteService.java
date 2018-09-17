@@ -1,5 +1,6 @@
 //@Author: Jacob Duchen
-
+//pretty straight forward stuff here 
+//i hope to put more of the messy logic in our controllers in here 
 
 package com.jacob.jdbcService;
 
@@ -43,7 +44,6 @@ public class UpvoteService  implements UpvoteServiceInterface {
 
 	@Override
 	public int countUpvotes(int blogId) {
-		
 		return upvoteDao.countUpvotes(blogId);
 	}
 	

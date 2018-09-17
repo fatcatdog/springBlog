@@ -1,5 +1,6 @@
 //@Author: Jacob Duchen
-
+//pretty straight forward stuff here 
+//i hope to put more of the messy logic in our controllers in here 
 
 package com.jacob.jdbcService;
 
@@ -33,7 +34,7 @@ public class BlogService implements BlogServiceInterface {
 	public void updateBlog(Blog blog) {
 		blogDao.updateBlog(blog);
 	}
-
+	//note get all blogs is sorted in blogDao sql statement
 	@Override
 	public List<Blog> getAllBlogs() {
 		return blogDao.getAllBlogs();
@@ -41,7 +42,6 @@ public class BlogService implements BlogServiceInterface {
 
 	@Override
 	public Blog getBlog(int id) {
-		
 		return blogDao.getBlog(id);
 	}
 

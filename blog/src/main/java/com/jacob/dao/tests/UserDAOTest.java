@@ -46,8 +46,4 @@ public class UserDAOTest {
 		assertEquals(expected.getEmail(), actual.getEmail());		
 
 		}
-	
-	
-	
-	
 }

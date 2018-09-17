@@ -1,4 +1,5 @@
 //@Author: Jacob Duchen
+//mapper for our jdbc methods in corresponding Dao
 
 package com.jacob.mapper;
 

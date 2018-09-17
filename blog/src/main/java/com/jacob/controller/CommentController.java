@@ -1,5 +1,5 @@
 //@Author: Jacob Duchen
-
+//Comments don't currently have CRUD functionality. So just one simple save method.
 
 package com.jacob.controller;
 
@@ -29,13 +29,16 @@ public class CommentController {
 	 @Autowired
 	 private UserService userService;
 	 
+	 
 	 @RequestMapping(value="saveComment/{id}", method=RequestMethod.POST)
 	 public ModelAndView save(@PathVariable(value = "id", required =false) int id, @ModelAttribute("tempComment") Comment comment) {
 		 System.out.println("savecomment called in comment controller");
 	  
+		 //getting auth information 
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 User tempAuthor = userService.findUserByEmail(auth.getName());
 
+		 //saving comment 
 		 comment.setId(commentService.getANewId());
 		 comment.setAuthor_id(tempAuthor.getId());
 		 comment.setBlog_id(id);
