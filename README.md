@@ -1,5 +1,6 @@
 This project, "CityBlog", is a blog system built with SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
-
+<br/>
+<br/>
 To get the project running:
 
 -Git clone this repo
@@ -15,7 +16,8 @@ To get the project running:
 -Run project as SpringBoot project however you like
 
 
-
+<br/>
+<br/>
 Here are a few of my initial user stories that I used when planning the project:
 
 General User Stories
@@ -32,7 +34,7 @@ General User Stories
 
 -Users need to signup to use system.
 
-
+<br/>
 
 More Specific User Stories
 
@@ -46,7 +48,7 @@ More Specific User Stories
 
 -As a reader, I must be able to see most popular blogs by upvotes.
 
-
+<br/>
 
 Should Have
 
@@ -60,7 +62,7 @@ Could Have
 
 -As an author, I could be able to add tags, or categories, to blogs that I write.
 
-
+<br/>
 
 Things that are still being worked on:
 
@@ -71,7 +73,7 @@ Things that are still being worked on:
 -I am in the process of removing JPA from the security configuration as JDBC is wanted. JPA is used to configure Spring Security and datasource currently. JDBC is used for the rest of the projects CRUD functionality.
 
 -I used mySql during the development of the project and plan on replacing it with Oracle.
-
+<br/>
 
 Here is an image of our current schema:
 
@@ -86,9 +88,8 @@ Here is an image of our current schema:
 -Tags features
 
 -Online Deployment
-
-
-
+<br/>
+<br/>
 Here are some other screenshots of the projects in its crude state:
 ![image of home screen after login](images/home.png)
 
