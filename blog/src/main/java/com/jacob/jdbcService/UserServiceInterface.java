@@ -1,3 +1,5 @@
+//@Author: Jacob Duchen
+
 package com.jacob.jdbcService;
 
 import com.jacob.model.User;

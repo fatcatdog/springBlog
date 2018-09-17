@@ -1,3 +1,5 @@
+//@Author: Jacob Duchen
+
 package com.jacob.model;
 
 import java.util.Set;

@@ -1,3 +1,6 @@
+//@Author: Jacob Duchen
+
+
 package com.jacob.configuration;
 
 import org.springframework.context.annotation.Bean;

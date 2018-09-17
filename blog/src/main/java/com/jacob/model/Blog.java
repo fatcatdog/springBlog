@@ -1,3 +1,5 @@
+//@Author: Jacob Duchen
+
 package com.jacob.model;
 
 import javax.persistence.Column;
@@ -27,13 +29,7 @@ public class Blog {
  public Blog() {
  }
  
-//public Blog(int author_id, String title, String content) {
-//	super();
-//	this.author_id = author_id;
-//	this.title = title;
-//	this.content = content;
-//}
-//
+
 public Blog(int id, int author_id, String title, String content) {
 	super();
 	this.id = id;

@@ -1,3 +1,6 @@
+////@Author: Jacob Duchen
+////I initially used JPA when creating this project. And then switched to JDBC. Here is part of the JPA implementation that is not currently used. 
+
 //package com.jacob.repository;
 //
 //import java.util.List;
