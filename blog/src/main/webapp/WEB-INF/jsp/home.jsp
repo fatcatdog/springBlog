@@ -18,6 +18,10 @@
     <div class="mainContent">
     <div>
   <h2 align="center">Welcome back ${userName}</h2>
+    <form action="searchBlogs" method="GET">
+    	<input type="text" name="searchedWords">
+  		<input type="submit" value="Search Blogs" />
+    </form> 
     <form action="create" method="GET">
   		<input type="submit" value="Create Blog" />
     </form>       

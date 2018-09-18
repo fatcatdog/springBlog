@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UserService;
+import com.jacob.model.Blog;
 import com.jacob.model.Comment;
 import com.jacob.model.User;
 
@@ -29,6 +30,14 @@ public class CommentController {
 	 @Autowired
 	 private UserService userService;
 	 
+	 private User getCurrentAuthUser() {
+		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security 
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 
+		 //getting user object from spring security Authentication object 
+		  User tempUser = userService.findUserByEmail(auth.getName());
+		 return tempUser;
+	 }
 	 
 	 @RequestMapping(value="saveComment/{id}", method=RequestMethod.POST)
 	 public ModelAndView save(@PathVariable(value = "id", required =false) int id, @ModelAttribute("tempComment") Comment comment) {
@@ -47,4 +56,37 @@ public class CommentController {
 	  return new ModelAndView("redirect:/blog/" + id);
 	  
 	 }
+	 
+	 //there is a lot of code in this view that is duplicated in our view blog method. Definitly could use some refactoring. 
+//	 @RequestMapping(value = "/editcomment/{id}", method=RequestMethod.GET)
+//	 public ModelAndView editBlog(@PathVariable(value = "id", required =false) int id) {
+//
+//		  User tempAuthor = getCurrentAuthUser();
+//		  ModelAndView model = new ModelAndView();
+//		  Blog tempBlog =  blogService.getBlog(id);
+//
+//		  boolean access = checkIfUserShouldBeAbleToUpdate(tempAuthor, tempBlog);
+//
+//		  //if user doesn't match author of blog we redirect to error page
+//		  if (!access) {
+//			  System.out.println("Not your blog to edit!!!!!");
+//			  model.setViewName("access_denied");
+//			  return model;
+//		  }
+//
+//		  //otherwise, we set edit.jsp and add all of our needed information to edit view 
+//		  model.setViewName("edit");
+//		  model.addObject("blogId", id);
+//		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
+//		  model.addObject("title", tempBlog.getTitle());
+//		  model.addObject("content", tempBlog.getContent());
+//		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
+//
+//		  return model;
+//
+//	 }
+	 
+	 
+	 
+	 
 }

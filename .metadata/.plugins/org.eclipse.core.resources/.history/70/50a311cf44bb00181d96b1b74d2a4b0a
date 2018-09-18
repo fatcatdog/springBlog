@@ -1,0 +1,17 @@
+package com.jacob.jdbcService;
+
+import java.util.List;
+
+import com.jacob.model.WordInBlog;
+
+public interface WordInBlogServiceInterface {
+	public List<WordInBlog> getAllWordsInAllBlogs();
+	
+	public List<WordInBlog> getAllWordsInAllBlogsByWordSearched(String wordSearched);
+	
+	public WordInBlog getWordInBlogFromDb(int id);
+	
+	public void saveWordInBlogInDb(WordInBlog wordInBlog);
+	
+	public void deleteWordInBlogFromDb(int id);
+}

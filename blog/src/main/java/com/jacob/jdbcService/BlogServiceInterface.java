@@ -14,11 +14,9 @@ public interface BlogServiceInterface {
 	public void updateBlog(Blog blog);
 	
 	public List<Blog> getAllBlogs();
-	
-//	public List<Blog> getAllBlogsSortedByUpvotes();
-	
+		
 	public Blog getBlog(int id);
 	
 	public void deleteBlog(int id);
-	
+		
 }

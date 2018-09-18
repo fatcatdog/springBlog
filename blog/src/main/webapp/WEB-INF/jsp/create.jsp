@@ -22,11 +22,16 @@
 
 <form action="saveBlog" method="post">
         <input type="hidden" name="*{id}"/>
-
-        Title: <input type="text" name="title">
-    <br />
-        Content:<textarea id="content" name="content" rows="5" cols="30"></textarea>
-         
+        <p>Title:</p>
+        <p>${titleErrorMsg}</p>
+		<input type="text" name="title">
+        <p>Content:</p>
+        <p>${contentErrorMsg}</p>
+        <textarea id="content" name="content" rows="5" cols="30"></textarea>
+        <p>${oldTitleHeader}</p>
+		<p>${oldTitle}</p>
+        <p>${oldContentHeader}</p>
+		<p>${oldContent}</p>         
    <br />
          
     <input type="submit" value="Publish" />

@@ -6,6 +6,8 @@ package com.jacob.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
@@ -63,9 +65,16 @@ public class UserController {
   return model;
  }
  
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	
+	public static boolean validate(String emailStr) {
+	        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+	        return matcher.find();
+	}
+ 
 //signing up, lots of messy auth code that doesnt really provide us enough validation, i plan on pulling in validations to simplify this section
  @RequestMapping(value= {"/signup"}, method=RequestMethod.POST)
- public ModelAndView createUser(@Valid User user, String confirmPassword, BindingResult bindingResult) {
+ public ModelAndView createUser(@Valid User user, String confirmPassword, String firstname, String lastname) {
 	  ModelAndView model = new ModelAndView();
 	  
 	  User userExists;
@@ -79,12 +88,12 @@ public class UserController {
 	  }
 	  
 	  //if user email is empty string, we supply error message and resubmit signup form
-	   if (user.getEmail().equals("")) {
+	   if ((user.getEmail().equals("")) || !validate(user.getEmail())) {
 		  System.out.println("Confirm password empty");
-		   model.addObject("msg", "Something went wrong. Please provide an email address. Please try again :)");
+		   model.addObject("msg", "Something went wrong. Please provide a valid email address and try again :)");
 		   model.setViewName("signup");
 		   return model; 
-	  } 
+	  } 	
 	   //if user exists we provide error message and resend signup form
 	   else if(userExists != null) {
 		   System.out.println("email already taken");
@@ -103,7 +112,12 @@ public class UserController {
 			   model.addObject("msg", "Password does not match confirm password. Please try again :)");
 			   model.setViewName("signup");
 			   return model; 
-		  } 
+		  } else if (firstname.trim().length() == 0 || lastname.trim().length() == 0) {
+			  System.out.println("First name or last name empty");
+			   model.addObject("msg", "First name or last name is empty. Please try again :)");
+			   model.setViewName("signup");
+			   return model; 
+		  }
 		  //else, we save user and supply login page
 		  else {
 		   userService.saveUser(user);	

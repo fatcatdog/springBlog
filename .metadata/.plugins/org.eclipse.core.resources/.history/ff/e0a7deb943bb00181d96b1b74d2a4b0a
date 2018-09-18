@@ -1,0 +1,5 @@
+package com.jacob.jdbcService;
+
+public class WordInBlogServiceInterface {
+
+}

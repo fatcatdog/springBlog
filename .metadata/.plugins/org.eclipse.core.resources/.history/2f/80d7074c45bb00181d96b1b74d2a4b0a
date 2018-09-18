@@ -1,0 +1,47 @@
+package com.jacob.jdbcService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jacob.dao.UserDAO;
+import com.jacob.dao.WordInBlogDAO;
+import com.jacob.model.WordInBlog;
+
+@Service("wordInBlogService")
+public class WordInBlogService implements WordInBlogServiceInterface {
+
+	@Autowired
+	private WordInBlogDAO wordInBlogDAO;
+	
+	@Override
+	public List<WordInBlog> getAllWordsInAllBlogs() {
+		
+	}
+
+	@Override
+	public List<WordInBlog> getAllWordsInAllBlogsByWordSearched(String wordsSearched) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WordInBlog getWordInBlogById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveWordInBlogInDb(WordInBlog wordInBlog) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteWordInBlogFromDb(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

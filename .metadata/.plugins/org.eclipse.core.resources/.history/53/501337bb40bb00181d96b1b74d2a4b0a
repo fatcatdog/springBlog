@@ -1,0 +1,5 @@
+package com.jacob.dao;
+
+public class WordInBlogDAO {
+
+}

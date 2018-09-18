@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.jacob.model.Upvote;
 
-public class UpvoteMapper implements RowMapper<Upvote> {
+final class UpvoteMapper implements RowMapper<Upvote> {
 	@Override
 	public Upvote mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub

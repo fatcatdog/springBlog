@@ -13,6 +13,7 @@ public interface CommentServiceInterface {
 
 	public Comment getComment(int id);
 	public void deleteComment(int id);
+	public void updateComment(Comment comment);
     public void saveComment(Comment comment);
 	public List<Comment> getAllCommentsForABlog(int id);
 	public List<Integer> getAllCommentsCount(List<Blog> blogs);

@@ -1,0 +1,8 @@
+package com.jacob.jdbcService;
+
+import org.springframework.stereotype.Service;
+
+@Service("wordInBlogService")
+public class WordInBlogService implements WordInBlogServiceInterface {
+
+}

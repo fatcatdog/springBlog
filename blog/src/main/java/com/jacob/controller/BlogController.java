@@ -3,6 +3,7 @@
 
 package com.jacob.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -67,6 +68,18 @@ public class BlogController {
 		  } else {
 			  return false;
 		  }
+	 }
+	 
+	 public boolean checkIfBlogTitleLengthIsValid(String blog_title) {
+		 System.out.println(blog_title);
+
+		 if (blog_title.length() > 254) {
+			 return false;
+		 } else if (blog_title.length() < 2) {
+			 return false;
+		 } else {
+			 return true;
+		 }
 	 }
 
 	 //here is our delete blog action. We really dont delete the blog here. But we have some logic to allow user to get to delete page, or provide them error page. We really should prevent not-correct user from even seeing the delete and edit pages.
@@ -193,6 +206,31 @@ public class BlogController {
 		//getting authorized current user object
 		 User tempUser = getCurrentAuthUser();
 		 
+		 if(!checkIfBlogTitleLengthIsValid(temp.getTitle())) {
+			  ModelAndView model = new ModelAndView();
+			  model.addObject("tempBlog", new Blog());
+			  model.addObject("oldTitleHeader", "Previous inputted title:");
+			  model.addObject("oldContentHeader", "Previous inputted content:");
+			  model.addObject("oldTitle", temp.getTitle());
+			  model.addObject("oldContent", temp.getContent());			  
+			  model.addObject("titleErrorMsg", "Sorry title length is invalid");
+			  model.setViewName("create");
+
+			  return model;
+		 }
+		 
+		 if((temp.getContent().length() > 60000) || (temp.getContent().length() < 1)) {
+			 ModelAndView model = new ModelAndView();
+			 model.addObject("tempBlog", new Blog());
+			  model.addObject("oldTitleHeader", "Previous inputted title:");
+			  model.addObject("oldContentHeader", "Previous inputted content:");
+			  model.addObject("oldTitle", temp.getTitle());
+			  model.addObject("oldContent", temp.getContent());	
+			 model.addObject("contentErrorMsg", "Sorry previous content length is invalid");
+			 model.setViewName("create");
+			 return model;
+		 }
+		 
 		  int tempAuthorId = tempUser.getId();
 		  temp.setAuthor_id(tempAuthorId);
 		  blogService.saveBlog(temp);
@@ -245,71 +283,93 @@ public class BlogController {
 		  model.setViewName("edit");
 		  model.addObject("blogId", id);
 		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
+		  model.addObject("oldTitle", tempBlog.getTitle());
+		  model.addObject("oldContent", tempBlog.getContent());
 		  model.addObject("title", tempBlog.getTitle());
 		  model.addObject("content", tempBlog.getContent());
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
+		  model.addObject("tempCommentCount", commentService.getCommentCountForABlog(id));
 
 		  return model;
-
 	 }
 	 
-////	 a bad user hopefully wont see this action because they shouldnt be able to get to edit page. Hopefully... Additional security logic anyway though. 
-//i need to change the logic here so if no new title or new content is provided the updateblog actions saves empty string, bad
-	 
-	 //	 @RequestMapping(value="updateBlog", method=RequestMethod.POST)
-//	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp) {
-//		 //our auth logic that is being repeated in every method which i hope to refactor
-////		 User tempUser = getCurrentAuthUser();
-////		 
-////		 //if user is updating not there own own blow
-////		 if(tempUser.getId() == tempBlog.getAuthor_id()) {
-//		 	Blog preUpdatedBlog = blogService.getBlog(temp.getId());
-//		 	
-//		 	//if user fails to provide new title we just keep old content 
-//		 	System.out.println("tempBlog.getTitle()");
-//		 	System.out.println(temp.getTitle());
-//		 	System.out.println("tempBlog.getContent()");
-//		 	System.out.println(temp.getContent());
-//		 	System.out.println(temp.getId());
-//
-//		 	System.out.println("preUpdatedBlog.getTitle()");
-//		 	System.out.println(preUpdatedBlog.getTitle());
-//		 	System.out.println("preUpdatedBlog.getContent()");
-//		 	System.out.println(preUpdatedBlog.getContent());
-//		 	System.out.println(preUpdatedBlog.getId());
-//
-////		 	if (tempBlog.getTitle().length()==0) {
-////		 		tempBlog.setContent(preUpdatedBlog.getTitle());
-////		 	}
-////		 	
-////		 	//if user fails to provide new content we just keep old content 
-////		 	if (tempBlog.getContent().length()==0) {
-////		 		tempBlog.setContent(preUpdatedBlog.getContent());
-////		 	}
-//		 
-//			 System.out.println("blogController updateBlog Update method called");
-//			  blogService.updateBlog(temp);
-//			  return new ModelAndView("redirect:/home"); 
-////		 } else {
-////			ModelAndView model = new ModelAndView();
-////			System.out.println("Not your blog to edit!!!!!");
-////			model.setViewName("access_denied");
-////			return model;
-////		 }
-//	 }
-	 
-	 //still working on this
+	 //update blog method that actually saves updated blog
 	 @RequestMapping(value="updateBlog", method=RequestMethod.POST)
-	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp) {
+	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp, String oldTitle, String oldContent) {
+		 
+		 if(temp.getTitle().trim().length()==0) {
+			 temp.setTitle(oldTitle);
+		 }
+		 if(temp.getContent().trim().length()==0) {
+			 temp.setContent(oldContent);
+		 }
+		  
 		  System.out.println("blogController updateBlog Update method called");
 		  System.out.println(temp.getTitle());
 		  System.out.println(temp.getContent());
 		  System.out.println(temp.getId());
+		  System.out.println(oldContent);
+		  System.out.println(oldTitle);
 
 		  blogService.updateBlog(temp);
 		  return new ModelAndView("redirect:/home");
 	 }
+	 
+	 //search blogs and return a list of blogs 
+	 @RequestMapping(value="searchBlogs", method=RequestMethod.GET)
+	 public ModelAndView searchAllBlogs(String searchedWords) {
+		 System.out.println(searchedWords);
+		 
+		 savingWordsFromOldDb();
+		
+		 
+		  return new ModelAndView("redirect:/home");
+	 }
 
+	 public void savingWordsFromOldDb() {
+		 List<Blog> allBlogs = blogService.getAllBlogs(); 
+		 
+		 List<String> allTitles = new ArrayList<String>();
+		 List<String> allContents = new ArrayList<String>();
+		 
+		 List<String> allWords = new ArrayList<String>();
+		 for(int i = 0; i < allBlogs.size(); i++) {
+			 allTitles.add(allBlogs.get(i).getTitle());
+			 allContents.add(allBlogs.get(i).getContent());
+		 }
+
+		 for(int i = 0; i < allTitles.size(); i++) {
+			 String title_to_be_searched = allTitles.get(i);
+			 String[] array_of_words = title_to_be_searched.split("\\P{L}+");
+
+			 List<String> our_unique_words_from_title = new ArrayList<String>();
+			 
+			 for(int j = 0; j < array_of_words.length; j++) {
+				 if(!our_unique_words_from_title.contains(array_of_words[j])) {
+					 our_unique_words_from_title.add(array_of_words[j]);
+					 System.out.println("Unique: " + array_of_words[j]);
+				 } else {
+					 System.out.println("Not: " + array_of_words[j]); 
+				 }
+			 }
+		 }
+		 
+		 for(int i = 0; i < allContents.size(); i++) {
+			 String content_to_be_searched = allContents.get(i);
+			 String[] array_of_words = content_to_be_searched.split("\\P{L}+");
+
+			 List<String> our_unique_words_from_content = new ArrayList<String>();
+			 
+			 for(int j = 0; j < array_of_words.length; j++) {
+				 if(!our_unique_words_from_content.contains(array_of_words[j])) {
+					 our_unique_words_from_content.add(array_of_words[j]);
+					 System.out.println("Unique: " + array_of_words[j]);
+				 } else {
+					 System.out.println("Not: " + array_of_words[j]); 
+				 }
+			 } 
+		 }
+	 }
 
 
 }

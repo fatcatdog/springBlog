@@ -17,39 +17,30 @@
 <div>
 
 <h1>${title}</h1> 
+<p>By ${authorName}</p>
 <p>Comments: ${listOfCommentsSize}</p>
 <p>Upvotes: ${tempUpvoteCount}</p>
-<p>By ${authorName}</p>
 <p><a href="/vote/up/${blogId}">Upvote</a> <a href="/vote/down/${blogId}">Downvote</a> <a href="/delete/${blogId}">Delete</a> <a href="/edit/${blogId}">Edit</a>
 </p>
 <p>Content:</p>
 <p>${content}</p>
-
-<h4>Author can be contacted at: <a href="mailto:${authorEmail}">${authorEmail}</a></h4>
-<h1>Comments</h1>
-<h4>${commentListEmpty}</h4>
+<p>Comments</p>
+<p>${commentListEmpty}</p>
 	  <c:forEach items="${comments}" var="comment" varStatus="status">
-	  
-	    <c:out value="${comment} - By ${ourCommentAuthors[status.index]}" />
+	    <c:out value="${comment} - ${ourCommentAuthors[status.index]}" />
 	    <Br/>
-	    
-	    
 	  </c:forEach>	  
-
-<Br/>
-
-<h1>Create Comment</h1>
-
 
 <c:url var="save_comment_url"  value="/saveComment/${blogId}" />
 <form action="${save_comment_url}" method="post">
-      <p>Comment Content<br>
+      <p>Add Comment<br>
        <input type="text" name="content">
       </p>
     <input type="submit" value="Publish Comment" />
 </form>
 <Br/>
-<h3>Currently Signed in as ${currentUserEmail}</h3> 
+<p>Author can be contacted at: <a href="mailto:${authorEmail}">${authorEmail}</a></p>
+<p>Currently Signed in as ${currentUserEmail}</p> 
 <Br/>
 </div>
 </div>

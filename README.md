@@ -1,20 +1,45 @@
-This project, "BlogCity", is a blog system built with SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
+This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
 <br/>
 <br/>
 To get the project running:
 
 -Git clone this repo
 
--Create a database
+-Create a database in your SQL system (mysql or oracle)
 
--Run each script in the appropriate sql scripts folder
+-Run each script in the appropriate sql scripts folder (mysql or oracle)
 
--Import project in your preferred Java IDE
+-Import blog project from repo in your preferred Java IDE
 
--Add your user credentials application.properties (database name, username, password)
+-Add your user credentials in project's application.properties file (database name, username, password)
 
 -Run project as SpringBoot project however you like
 
+Things that are still being worked on:
+
+-The UX and CSS is very poor and needs to be updated
+
+-There is still much refactoring in the Controllers and Services that could be done to make the project more readable and efficient
+
+-I am in the process of removing JPA from the security configuration as JDBC is wanted. JPA is used to configure Spring Security and datasource currently. JDBC is used for the rest of the projects CRUD functionality.
+
+-I used mySql during the development of the project and plan on replacing it with Oracle.
+<br/>
+
+Here is an image of our current schema:
+
+![mysql schema of database](images/dbSchemaImage.png)
+
+-Comment delete functionality
+
+-Comment to Comment relationship functionality
+
+-Non-text in blogs functionality
+
+-Tags features
+
+-Online Deployment
+<br/>
 
 <br/>
 <br/>
@@ -54,6 +79,8 @@ Should Have
 
 -As a user, I should be authenticated when using the website.
 
+<br/>
+
 Could Have
 
 -As a user, I could be able to insert images, and other popular types of media into blogs that I write.
@@ -62,32 +89,6 @@ Could Have
 
 -As an author, I could be able to add tags, or categories, to blogs that I write.
 
-<br/>
-
-Things that are still being worked on:
-
--The UX and CSS is very poor and needs to be updated
-
--There is still much refactoring in the Controllers and Services that could be done to make the project more readable and efficient
-
--I am in the process of removing JPA from the security configuration as JDBC is wanted. JPA is used to configure Spring Security and datasource currently. JDBC is used for the rest of the projects CRUD functionality.
-
--I used mySql during the development of the project and plan on replacing it with Oracle.
-<br/>
-
-Here is an image of our current schema:
-
-![mysql schema of database](images/dbSchemaImage.png)
-
--Comment delete functionality
-
--Comment to Comment relationship functionality
-
--Non-text in blogs functionality
-
--Tags features
-
--Online Deployment
 <br/>
 <br/>
 Here are some other screenshots of the projects in its crude state:

@@ -1,0 +1,9 @@
+package com.jacob.mapper;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.jacob.model.WordInBlog;
+
+final class WordInBlogMapper implements RowMapper<WordInBlog> {
+
+}
