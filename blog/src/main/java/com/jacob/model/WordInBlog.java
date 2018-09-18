@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "words_in_blog")	 
+@Table(name = "words_in_blogs")	 
 public class WordInBlog {
 
 	 @Id
@@ -24,6 +24,12 @@ public class WordInBlog {
 	public WordInBlog(int id, int blog_id, String word) {
 		super();
 		this.id = id;
+		this.blog_id = blog_id;
+		this.word = word;
+	}
+	
+	public WordInBlog(int blog_id, String word) {
+		super();
 		this.blog_id = blog_id;
 		this.word = word;
 	}

@@ -36,7 +36,17 @@ public class BlogService implements BlogServiceInterface {
 	}
 	
 	public void updateBlog(Blog blog) {
+		List<WordInBlog> ourWordInBlogs = wordInBlogService.getAllWordsInAllBlogsByBlogId(blog.getId());
+
+		for(int i = 0; i < ourWordInBlogs.size(); i++) {
+			int tempWordInBlogId = ourWordInBlogs.get(i).getId();
+			wordInBlogService.deleteWordInBlogFromDb(tempWordInBlogId);
+		}
+		
 		blogDao.updateBlog(blog);
+		
+		
+		wordInBlogService.saveWordsFromBlog(blog.getId(), getBlog(blog.getId()));
 	}
 	//note get all blogs is sorted in blogDao sql statement
 	@Override
@@ -48,6 +58,12 @@ public class BlogService implements BlogServiceInterface {
 	public Blog getBlog(int id) {
 		return blogDao.getBlog(id);
 	}
+	
+	@Override
+	public int getANewId() {
+		return blogDao.getANewId();
+	}
+
 
 	@Override
 	public void deleteBlog(int id) {

@@ -22,8 +22,10 @@ import com.jacob.jdbcService.BlogService;
 import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UpvoteService;
 import com.jacob.jdbcService.UserService;
+import com.jacob.jdbcService.WordInBlogService;
 import com.jacob.model.Blog;
 import com.jacob.model.User;
+import com.jacob.model.WordInBlog;
 
 @Controller
 @RequestMapping()
@@ -40,6 +42,9 @@ public class BlogController {
 
 	 @Autowired
 	 private CommentService commentService;
+	 
+	 @Autowired
+	 private WordInBlogService wordInBlogService;
 	 
 	 private User getCurrentAuthUser() {
 		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security 
@@ -232,9 +237,11 @@ public class BlogController {
 		 }
 		 
 		  int tempAuthorId = tempUser.getId();
+		  int likely_id_of_blog = blogService.getANewId();
 		  temp.setAuthor_id(tempAuthorId);
 		  blogService.saveBlog(temp);
 
+		  wordInBlogService.saveWordsFromBlog(likely_id_of_blog, temp);
 		  //after user saves blog, we send them to website homepage
 		  return new ModelAndView("redirect:/home");
 	 }
@@ -315,61 +322,28 @@ public class BlogController {
 		  return new ModelAndView("redirect:/home");
 	 }
 	 
-	 //search blogs and return a list of blogs 
-	 @RequestMapping(value="searchBlogs", method=RequestMethod.GET)
-	 public ModelAndView searchAllBlogs(String searchedWords) {
-		 System.out.println(searchedWords);
-		 
-		 savingWordsFromOldDb();
-		
-		 
-		  return new ModelAndView("redirect:/home");
-	 }
-
-	 public void savingWordsFromOldDb() {
-		 List<Blog> allBlogs = blogService.getAllBlogs(); 
-		 
-		 List<String> allTitles = new ArrayList<String>();
-		 List<String> allContents = new ArrayList<String>();
-		 
-		 List<String> allWords = new ArrayList<String>();
-		 for(int i = 0; i < allBlogs.size(); i++) {
-			 allTitles.add(allBlogs.get(i).getTitle());
-			 allContents.add(allBlogs.get(i).getContent());
-		 }
-
-		 for(int i = 0; i < allTitles.size(); i++) {
-			 String title_to_be_searched = allTitles.get(i);
-			 String[] array_of_words = title_to_be_searched.split("\\P{L}+");
-
-			 List<String> our_unique_words_from_title = new ArrayList<String>();
-			 
-			 for(int j = 0; j < array_of_words.length; j++) {
-				 if(!our_unique_words_from_title.contains(array_of_words[j])) {
-					 our_unique_words_from_title.add(array_of_words[j]);
-					 System.out.println("Unique: " + array_of_words[j]);
-				 } else {
-					 System.out.println("Not: " + array_of_words[j]); 
-				 }
-			 }
-		 }
-		 
-		 for(int i = 0; i < allContents.size(); i++) {
-			 String content_to_be_searched = allContents.get(i);
-			 String[] array_of_words = content_to_be_searched.split("\\P{L}+");
-
-			 List<String> our_unique_words_from_content = new ArrayList<String>();
-			 
-			 for(int j = 0; j < array_of_words.length; j++) {
-				 if(!our_unique_words_from_content.contains(array_of_words[j])) {
-					 our_unique_words_from_content.add(array_of_words[j]);
-					 System.out.println("Unique: " + array_of_words[j]);
-				 } else {
-					 System.out.println("Not: " + array_of_words[j]); 
-				 }
-			 } 
-		 }
-	 }
-
+	 //save words from a blog to db so that we can search for blogs by string input
+//	 public void saveWordsFromBlog(int blog_id, Blog blog_about_to_be_saved) {
+//		 String title = blog_about_to_be_saved.getTitle();
+//		 String content = blog_about_to_be_saved.getContent();
+//		 
+//		 String allOfOurTextFromBlog = title + " " + content; 
+//		 String[] words = allOfOurTextFromBlog.trim().split("\\P{L}+");
+//		 
+//		 List<String> uniqueWords = new ArrayList<String>();
+//		 
+//		 for(int i = 0; i < words.length; i++) {
+//			 if(!uniqueWords.contains(words[i])) {
+//				 uniqueWords.add(words[i]);
+//			 }
+//		 }
+//		 
+//		 for(int i = 0; i < uniqueWords.size(); i++) {
+//			 WordInBlog wordInBlog = new WordInBlog(wordInBlogService.getANewId(), blog_id, uniqueWords.get(i));
+//			 System.out.println("id: " + wordInBlog.getId() + " blog_id: " + wordInBlog.getBlog_id() + " word:  " + wordInBlog.getWord());
+//			 wordInBlogService.saveWordInBlogInDb(wordInBlog);
+//		 }
+//		 
+//	 }
 
 }

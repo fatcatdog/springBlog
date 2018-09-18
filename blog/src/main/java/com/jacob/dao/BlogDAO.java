@@ -51,5 +51,11 @@ public class BlogDAO {
     	String sql = "DELETE FROM blog WHERE id=?";
     	jdbcTemplate.update(sql, id);
     }
+    
+	 public int getANewId() {
+		 String sql = "SELECT MAX(id) from blog";
+		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);
+		 return (number + 1); 
+	 }
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jacob.dao.WordInBlogDAO;
+import com.jacob.model.Blog;
 import com.jacob.model.WordInBlog;
 
 @Service("wordInBlogService")
@@ -56,5 +57,41 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 	public void deleteWordInBlogFromDb(int id) {
 		wordInBlogDAO.deleteWordInBlogFromDb(id);
 	}
+	
+	@Override 
+	public int getANewId() {
+		return wordInBlogDAO.getANewId();
+	}
+	
+	@Override 
+	public int getBlogIdFromWordInBlog(int id) {
+		WordInBlog wordInBlog = getWordInBlogById(id);
+		
+		return wordInBlog.getBlog_id();
+	}
+	
+	@Override 
+	 public void saveWordsFromBlog(int blog_id, Blog blog_about_to_be_saved) {
+		 String title = blog_about_to_be_saved.getTitle();
+		 String content = blog_about_to_be_saved.getContent();
+		 
+		 String allOfOurTextFromBlog = title + " " + content; 
+		 String[] words = allOfOurTextFromBlog.trim().split("\\P{L}+");
+		 
+		 List<String> uniqueWords = new ArrayList<String>();
+		 
+		 for(int i = 0; i < words.length; i++) {
+			 if(!uniqueWords.contains(words[i])) {
+				 uniqueWords.add(words[i]);
+			 }
+		 }
+		 
+		 for(int i = 0; i < uniqueWords.size(); i++) {
+			 WordInBlog wordInBlog = new WordInBlog(getANewId(), blog_id, uniqueWords.get(i));
+			 System.out.println("id: " + wordInBlog.getId() + " blog_id: " + wordInBlog.getBlog_id() + " word:  " + wordInBlog.getWord());
+			 saveWordInBlogInDb(wordInBlog);
+		 }
+		 
+	 }
 
 }

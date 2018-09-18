@@ -1,0 +1,116 @@
+package com.jacob.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.CommentService;
+import com.jacob.jdbcService.UpvoteService;
+import com.jacob.jdbcService.UserService;
+import com.jacob.jdbcService.WordInBlogService;
+import com.jacob.model.Blog;
+import com.jacob.model.User;
+import com.jacob.model.WordInBlog;
+
+@Controller
+@RequestMapping("")
+public class WordsInABlogController {
+	 @Autowired
+	 private UserService userService;
+	 
+	 @Autowired
+	 private BlogService blogService;
+	 
+	 @Autowired
+	 private UpvoteService upvoteService;
+	 
+	 @Autowired
+	 private CommentService commentService;
+	 
+	 @Autowired
+	 private WordInBlogService wordInBlogService;
+	 
+	 //get appropriate 
+	 
+	//get list of author names to display along our corresponding list of blogs 
+	 public List<String> getAuthorNamesFromDb(List<Blog> ourBlogs) {
+		 List<Integer> authorIds = new ArrayList<Integer>(); 
+		 List<String> tempAuthorNames = new ArrayList<String>();
+		 
+		 for(int i = 0; i < ourBlogs.size(); i++) {
+			authorIds.add(ourBlogs.get(i).getAuthor_id());
+		 }
+		 
+		 for(int i = 0; i < ourBlogs.size(); i++) {
+			 User tempUser = userService.findUserById(authorIds.get(i));
+			 String userFullName = (tempUser.getFirstname() + " " + tempUser.getLastname());
+			 
+			 if (userFullName.length() == 1) {
+				 tempAuthorNames.add("Anonymous");
+			 } else {
+				 tempAuthorNames.add(userFullName);			 
+			 }
+		 }
+		 return tempAuthorNames; 
+	 }
+	 
+	 public List<Blog> getOurBlogsFromSearch(String search) {
+		 List<WordInBlog> ourWordsInBlogs = wordInBlogService.getAllWordsInAllBlogsByWordSearched(search);
+		 List<Integer> blogsIds = new ArrayList<Integer>(); 
+		 List<Blog> blogs = new ArrayList<Blog>(); 
+		 
+		 for(int i = 0; i < ourWordsInBlogs.size(); i++) {
+			 if(!blogsIds.contains(ourWordsInBlogs.get(i).getBlog_id())) {
+				 blogsIds.add(ourWordsInBlogs.get(i).getBlog_id());				 
+			 }
+		 }
+		 
+		 for(int i = 0; i < blogsIds.size(); i++) {
+			 blogs.add(blogService.getBlog(blogsIds.get(i)));
+		 }
+
+		
+	 }
+	 
+	 //search blogs and return a list of blogs 
+	 @RequestMapping(value="searchBlogs", method=RequestMethod.GET)
+	 public ModelAndView searchAllBlogs(String searchedWords) {
+	
+		 
+		 ModelAndView model = new ModelAndView();
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  User user = userService.findUserByEmail(auth.getName());
+		  if((user.getFirstname() + user.getLastname()).length() == 0) {
+			  model.addObject("userName", "Anonymous");
+		  } else {
+			  model.addObject("userName", user.getFirstname() + " " + user.getLastname());	  
+		  }
+		  
+		  List<Blog> ourBlogs =  new ArrayList<Blog>();
+		  
+		  
+		  
+		  List<String> ourAuthors = getAuthorNamesFromDb(ourBlogs);
+		  List<Integer> ourUpvoteCounts = upvoteService.getUpvoteCountsForEachBlogInAList(ourBlogs);
+		  List<Integer> ourCommentCounts = commentService.getAllCommentsCount(ourBlogs);
+		  
+		  model.addObject("upvotes", ourUpvoteCounts); 
+		  model.addObject("comments", ourCommentCounts); 
+		  model.addObject("blogs", ourBlogs); 
+		  model.addObject("authorNames", ourAuthors);
+		  model.setViewName("home");
+		  return model;
+	 }
+	
+
+	 
+	 
+}

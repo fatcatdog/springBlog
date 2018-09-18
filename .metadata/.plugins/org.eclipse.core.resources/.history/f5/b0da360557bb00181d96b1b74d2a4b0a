@@ -1,0 +1,62 @@
+package com.jacob.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jacob.jdbcService.BlogService;
+import com.jacob.jdbcService.CommentService;
+import com.jacob.jdbcService.UpvoteService;
+import com.jacob.jdbcService.UserService;
+import com.jacob.model.Blog;
+import com.jacob.model.User;
+
+@Controller
+@RequestMapping("")
+public class WordsInABlogController {
+	 @Autowired
+	 private UserService userService;
+	 
+	 @Autowired
+	 private BlogService blogService;
+	 
+	 @Autowired
+	 private UpvoteService upvoteService;
+	 
+	 @Autowired
+	 private CommentService commentService;
+	 
+	
+	//home view has a lot of info in it and requires us to bring in all the services. refactor needed
+	 @RequestMapping(value= {"/home"}, method=RequestMethod.GET)
+	 public ModelAndView home() {
+	  ModelAndView model = new ModelAndView();
+	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	  User user = userService.findUserByEmail(auth.getName());
+	  if((user.getFirstname() + user.getLastname()).length() == 0) {
+		  model.addObject("userName", "Anonymous");
+	  } else {
+		  model.addObject("userName", user.getFirstname() + " " + user.getLastname());	  
+	  }
+	  
+	  List<Blog> ourBlogs =  blogService.getAllBlogs(); 
+	  List<String> ourAuthors = getAuthorNamesFromDb(ourBlogs);
+	  List<Integer> ourUpvoteCounts = upvoteService.getUpvoteCountsForEachBlogInAList(ourBlogs);
+	  List<Integer> ourCommentCounts = commentService.getAllCommentsCount(ourBlogs);
+	  
+	  model.addObject("upvotes", ourUpvoteCounts); 
+	  model.addObject("comments", ourCommentCounts); 
+	  model.addObject("blogs", ourBlogs); 
+	  model.addObject("authorNames", ourAuthors);
+	  model.setViewName("home");
+	  return model;
+	 }
+	 
+	 
+}
