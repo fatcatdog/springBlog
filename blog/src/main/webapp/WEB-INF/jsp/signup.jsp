@@ -6,22 +6,10 @@
 <html lang="en">
 
 <head>
-<style>
-body {
-    color: maroon;
-	 margin: auto;
-    width: 75%;
-    border: 5px solid black;
-    padding: 10px;
-    text-align: center;
-  	padding: 20px;
-	font-family: Arial, Helvetica, sans-serif;
 
-    }
-</style>
 </head>
 
-<h1>BlogCity</h1>
+<h1><a href="/home">BlogCity</a></h1>
 
 <body>
 <div>
@@ -50,18 +38,20 @@ body {
          
     <input type="submit" value="Register" />
 	</form>
-	                 <br />
+	<p>${msg}</p>
 	
-<c:url value="/home" var="homeLink"></c:url>
-<a href="${homeLink}">Login</a>
-<p>${msg}</p>
-
+	                 <p>or</p>
+	                
+	<c:url value="/home" var="homeLink"></c:url> 
+	<form action="homeLink" method="get">
+	<input type="submit" value="Login" />
+	</form>
 </div>
 </body>
          <br />
          <br />
 <div>
-<h1>BlogCity</h1>
+<h1><a href="/home">BlogCity</a></h1>
 <h4>Created by Jacob Duchen</h4>
 <p><a href="mailto:duchenjacob@gmail.com">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
 <a href="${homeLink}">Login</a></p>

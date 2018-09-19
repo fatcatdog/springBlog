@@ -1,3 +1,5 @@
+//@Author=Jacob Duchen
+
 package com.jacob.dao;
 
 import java.util.List;
@@ -62,6 +64,5 @@ public class WordInBlogDAO {
 		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);
 		 return (number + 1); 
 	 }
-	
-	
+
 }

@@ -1,3 +1,6 @@
+//@Author=Jacob Duchen
+ //we basically are duplicating the code that presents all blogs to user here as present in our user controller. so refactoring is definitly a thing here that needs to be done 
+
 package com.jacob.controller;
 
 import java.util.ArrayList;
@@ -37,10 +40,8 @@ public class WordsInABlogController {
 	 
 	 @Autowired
 	 private WordInBlogService wordInBlogService;
-	 
-	 //get appropriate 
-	 
-	//get list of author names to display along our corresponding list of blogs 
+	 	 	
+	 //get list of author names to display along our corresponding list of blogs 
 	 public List<String> getAuthorNamesFromDb(List<Blog> ourBlogs) {
 		 List<Integer> authorIds = new ArrayList<Integer>(); 
 		 List<String> tempAuthorNames = new ArrayList<String>();
@@ -62,6 +63,7 @@ public class WordsInABlogController {
 		 return tempAuthorNames; 
 	 }
 	 
+	 //actually getting the blogs for our searched method below
 	 public List<Blog> getOurBlogsFromSearch(String search) {
 		 List<WordInBlog> ourWordsInBlogs = wordInBlogService.getAllWordsInAllBlogsByWordSearched(search);
 		 List<Integer> blogsIds = new ArrayList<Integer>(); 
@@ -80,7 +82,7 @@ public class WordsInABlogController {
 		return searchResultBlogs;
 	 }
 	 
-	 //search blogs and return a list of blogs 
+	 //this is the action user call to see list of blogs 
 	 @RequestMapping(value="searchBlogs", method=RequestMethod.GET)
 	 public ModelAndView searchAllBlogs(String searchedWords) {
 	

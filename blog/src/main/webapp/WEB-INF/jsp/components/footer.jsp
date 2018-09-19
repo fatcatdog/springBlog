@@ -1,5 +1,5 @@
 <div class="footer-items">
-<h1>BlogCity</h1>
+<h1><a href="/home">BlogCity</a></h1>
 <h4>Created by Jacob Duchen</h4>
 
 <c:url value="/home" var="homeLink"></c:url>

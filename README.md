@@ -9,6 +9,8 @@ To get the project running:
 
 -Run each script in the appropriate sql scripts folder (mysql or oracle)
 
+-INSERT INTO `role` VALUES (1,'ADMIN');
+
 -Import blog project from repo in your preferred Java IDE
 
 -Add your user credentials in project's application.properties file (database name, username, password)
