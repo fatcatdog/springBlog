@@ -17,7 +17,7 @@
 
     <div class="mainContent">
     <div>
-  <h2 align="center">Welcome back ${userName}</h2>
+  <h2 align="center">Here are your search results ${userName}</h2>
     <form action="searchBlogs" method="GET">
     	<input type="text" name="searchedWords">
   		<input type="submit" value="Search Blogs" />

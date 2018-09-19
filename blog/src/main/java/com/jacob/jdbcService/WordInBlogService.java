@@ -15,7 +15,7 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 
 	@Autowired
 	private WordInBlogDAO wordInBlogDAO;
-	
+
 	@Override
 	public List<WordInBlog> getAllWordsInAllBlogs() {
 		return wordInBlogDAO.getAllWordsInAllBlogs();
@@ -25,18 +25,18 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 	public List<WordInBlog> getAllWordsInAllBlogsByWordSearched(String wordsSearched) {
 		String[] searchedString = wordsSearched.trim().split(" ");
 		List<WordInBlog> results = new ArrayList<WordInBlog>();
-		
+
 		for(int i = 0; i < searchedString.length; i++) {
 			List<WordInBlog> individualWordResults = wordInBlogDAO.getAllWordsInAllBlogsByWordSearched(searchedString[i]);
-			
+
 			for(int j=0; j < individualWordResults.size(); j++) {
 				results.add(individualWordResults.get(j));
 			}
 		}
 
-		return results; 
+		return results;
 	}
-	
+
 	@Override
     public List<WordInBlog> getAllWordsInAllBlogsByBlogId(int blog_id){
 		return wordInBlogDAO.getAllWordsInAllBlogsByBlogId(blog_id);
@@ -57,41 +57,40 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 	public void deleteWordInBlogFromDb(int id) {
 		wordInBlogDAO.deleteWordInBlogFromDb(id);
 	}
-	
-	@Override 
+
+	@Override
 	public int getANewId() {
 		return wordInBlogDAO.getANewId();
 	}
-	
-	@Override 
+
+	@Override
 	public int getBlogIdFromWordInBlog(int id) {
 		WordInBlog wordInBlog = getWordInBlogById(id);
-		
+
 		return wordInBlog.getBlog_id();
 	}
-	
-	@Override 
+
+	@Override
 	 public void saveWordsFromBlog(int blog_id, Blog blog_about_to_be_saved) {
 		 String title = blog_about_to_be_saved.getTitle();
 		 String content = blog_about_to_be_saved.getContent();
-		 
-		 String allOfOurTextFromBlog = title + " " + content; 
+
+		 String allOfOurTextFromBlog = title + " " + content;
 		 String[] words = allOfOurTextFromBlog.trim().split("\\P{L}+");
-		 
+
 		 List<String> uniqueWords = new ArrayList<String>();
-		 
+
 		 for(int i = 0; i < words.length; i++) {
 			 if(!uniqueWords.contains(words[i])) {
 				 uniqueWords.add(words[i]);
 			 }
 		 }
-		 
+
 		 for(int i = 0; i < uniqueWords.size(); i++) {
 			 WordInBlog wordInBlog = new WordInBlog(getANewId(), blog_id, uniqueWords.get(i));
-			 System.out.println("id: " + wordInBlog.getId() + " blog_id: " + wordInBlog.getBlog_id() + " word:  " + wordInBlog.getWord());
 			 saveWordInBlogInDb(wordInBlog);
 		 }
-		 
+
 	 }
 
 }

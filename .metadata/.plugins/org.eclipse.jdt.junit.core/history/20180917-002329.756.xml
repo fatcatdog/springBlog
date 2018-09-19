@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="UpvoteDAOTest" project="blog" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="com.jacob.dao.tests.UpvoteDAOTest" time="0.493">
-    <testcase name="getUpvote" classname="com.jacob.dao.tests.UpvoteDAOTest" time="0.407"/>
-    <testcase name="postUpvote" classname="com.jacob.dao.tests.UpvoteDAOTest" time="0.086"/>
-  </testsuite>
-</testrun>

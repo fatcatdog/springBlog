@@ -32,7 +32,7 @@
 </form>
 
 <c:url value="/home" var="homeLink"></c:url>
-<a href="${homeLink}">nevermind</a>
+<a href="${homeLink}">Home</a>
 
 <p>${content}</p>
 

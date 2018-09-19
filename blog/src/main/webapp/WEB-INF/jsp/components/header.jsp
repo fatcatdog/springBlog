@@ -1,4 +1,4 @@
 
 <div class="header-title">
-<h1>BlogCity</h1>
+<h1><a href="/home">BlogCity</a></h1>
 </div>

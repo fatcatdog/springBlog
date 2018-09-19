@@ -2,25 +2,14 @@
 
 package com.jacob.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "upvote")
 public class Upvote {
  
- @Id
- @GeneratedValue(strategy = GenerationType.AUTO)
+ 
  private int id;
  
- @Column(name = "author_id")
  private int author_id;
  
- @Column(name = "blog_id")
  private int blog_id;
 
 public Upvote(int id, int author_id, int blog_id) {

@@ -1,0 +1,19 @@
+package com.jacob.configuration;
+
+import javax.sql.DataSource;
+public class CreateDataSourceForJdbcTemplate {
+
+    private static final String driverClassName = "com.mysql.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost/companydb";
+    private static final String dbUsername = "root";
+    private static final String dbPassword = "baseball";
+
+    private static DataSource dataSource;
+
+    public static void main(String[] args) throws Exception {
+
+        dataSource = getDataSource();
+     // JdbcTemplate template = new JdbcTemplate(dataSource); // constructor
+}
+    JdbcTemplate template = new JdbcTemplate();
+

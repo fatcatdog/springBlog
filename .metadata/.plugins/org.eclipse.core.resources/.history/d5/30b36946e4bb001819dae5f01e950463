@@ -1,0 +1,19 @@
+package com.jacob.configuration;
+
+@Configuration
+@EnableTransactionManagement
+@PropertySource({  })
+public class DatabaseConfig {
+ 
+    @Autowired private Environment env;
+ 
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setPassword(env.getProperty("jdbc.pass"));
+        return dataSource;
+    }
+}

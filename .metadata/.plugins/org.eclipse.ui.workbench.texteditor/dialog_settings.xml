@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="getAuthorsOfCommentsForABlog" key="selection"/>
+		<item value="actual" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="actual"/>
+			<item value="comments"/>
+			<item value="tempUser"/>
+			<item value="getAuthorNamesFromDb"/>
+			<item value="save"/>
+			<item value="system"/>
+			<item value="msg"/>
+			<item value="checkIfBlogTitleLengthIsValid"/>
+			<item value="checkIfUserShouldBeAbleToUpdate"/>
+			<item value="update"/>
+			<item value="login"/>
+			<item value="j"/>
 			<item value="getAuthorsOfCommentsForABlog"/>
 			<item value="auth"/>
 			<item value="@ModelAttribute"/>
-			<item value="updateBlog"/>
-			<item value="setData"/>
-			<item value="getANewId"/>
-			<item value="max"/>
-			<item value="getANew"/>
-			<item value="getA"/>
-			<item value="get"/>
-			<item value="signup"/>
-			<item value="login"/>
-			<item value="home"/>
-			<item value="role"/>
-			<item value="system"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="290" key="DIALOG_WIDTH"/>
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
 		<item value="409" key="DIALOG_HEIGHT"/>
-		<item value="741" key="DIALOG_X_ORIGIN"/>
-		<item value="116" key="DIALOG_Y_ORIGIN"/>
+		<item value="-195" key="DIALOG_X_ORIGIN"/>
+		<item value="113" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

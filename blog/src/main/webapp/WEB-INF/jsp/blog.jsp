@@ -20,17 +20,31 @@
 <p>By ${authorName}</p>
 <p>Comments: ${listOfCommentsSize}</p>
 <p>Upvotes: ${tempUpvoteCount}</p>
-<p><a href="/vote/up/${blogId}">Upvote</a> <a href="/vote/down/${blogId}">Downvote</a> <a href="/delete/${blogId}">Delete</a> <a href="/edit/${blogId}">Edit</a>
+<p><a href="/vote/up/${blogId}">Upvote</a> <a href="/vote/down/${blogId}">Downvote</a> 
+
+<c:if test="${crudRights}">
+<a href="/delete/${blogId}">Delete</a> <a href="/edit/${blogId}">Edit</a>
+</c:if>
+
+
+
 </p>
+
+
 <p>Content:</p>
 <p>${content}</p>
 <p>Comments</p>
 <p>${commentListEmpty}</p>
-	  <c:forEach items="${comments}" var="comment" varStatus="status">
-	    <c:out value="${comment} - ${ourCommentAuthors[status.index]}" />
-	    <Br/>
+	  <c:forEach items="${coms}" var="comment" varStatus="status">
+	    <c:out value="${comment.content} - ${ourCommentAuthors[status.index]}"></c:out>
+	    <c:if test="${(comment.author_id == currentUserId)}">
+			<c:url var="delete_comment_url"  value="/deleteComment" />
+				<form style="" action="${delete_comment_url}" method="post">
+				    <input type="hidden" name="id" value="${comment.id}" />
+				    <input style="" type="submit" value="Delete Comment" />
+				</form>
+		</c:if>	
 	  </c:forEach>	  
-
 <c:url var="save_comment_url"  value="/saveComment/${blogId}" />
 <form action="${save_comment_url}" method="post">
       <p>Add Comment<br>

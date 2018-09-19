@@ -1,0 +1,34 @@
+package com.jacob.configuration;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+
+
+@Configuration
+@EnableWebSecurity
+@EnableWebMvc
+@ComponentScan
+public class AppConfig extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+  private Environment env;
+
+  @Bean
+  public DataSource getDataSource() {
+    BasicDataSource dataSource = new BasicDataSource();
+    dataSource.setDriverClassName(env.getProperty("mysql.driver"));
+    dataSource.setUrl(env.getProperty("mysql.jdbcUrl"));
+    dataSource.setUsername(env.getProperty("mysql.username"));
+    dataSource.setPassword(env.getProperty("mysql.password"));
+    return dataSource;
+  }
+}

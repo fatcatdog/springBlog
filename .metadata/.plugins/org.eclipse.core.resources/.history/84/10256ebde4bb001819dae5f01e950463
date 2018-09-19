@@ -1,0 +1,9 @@
+package com.jacob.configuration;
+
+public class CreateDataSourceForJdbcTemplate {
+
+    private static final String driverClassName = "com.mysql.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost/companydb";
+    private static final String dbUsername = "baseball";
+
+}

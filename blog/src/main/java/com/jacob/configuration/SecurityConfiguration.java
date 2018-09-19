@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .tokenValiditySeconds(60*60)
    .and().exceptionHandling().accessDeniedPage("/access_denied");
  }
- 
+
  @Bean
  public PersistentTokenRepository persistentTokenRepository() {
   JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();

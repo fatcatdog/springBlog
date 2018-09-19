@@ -2,25 +2,14 @@
 
 package com.jacob.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "comment")
 public class Comment {
  
- @Id
  private int id;
  
- @Column(name = "author_id")
  private int author_id;
  
- @Column(name = "blog_id")
  private int blog_id; 
  
- @Column(name = "content")
  private String content;
  
  

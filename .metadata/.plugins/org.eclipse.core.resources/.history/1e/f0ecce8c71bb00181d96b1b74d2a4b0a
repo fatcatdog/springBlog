@@ -1,0 +1,83 @@
+//@Author: Jacob Duchen
+//Comments don't currently have CRUD functionality. So just one simple save method.
+
+package com.jacob.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jacob.jdbcService.CommentService;
+import com.jacob.jdbcService.UserService;
+import com.jacob.model.Blog;
+import com.jacob.model.Comment;
+import com.jacob.model.User;
+
+@Controller
+@RequestMapping()
+public class CommentController {
+	
+	 @Autowired
+	 private CommentService commentService;
+
+	 @Autowired
+	 private UserService userService;
+	 
+	 private User getCurrentAuthUser() {
+		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security 
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 
+		 //getting user object from spring security Authentication object 
+		  User tempUser = userService.findUserByEmail(auth.getName());
+		 return tempUser;
+	 }
+	 
+	 @RequestMapping(value="saveComment/{id}", method=RequestMethod.POST)
+	 public ModelAndView save(@PathVariable(value = "id", required =false) int id, @ModelAttribute("tempComment") Comment comment) {
+		 System.out.println("savecomment called in comment controller");
+	  
+		 //getting auth information 
+		 User tempAuthor = getCurrentAuthUser();
+
+		 //saving comment 
+		 comment.setId(commentService.getANewId());
+		 comment.setAuthor_id(tempAuthor.getId());
+		 comment.setBlog_id(id);
+		 commentService.saveComment(comment);
+			 
+	  return new ModelAndView("redirect:/blog/" + id);
+	  
+	 }
+	 
+	 //delete comment
+	 @RequestMapping(value = "/deleteComment", method=RequestMethod.POST)
+	 public ModelAndView deleteOurComment(@ModelAttribute("id") int id) {
+		//getting authorized current user object
+		 User tempUser = getCurrentAuthUser();
+
+		 //current comment that user attempting to be deleted
+		 Comment tempComment = commentService.getComment(id);
+
+		 //if user matches comment author we will delete it
+		 if(tempUser.getId() == tempComment.getAuthor_id()) {
+			 commentService.deleteComment(id);
+			  return new ModelAndView("redirect:/home");
+		 } else {
+			  ModelAndView model = new ModelAndView();
+			 System.out.println("Not your comment to edit!!!!!");
+			  model.setViewName("access_denied");
+			  return model;
+		 }
+	 }
+	 
+	 
+	 
+	 
+}

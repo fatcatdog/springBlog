@@ -1,24 +1,11 @@
 package com.jacob.model;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "words_in_blogs")	 
+	 
 public class WordInBlog {
 
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private int id;
 	 
-	 @Column(name = "blog_id")
 	 private int blog_id;
 	 
-	 @Column(name = "title")
 	 private String word;
 
 	public WordInBlog(int id, int blog_id, String word) {

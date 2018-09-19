@@ -1,9 +1,8 @@
 //@Author: Jacob Duchen
-//Blog controller does have CRUD functionality. I am not super happy that there is so much logic in our controller methods and that all of the services are pulled in here. I think it would be better to keep the services talking to eachother. 
+//Blog controller does have CRUD functionality. I am not super happy that there is so much logic in our controller methods and that all of the services are pulled in here. I think it would be better to keep the services talking to eachother.
 
 package com.jacob.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -25,7 +24,7 @@ import com.jacob.jdbcService.UserService;
 import com.jacob.jdbcService.WordInBlogService;
 import com.jacob.model.Blog;
 import com.jacob.model.User;
-import com.jacob.model.WordInBlog;
+import com.jacob.model.Comment;
 
 @Controller
 @RequestMapping()
@@ -42,15 +41,15 @@ public class BlogController {
 
 	 @Autowired
 	 private CommentService commentService;
-	 
+
 	 @Autowired
 	 private WordInBlogService wordInBlogService;
-	 
+
 	 private User getCurrentAuthUser() {
-		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security 
+		  //this variable will be used to get current user Authentication(where we can get there user id from) from spring security
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 
-		 //getting user object from spring security Authentication object 
+
+		 //getting user object from spring security Authentication object
 		  User tempUser = userService.findUserByEmail(auth.getName());
 		 return tempUser;
 	 }
@@ -66,7 +65,7 @@ public class BlogController {
 	  return model;
 	 }
 
-	 //this method checks if current user.id is the author_id of the blog user is attempting to edit. If user is the author of blog, they can edit, we return true; otherwise we return false. 
+	 //this method checks if current user.id is the author_id of the blog user is attempting to edit. If user is the author of blog, they can edit, we return true; otherwise we return false.
 	 public boolean checkIfUserShouldBeAbleToUpdate(User user, Blog blog) {
 		 if (blog.getAuthor_id() == user.getId()) {
 			  return true;
@@ -74,9 +73,8 @@ public class BlogController {
 			  return false;
 		  }
 	 }
-	 
+
 	 public boolean checkIfBlogTitleLengthIsValid(String blog_title) {
-		 System.out.println(blog_title);
 
 		 if (blog_title.length() > 254) {
 			 return false;
@@ -90,19 +88,19 @@ public class BlogController {
 	 //here is our delete blog action. We really dont delete the blog here. But we have some logic to allow user to get to delete page, or provide them error page. We really should prevent not-correct user from even seeing the delete and edit pages.
 	 @RequestMapping(value = "/delete/{id}", method=RequestMethod.GET)
 	 public ModelAndView deleteBlog(@PathVariable(value = "id", required =false) int id) {
-		
+
 		 //getting authorized current user object
 		 User tempUser = getCurrentAuthUser();
-		 
+
 		  ModelAndView model = new ModelAndView();
-		  
+
 		  //get the blog that user wants to delete!
 		  Blog tempBlog =  blogService.getBlog(id);
-		  
+
 		  //get author of that blog
 		  User tempBlogAuthor = userService.findUserById(tempBlog.getAuthor_id());
 
-		  //lets use that user.id = blog.author.id method we mentioned previously 
+		  //lets use that user.id = blog.author.id method we mentioned previously
 		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog);
 		  if (!access) {
 			  System.out.println("Wrong user!!!!");
@@ -110,31 +108,31 @@ public class BlogController {
 			  model.setViewName("access_denied");
 			  return model;
 		  }
-		  
+
 		  //get our delete jsp which has the action attached to it where user can actually delete a blog
 		  model.setViewName("delete");
-		  
-		  //get amount of comments to display to user 
+
+		  //get amount of comments to display to user
 		  model.addObject("listOfCommentsSize", commentService.getCommentCountForABlog(id));
-		  
-		  //get amount of upvotes to display to user 
+
+		  //get amount of upvotes to display to user
 		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
-		  
-		  //get blogObject to pass to user. We really are passing duplicate data here that can be refactored in the future. 
+
+		  //get blogObject to pass to user. We really are passing duplicate data here that can be refactored in the future.
 		  model.addObject("blogObject", tempBlog);
-		  
-		  //id of blog in question 
+
+		  //id of blog in question
 		  model.addObject("id", id);
-		  
+
 		  //displaying strings of author names on the page
 		  model.addObject("authorName", tempBlogAuthor.getFirstname() + " " + tempBlogAuthor.getLastname());
-		  
+
 		  //displaying string of email for the page
 		  model.addObject("authorEmail", tempBlogAuthor.getEmail());
-		  
+
 		  //displaying string of title of blog for the page
 		  model.addObject("title", tempBlog.getTitle());
-		  
+
 		  //displaying string of content of blog for the page
 		  model.addObject("content", tempBlog.getContent());
 
@@ -146,20 +144,21 @@ public class BlogController {
 	 @RequestMapping(value = "/blog/{id}", method=RequestMethod.GET)
 	 public ModelAndView viewBlog(@PathVariable(value = "id",  required =false) int id) {
 		  ModelAndView model = new ModelAndView();
-		  
+
 		  //getting blog object from path variable int id so we can pull out all relevant information to display on the jsp
 		  Blog tempBlog =  blogService.getBlog(id);
-		  
-		  //getting all of our comments 
+
+		  //getting all of our comments
 		  List<String> blogComments = commentService.getContentOfCommentsForABlog(tempBlog.getId());
-		  
-		  //getting author name from blog.author_id to display on page 
+		  List<Comment> actualComments = commentService.getAllCommentsForABlog(tempBlog.getId());
+
+		  //getting author name from blog.author_id to display on page
 		 User authorOfBlog = userService.findUserById(tempBlog.getAuthor_id());
 
-		 
+
 		//getting authorized current user object
 		 User tempUser = getCurrentAuthUser();
-		 
+
 		 //check if we should have rights to edit blog
 		  boolean access = checkIfUserShouldBeAbleToUpdate(tempUser, tempBlog);
 
@@ -172,36 +171,41 @@ public class BlogController {
 		  } else {
 			  //we have comments, so we provide information to view that will display amount of comments on blog, author name for each comment, and comment content for each comment
 			  List<String> commentsAuthors = commentService.getAuthorsOfCommentsForABlog(id);
+			  List<Integer> commentsIds = commentService.getIdsOfCommentsForABlog(id);
 			  model.addObject("ourCommentAuthors", commentsAuthors);
 			  model.addObject("comments", blogComments);
+			  model.addObject("coms", actualComments);
+			  model.addObject("ourCommentIds", commentsIds);
+			  // for(int i = 0; i < commentsIds.size(); i++) {
+				//   System.out.println(commentsIds.get(i));
+			  // }
 			  model.addObject("listOfCommentsSize", blogComments.size());
 		  }
-		  
-		  //we dont use any validation on name inputs, so user name could be "", so if so, we provide Anonymous to view 
+
+		  //we dont use any validation on name inputs, so user name could be "", so if so, we provide Anonymous to view
 		  if ((authorOfBlog.getFirstname() + authorOfBlog.getLastname()).length() == 0) {
 			  model.addObject("authorName", "Anonymous");
 		  } else {
 			  //provide name if its not an empty string
 			  model.addObject("authorName", authorOfBlog.getFirstname() + " " + authorOfBlog.getLastname());
 		  }
-		  
+
 		  	//more information needed for view blog view
-		  
+
 			  model.addObject("currentUserId", tempUser.getId());
 			  model.addObject("currentUserEmail", tempUser.getEmail());
 			  model.addObject("blogObject", tempBlog);
 			  model.addObject("crudRights", access);
 			  model.addObject("blogId", tempBlog.getId());
-		  
 			  model.addObject("authorName", authorOfBlog.getFirstname() + " " + authorOfBlog.getLastname());
 			  model.addObject("authorEmail", authorOfBlog.getEmail());
 			  model.addObject("title", tempBlog.getTitle());
 			  model.addObject("content", tempBlog.getContent());
 			  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
-	
+
 			  //setting blog.jsp as view to view blog
 			  model.setViewName("blog");
-	
+
 			  return model;
 	 }
 
@@ -210,32 +214,32 @@ public class BlogController {
 
 		//getting authorized current user object
 		 User tempUser = getCurrentAuthUser();
-		 
+
 		 if(!checkIfBlogTitleLengthIsValid(temp.getTitle())) {
 			  ModelAndView model = new ModelAndView();
 			  model.addObject("tempBlog", new Blog());
 			  model.addObject("oldTitleHeader", "Previous inputted title:");
 			  model.addObject("oldContentHeader", "Previous inputted content:");
 			  model.addObject("oldTitle", temp.getTitle());
-			  model.addObject("oldContent", temp.getContent());			  
+			  model.addObject("oldContent", temp.getContent());
 			  model.addObject("titleErrorMsg", "Sorry title length is invalid");
 			  model.setViewName("create");
 
 			  return model;
 		 }
-		 
+
 		 if((temp.getContent().length() > 60000) || (temp.getContent().length() < 1)) {
 			 ModelAndView model = new ModelAndView();
 			 model.addObject("tempBlog", new Blog());
 			  model.addObject("oldTitleHeader", "Previous inputted title:");
 			  model.addObject("oldContentHeader", "Previous inputted content:");
 			  model.addObject("oldTitle", temp.getTitle());
-			  model.addObject("oldContent", temp.getContent());	
+			  model.addObject("oldContent", temp.getContent());
 			 model.addObject("contentErrorMsg", "Sorry previous content length is invalid");
 			 model.setViewName("create");
 			 return model;
 		 }
-		 
+
 		  int tempAuthorId = tempUser.getId();
 		  int likely_id_of_blog = blogService.getANewId();
 		  temp.setAuthor_id(tempAuthorId);
@@ -247,15 +251,15 @@ public class BlogController {
 	 }
 
 
-	 //user hopefully wont see this page if they cant get to the delete view. Hopefully... Additional security logic anyway though. 
+	 //user hopefully wont see this page if they cant get to the delete view. Hopefully... Additional security logic anyway though.
 	 @RequestMapping(value = "/deleteTheBlog", method=RequestMethod.POST)
 	 public ModelAndView deleteTheBlog(@ModelAttribute("id") int id) {
 		//getting authorized current user object
 		 User tempUser = getCurrentAuthUser();
-		 
-		 //current blog that user attempting to be deleted 
+
+		 //current blog that user attempting to be deleted
 		 Blog tempBlog = blogService.getBlog(id);
-		 
+
 		 //if user matches blog author we will delete it
 		 if(tempUser.getId() == tempBlog.getAuthor_id()) {
 			 blogService.deleteBlog(id);
@@ -269,7 +273,7 @@ public class BlogController {
 	 }
 
 
-	 //there is a lot of code in this view that is duplicated in our view blog method. Definitly could use some refactoring. 
+	 //there is a lot of code in this view that is duplicated in our view blog method. Definitly could use some refactoring.
 	 @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
 	 public ModelAndView editBlog(@PathVariable(value = "id", required =false) int id) {
 
@@ -286,7 +290,7 @@ public class BlogController {
 			  return model;
 		  }
 
-		  //otherwise, we set edit.jsp and add all of our needed information to edit view 
+		  //otherwise, we set edit.jsp and add all of our needed information to edit view
 		  model.setViewName("edit");
 		  model.addObject("blogId", id);
 		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
@@ -299,51 +303,46 @@ public class BlogController {
 
 		  return model;
 	 }
-	 
+
 	 //update blog method that actually saves updated blog
 	 @RequestMapping(value="updateBlog", method=RequestMethod.POST)
 	 public ModelAndView update(@ModelAttribute("tempBlog") Blog temp, String oldTitle, String oldContent) {
-		 
+
 		 if(temp.getTitle().trim().length()==0) {
 			 temp.setTitle(oldTitle);
 		 }
 		 if(temp.getContent().trim().length()==0) {
 			 temp.setContent(oldContent);
 		 }
-		  
-		  System.out.println("blogController updateBlog Update method called");
-		  System.out.println(temp.getTitle());
-		  System.out.println(temp.getContent());
-		  System.out.println(temp.getId());
-		  System.out.println(oldContent);
-		  System.out.println(oldTitle);
 
+		  System.out.println("blogController updateBlog Update method called");
+		  int blog_id = temp.getId();
 		  blogService.updateBlog(temp);
-		  return new ModelAndView("redirect:/home");
+		  return new ModelAndView("redirect:/blog/" + blog_id);
 	 }
-	 
+
 	 //save words from a blog to db so that we can search for blogs by string input
 //	 public void saveWordsFromBlog(int blog_id, Blog blog_about_to_be_saved) {
 //		 String title = blog_about_to_be_saved.getTitle();
 //		 String content = blog_about_to_be_saved.getContent();
-//		 
-//		 String allOfOurTextFromBlog = title + " " + content; 
+//
+//		 String allOfOurTextFromBlog = title + " " + content;
 //		 String[] words = allOfOurTextFromBlog.trim().split("\\P{L}+");
-//		 
+//
 //		 List<String> uniqueWords = new ArrayList<String>();
-//		 
+//
 //		 for(int i = 0; i < words.length; i++) {
 //			 if(!uniqueWords.contains(words[i])) {
 //				 uniqueWords.add(words[i]);
 //			 }
 //		 }
-//		 
+//
 //		 for(int i = 0; i < uniqueWords.size(); i++) {
 //			 WordInBlog wordInBlog = new WordInBlog(wordInBlogService.getANewId(), blog_id, uniqueWords.get(i));
 //			 System.out.println("id: " + wordInBlog.getId() + " blog_id: " + wordInBlog.getBlog_id() + " word:  " + wordInBlog.getWord());
 //			 wordInBlogService.saveWordInBlogInDb(wordInBlog);
 //		 }
-//		 
+//
 //	 }
 
 }

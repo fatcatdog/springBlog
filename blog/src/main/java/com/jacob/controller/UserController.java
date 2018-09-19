@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -192,33 +191,6 @@ public class UserController {
   model.setViewName("access_denied");
   return model;
  }
- 
-//method isnt used...
- 
-//public List<String> getBlogIdsFromBlogList(List<Blog> ourBlogs) {
-//	 List<String> blog_ids = new ArrayList<String>(); 
-//	
-//	 for(int i = 0; i < ourBlogs.size(); i++) {
-//		 blog_ids.add(String.valueOf(ourBlogs.get(i).getId()));
-//	 }
-//	 
-//	 return blog_ids; 
-//}
-
-
-//method isnt used...
-//public List<List<String>> combineLists(List<String> ids, List<String> authors, List<String> titles){
-//	 List<List<String>> tempInfo = new ArrayList<List<String>>(); 
-//	 
-//	 for(int i = 0; i < ids.size(); i++) {
-//		 List<String> item = new ArrayList<String>();
-//		 item.add(ids.get(i));
-//		 item.add(authors.get(i));
-//		 item.add(titles.get(i));
-//		 tempInfo.add(item);
-//	 }
-//	 return tempInfo; 
-//}
 
 
 }

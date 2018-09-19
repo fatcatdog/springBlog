@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jacob.jdbcService.CommentService;
 import com.jacob.jdbcService.UserService;
-import com.jacob.model.Blog;
 import com.jacob.model.Comment;
 import com.jacob.model.User;
 
@@ -44,8 +43,7 @@ public class CommentController {
 		 System.out.println("savecomment called in comment controller");
 	  
 		 //getting auth information 
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 User tempAuthor = userService.findUserByEmail(auth.getName());
+		 User tempAuthor = getCurrentAuthUser();
 
 		 //saving comment 
 		 comment.setId(commentService.getANewId());
@@ -57,34 +55,28 @@ public class CommentController {
 	  
 	 }
 	 
-	 //there is a lot of code in this view that is duplicated in our view blog method. Definitly could use some refactoring. 
-//	 @RequestMapping(value = "/editcomment/{id}", method=RequestMethod.GET)
-//	 public ModelAndView editBlog(@PathVariable(value = "id", required =false) int id) {
-//
-//		  User tempAuthor = getCurrentAuthUser();
-//		  ModelAndView model = new ModelAndView();
-//		  Blog tempBlog =  blogService.getBlog(id);
-//
-//		  boolean access = checkIfUserShouldBeAbleToUpdate(tempAuthor, tempBlog);
-//
-//		  //if user doesn't match author of blog we redirect to error page
-//		  if (!access) {
-//			  System.out.println("Not your blog to edit!!!!!");
-//			  model.setViewName("access_denied");
-//			  return model;
-//		  }
-//
-//		  //otherwise, we set edit.jsp and add all of our needed information to edit view 
-//		  model.setViewName("edit");
-//		  model.addObject("blogId", id);
-//		  model.addObject("authorName", tempAuthor.getFirstname() + " " + tempAuthor.getLastname());
-//		  model.addObject("title", tempBlog.getTitle());
-//		  model.addObject("content", tempBlog.getContent());
-//		  model.addObject("tempUpvoteCount", upvoteService.countUpvotes(id));
-//
-//		  return model;
-//
-//	 }
+	 //delete comment
+	 @RequestMapping(value = "/deleteComment", method=RequestMethod.POST)
+	 public ModelAndView deleteOurComment(@ModelAttribute("id") int id) {
+		//getting authorized current user object
+		 User tempUser = getCurrentAuthUser();
+
+		 //current comment that user attempting to be deleted
+		 Comment tempComment = commentService.getComment(id);
+
+		 //if user matches comment author we will delete it
+		 if(tempUser.getId() == tempComment.getAuthor_id()) {
+			 int blog_id = tempComment.getBlog_id();
+			 commentService.deleteComment(id);
+			  return new ModelAndView("redirect:/blog/" + blog_id);
+
+		 } else {
+			  ModelAndView model = new ModelAndView();
+			 System.out.println("Not your comment to edit!!!!!");
+			  model.setViewName("access_denied");
+			  return model;
+		 }
+	 }
 	 
 	 
 	 

@@ -112,6 +112,18 @@ public class CommentService  implements CommentServiceInterface  {
 
 		return total;
 	}
+	
+	@Override
+	public List<Integer> getIdsOfCommentsForABlog(int id){
+		List<Comment> ourComments =  getAllCommentsForABlog(id);
+		List<Integer> ourListOfIds = new ArrayList<Integer>();
+
+		for(int i = 0; i < ourComments.size(); i++) {
+			ourListOfIds.add(ourComments.get(i).getId());
+		}
+		return ourListOfIds;
+
+	}
 
 
 }
