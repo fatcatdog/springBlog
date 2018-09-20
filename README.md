@@ -1,50 +1,43 @@
-This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC/JPA, MySql/Oracle, J Unit testing, and the views are Thymeleaf/JSPs. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, but comments currently can only be created (this is still a work in progress). As I am currently learning Spring, I experimented getting functionality working in different technologies (Oracle and mySql, JPA and JDBC, JSP and Thymeleaf)
+# BlogCity
+
+This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
+
+As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf.
 <br/>
 <br/>
-To get the project running:
+
+### Installing
 
 -Git clone this repo
 
--Create a database in your SQL system (mysql or oracle)
+-Create a database in your SQL system (mysql or oracle scripts are in folders in the repo. You will have to choose to uncomment out the mysql dependency if you want to run it with mysql)
 
--Run each script in the appropriate sql scripts folder (mysql or oracle)
+-Run each script in the appropriate sql scripts folder (mysql or oracle). First auth scripts, then blog script, then comment, upvotes, wordinblogs scripts.
 
--INSERT INTO `role` VALUES (1,'ADMIN');
-
--Import blog project from repo in your preferred Java IDE
+-Go to blog folder and import it into preferred Java IDE
 
 -Add your user credentials in project's application.properties file (database name, username, password)
 
 -Run project as SpringBoot project however you like
 
-Things that are still being worked on:
+-This project's sql will crash with nullpointer errors if there is not one item created in database to start. So, via your sql tool (mysql workbench, Oracle SqlDeveloper, whatever tool you prefer) insert a user (with a pre-bcrypted password), blog, comment,upvote, and wordinblog with the appropriate values.
 
--The UX and CSS is very poor and needs to be updated
+### Things that are still being worked on:
+
+-The UX/UI is still a work in progress.
+
+-I occasionally get SQL errors if you test the flawed logic of my system. So as those flaws are discovered, the system will need to be continually updated.
 
 -There is still much refactoring in the Controllers and Services that could be done to make the project more readable and efficient
 
--I am in the process of removing JPA from the security configuration as JDBC is wanted. JPA is used to configure Spring Security and datasource currently. JDBC is used for the rest of the projects CRUD functionality.
-
--I used mySql during the development of the project and plan on replacing it with Oracle.
-<br/>
-
-Here is an image of our current schema:
-
-![mysql schema of database](images/dbSchemaImage.png)
-
--Comment delete functionality
+-I am passing a lot of repetitive information to the JSP's from the controller. I will reduce that going forward.
 
 -Comment to Comment relationship functionality
 
 -Non-text in blogs functionality
 
--Tags features
-
 -Online Deployment
-<br/>
 
-<br/>
-<br/>
 Here are a few of my initial user stories that I used when planning the project:
 
 General User Stories
