@@ -27,7 +27,9 @@ public class BlogDAO {
     //for some reason, blogs with 0 or 1 votes, kind of get listed arbitrarily which is probably due to an error in my sql logic here
 
     public List<Blog> getAllBlogs() {
-    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content, (SELECT COUNT(*) FROM upvote WHERE blog.id = upvote.blog_id) AS freq FROM blog ORDER BY freq DESC";
+//    	GROUP BY upvote.blog_id 
+//    	LEFT JOIN (SELECT COUNT(upvote.blog_id) AS freq FROM upvote WHERE upvote.blog_id = blog.id) ORDER BY freq DESC 
+    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content, (SELECT COUNT(*) FROM upvote WHERE blog.id = upvote.blog_id) AS freq FROM blog ORDER BY freq";
     	  
     	RowMapper<Blog> rowMapper = new BeanPropertyRowMapper<Blog>(Blog.class);
 	   return this.jdbcTemplate.query(sql, rowMapper);

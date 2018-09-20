@@ -27,12 +27,13 @@
 </p>
 
 </div>
-				<div class="blog_style" style="text-align:center">
+</div>
+				<div class="blog_style">
 
 	    <c:if test="${content.length() <= 65}">
 				<!-- <div class="blog_style" style="text-align:center"> -->
-				<p>Content:</p>
-				<p>${content}</p>
+				<p style="text-align:center">Content:</p>
+				<p style="text-align:center">${content}</p>
 			<!-- </div> -->
 			</c:if>
 	    <c:if test="${content.length() > 65}">
@@ -41,13 +42,17 @@
 <!-- 				</div>  -->
 			</c:if>
 				</div>
-
+<div class="everything">
 <div class="comment_section">
 <h1 class="blog_header">Comments</h1>
 <p>${commentListEmpty}</p>
 	  <c:forEach items="${coms}" var="comment" varStatus="status">
 			<span class="text_in_c_out">
-	    <c:out value="${comment.content} - Written by ${ourCommentAuthors[status.index]}"></c:out>
+		    <c:out value="${comment.content}"></c:out>
+				<Br/>
+			</span>
+			<span class="author_name_in_c_out">
+			<c:out value="Written by ${ourCommentAuthors[status.index]}"></c:out>
 			</span>
 			<c:if test="${(comment.author_id == currentUserId)}">
 			<c:url var="delete_comment_url"  value="/deleteComment" />
@@ -74,6 +79,8 @@
 <p class="everything">Currently Signed in as ${currentUserEmail}</p>
 <Br/>
 </div>
+</div>
+
 </div>
 <%@ include file="components/footer.jsp" %>
 </body>
