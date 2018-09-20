@@ -87,10 +87,12 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 <!-- ![login screenshot](images/basicPlan.jpg){:height="150px"}. -->
 <img alt="login screenshot" src="images/basicPlan.jpg" width="300">
 
-### Plans For Schema (taken from my MySql Development Database)
+### Plans For Schema
 
 <!-- ![hand written schema](images/basicSchema.jpg) -->
-<img alt="hand written schema" src="images/basicPlan.jpg" width="300">
+<img alt="hand written schema" src="images/basicSchema.jpg" width="300">
+
+### Taken from my MySql Development Database Early in Development
 
 <!-- ![mysql schema](images/currentSchema.png) -->
 <img alt="mysql schema wireframe" src="images/currentSchema.png" width="300">
@@ -98,27 +100,38 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 ### How The Project Currently Looks After CSS Effort
 
 <!-- ![image of home screen after login](images/home.png) -->
-<img alt="image of home screen after login" src="images/home.png" width="300">
+<img alt="image of home screen after login" src="images/homepage.png" width="300">
+
+### Login
 
 <!-- ![login screenshot](images/login.png) -->
 <img alt="login screenshot" src="images/login.png" width="300">
 
+### Signup
+
 <!-- ![signup screenshot](images/signup.png) -->
 <img alt="signup screenshot" src="images/signup.png" width="300">
+
+### View Blog
 
 <!-- ![view a blog image](images/viewblog.png) -->
 <img alt="view a blog image" src="images/viewblog.png" width="300">
 
 ### How The Project Looked With Initial Crude CSS Effort
+### Old Home Page
 
 <!-- ![old image of home screen after login](images/oldhome.png) -->
 <img alt="old image of home screen after login" src="mages/oldhome.png" width="300">
 
+### Old Blog
+
 <!-- ![old login screenshot](images/oldlogin.png) -->
 <img alt="old login screenshot" src="images/oldlogin.png" width="300">
 
+### Old Signup
 <!-- ![old signup screenshot](images/oldsignup.png) -->
 <img alt="old signup screenshot" src="images/oldsignup.png" width="300">
 
+### Old View Blog
 <!-- ![old view a blog image](images/oldblog.png) -->
 <img alt="old view a blog image" src="images/oldblog.png" width="300">
