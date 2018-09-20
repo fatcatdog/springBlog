@@ -39,6 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .dataSource(dataSource)
    .passwordEncoder(bCryptPasswordEncoder);
  }
+ 
+ @Override
+ protected void configure(HttpSecurity http) throws Exception {
+   http.requiresChannel()
+     .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
+     .requiresSecure();
+ }
 
  @Override
  protected void configure(HttpSecurity http) throws Exception{
@@ -60,11 +67,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .tokenRepository(persistentTokenRepository())
    .tokenValiditySeconds(60*60)
    .and().exceptionHandling().accessDeniedPage("/access_denied");
-  
-  //for heroku https
-  http.requiresChannel()
-  .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
-  .requiresSecure();
  }
 
  @Bean
