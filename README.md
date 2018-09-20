@@ -85,30 +85,40 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 ### Basic Plans For Page Layouts
 
 <!-- ![login screenshot](images/basicPlan.jpg){:height="150px"}. -->
-<img src="images/basicPlan.jpg" width="100">
+<img alt="login screenshot" src="images/basicPlan.jpg" width="300">
 
 ### Plans For Schema (taken from my MySql Development Database)
 
-![hand written schema](images/basicSchema.jpg)
+<!-- ![hand written schema](images/basicSchema.jpg) -->
+<img alt="hand written schema" src="images/basicPlan.jpg" width="300">
 
-![mysql schema](images/currentSchema.png)
+<!-- ![mysql schema](images/currentSchema.png) -->
+<img alt="mysql schema wireframe" src="images/currentSchema.png" width="300">
 
 ### How The Project Currently Looks After CSS Effort
 
-![image of home screen after login](images/home.png)
+<!-- ![image of home screen after login](images/home.png) -->
+<img alt="image of home screen after login" src="images/home.png" width="300">
 
-![login screenshot](images/login.png)
+<!-- ![login screenshot](images/login.png) -->
+<img alt="login screenshot" src="images/login.png" width="300">
 
-![signup screenshot](images/signup.png)
+<!-- ![signup screenshot](images/signup.png) -->
+<img alt="signup screenshot" src="images/signup.png" width="300">
 
-![view a blog image](images/viewblog.png)
+<!-- ![view a blog image](images/viewblog.png) -->
+<img alt="view a blog image" src="images/viewblog.png" width="300">
 
 ### How The Project Looked With Initial Crude CSS Effort
 
-![old image of home screen after login](images/oldhome.png)
+<!-- ![old image of home screen after login](images/oldhome.png) -->
+<img alt="old image of home screen after login" src="mages/oldhome.png" width="300">
 
-![old login screenshot](images/oldlogin.png)
+<!-- ![old login screenshot](images/oldlogin.png) -->
+<img alt="old login screenshot" src="images/oldlogin.png" width="300">
 
-![old signup screenshot](images/oldsignup.png)
+<!-- ![old signup screenshot](images/oldsignup.png) -->
+<img alt="old signup screenshot" src="images/oldsignup.png" width="300">
 
-![old view a blog image](images/oldblog.png)
+<!-- ![old view a blog image](images/oldblog.png) -->
+<img alt="old view a blog image" src="images/oldblog.png" width="300">
