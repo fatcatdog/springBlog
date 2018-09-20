@@ -38,9 +38,9 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Online Deployment
 
-Here are a few of my initial user stories that I used when planning the project:
+## Here are a few of my initial user stories that I used when planning the project:
 
-General User Stories
+### General User Stories
 
 -Users can read blogs
 
@@ -54,9 +54,7 @@ General User Stories
 
 -Users need to signup to use system.
 
-<br/>
-
-More Specific User Stories
+### More Specific User Stories
 
 -As an author, I must be able to both write blogs and read the blogs of others.
 
@@ -68,15 +66,11 @@ More Specific User Stories
 
 -As a reader, I must be able to see most popular blogs by upvotes.
 
-<br/>
-
-Should Have
+### Should Have
 
 -As a user, I should be authenticated when using the website.
 
-<br/>
-
-Could Have
+### Could Have
 
 -As a user, I could be able to insert images, and other popular types of media into blogs that I write.
 
@@ -84,13 +78,32 @@ Could Have
 
 -As an author, I could be able to add tags, or categories, to blogs that I write.
 
-<br/>
-<br/>
-Here are some other screenshots of the projects in its crude state:
+### Plans For Page Layouts
+
+![login screenshot](images/basicPlan.png)
+
+### Plans For Schema (taken from my MySql Development Database)
+
+![hand written schema](images/basicSchema.png)
+
+![mysql schema](images/currentSchema.png)
+
+### How The Project Currently Looks After CSS Effort
+
 ![image of home screen after login](images/home.png)
 
 ![login screenshot](images/login.png)
 
 ![signup screenshot](images/signup.png)
 
-![view a blog image](images/blogWithComments.png)
+![view a blog image](images/viewblog.png)
+
+### How The Project Looked With Intial Crude CSS Effort
+
+![old image of home screen after login](images/oldhome.png)
+
+![old login screenshot](images/oldlogin.png)
+
+![old signup screenshot](images/oldsignup.png)
+
+![old view a blog image](images/oldblog.png)
