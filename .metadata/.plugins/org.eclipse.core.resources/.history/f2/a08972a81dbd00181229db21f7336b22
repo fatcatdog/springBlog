@@ -43,7 +43,7 @@
 
 	                 <p>or</p>
 
-	<c:url value="home" var="homeLink"></c:url>
+	<c:url value="/home" var="homeLink"></c:url>
 	<form action="homeLink" method="get">
 	<input class="button"  type="submit" value="Login" />
 	</form>

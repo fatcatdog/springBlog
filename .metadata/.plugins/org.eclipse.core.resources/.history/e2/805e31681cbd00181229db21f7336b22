@@ -26,8 +26,8 @@
 }
 
 .our_list_of_links {
-/* 	width: 80%;
- */	/* margin: 0 auto; */
+	width: 80%;
+	/* margin: 0 auto; */
 	text-align: center;
 	font-family: 'Noto Serif KR', sans-serif;
 	font-size: 30px;
