@@ -1,6 +1,6 @@
 # BlogCity
 
-This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
+This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, AWS RDS, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
 
 As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf initially before replacing those technologies with the ones I ultimately needed.
 
@@ -121,7 +121,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 ### Old Home Page
 
 <!-- ![old image of home screen after login](images/oldhome.png) -->
-<img alt="old image of home screen after login" src="mages/oldhome.png" width="300">
+<img alt="old image of home screen after login" src="images/oldhome.png" width="300">
 
 ### Old Blog
 
