@@ -84,7 +84,8 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 ### Basic Plans For Page Layouts
 
-![login screenshot](images/basicPlan.jpg){:height="150px"}.
+<!-- ![login screenshot](images/basicPlan.jpg){:height="150px"}. -->
+<img src="images/basicPlan.jpg" width="100">
 
 ### Plans For Schema (taken from my MySql Development Database)
 
