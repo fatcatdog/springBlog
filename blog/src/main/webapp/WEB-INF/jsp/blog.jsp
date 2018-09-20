@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
 <body style="background-color: #5CDB95">
+	<div class="everything">
 	<%@ include file="components/header.jsp" %>
 
 <div class="blog_header">
@@ -21,22 +22,25 @@
 <p><a href="/vote/up/${blogId}" style="color:white">Upvote</a> <a href="/vote/down/${blogId}" style="color:white">Downvote</a>
 
 <c:if test="${crudRights}">
-<a href="/delete/${blogId}">Delete</a> <a href="/edit/${blogId}">Edit</a>
+<a href="/delete/${blogId}" style="color:white">Delete</a> <a href="/edit/${blogId}" style="color:white">Edit</a>
 </c:if>
 </p>
 
 </div>
+				<div class="blog_style" style="text-align:center">
+
 	    <c:if test="${content.length() <= 65}">
-				<div class="blog_style">
+				<!-- <div class="blog_style" style="text-align:center"> -->
 				<p>Content:</p>
 				<p>${content}</p>
-			</div>
+			<!-- </div> -->
 			</c:if>
 	    <c:if test="${content.length() > 65}">
-				<div class="blog_style">
+				<!-- <div class="blog_style"> -->
 					<p>${content}</p>
-				</div>
+<!-- 				</div>  -->
 			</c:if>
+				</div>
 
 <div class="comment_section">
 <h1 class="blog_header">Comments</h1>
@@ -69,6 +73,7 @@
 <p class="everything">Author can be contacted at: <a href="mailto:${authorEmail}" style="color:white">${authorEmail}</a></p>
 <p class="everything">Currently Signed in as ${currentUserEmail}</p>
 <Br/>
+</div>
 </div>
 <%@ include file="components/footer.jsp" %>
 </body>

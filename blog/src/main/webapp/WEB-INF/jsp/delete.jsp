@@ -9,11 +9,11 @@
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
-<%@ include file="components/header.jsp" %>  
-<body>
-<div class="mainContent">
+<body style="background-color: #5CDB95;">
+<div class="everything">
+  <%@ include file="components/header.jsp" %>
 
 <h1>Are you sure you want to delete this blog?</h1>
 
@@ -23,21 +23,29 @@
 
 <h4>By ${authorName}</h4>
 <Br/>
-
+<p>Content:</p>
+<c:if test="${content.length() <= 65}">
+  <div class="blog_style" style="text-align:center">
+  <p>${content}</p>
+</div>
+</c:if>
+<c:if test="${content.length() > 65}">
+  <div class="blog_style">
+    <p>${content}</p>
+  </div>
+</c:if>
 <c:url var="delete_action_url"  value="/deleteTheBlog" />
 <form action="${delete_action_url}" method="post">
     <input type="hidden" name="id" value="${id}" />
-    <input type="submit" value="Delete" />
+    <input class="button" type="submit" value="Delete" />
 </form>
 
 <c:url value="/home" var="homeLink"></c:url>
-<a href="${homeLink}">Home</a>
+<a href="${homeLink}" style="color:white">Home</a>
 
-<p>${content}</p>
-
-<h4>Author can be contacted at <a href="mailto:${authorEmail}">${authorEmail}</a></h4>
+<h4>Author can be contacted at <a href="mailto:${authorEmail}" style="color:white">${authorEmail}</a></h4>
 </div>
 </body>
-<%@ include file="components/footer.jsp" %>  
+<%@ include file="components/footer.jsp" %>
 
 </html>

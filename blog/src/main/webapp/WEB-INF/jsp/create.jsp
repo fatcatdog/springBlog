@@ -9,11 +9,12 @@
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
-<%@ include file="components/header.jsp" %>  
-<body>
-    <div class="mainContent">
+<body style="background-color: #5CDB95">
+  <%@ include file="components/header.jsp" %>
+
+    <div class="everything">
 
 <h1>Create Blog</h1>
 
@@ -28,16 +29,17 @@
         <p>${oldTitleHeader}</p>
 		<p>${oldTitle}</p>
         <p>${oldContentHeader}</p>
-		<p>${oldContent}</p>         
+		<p>${oldContent}</p>
    <br />
-         
-    <input type="submit" value="Publish" />
+
+    <input class="button" type="submit" value="Publish" />
 </form>
-    <form action="signup" method="GET">
-    <input type="submit" value="Sign Up" />
+<br />
+    <form action="home" method="GET">
+    <input class="button"  type="submit" value="Go Back" />
     </form>
 </div>
 </body>
-<%@ include file="components/footer.jsp" %>  
+<%@ include file="components/footer.jsp" %>
 
 </html>

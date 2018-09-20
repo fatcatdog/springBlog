@@ -9,11 +9,11 @@
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
-<%@ include file="components/header.jsp" %>  
-<body>
-    <div class="mainContent">
+<body style="background-color: #5CDB95;">
+    <div class="everything">
+      <%@ include file="components/header.jsp" %>
 
 <p>Title: ${title}</p>
 <p>Upvotes: ${tempUpvoteCount}</p>
@@ -25,7 +25,7 @@
 		<input type="hidden" name="id" value="${blogId}" />
 		<input type="hidden" name="oldContent" value="${oldContent}" />
 		<input type="hidden" name="oldTitle" value="${oldTitle}" />
-		
+
 		<p>Title</p>
         <input type="text" name="title" size="50" value="${title}"/>
         <br>
@@ -34,8 +34,8 @@
 	      <p>Your new Content:<br>
 	       	<textarea id="content" name="content" rows="5" cols="30"></textarea>
 	      </p>
-	<input type="submit" value="Commit Edit Of Your Blog" />
-</form>       
+	<input class="button" type="submit" value="Commit Edit Of Your Blog" />
+</form>
 
 
 
@@ -44,6 +44,6 @@
 
 </div>
 </body>
-<%@ include file="components/footer.jsp" %>  
+<%@ include file="components/footer.jsp" %>
 
 </html>

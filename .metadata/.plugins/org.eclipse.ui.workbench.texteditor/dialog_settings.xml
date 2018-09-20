@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="actual" key="selection"/>
+		<item value="div" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="div"/>
+			<item value="footer"/>
 			<item value="actual"/>
 			<item value="comments"/>
 			<item value="tempUser"/>
@@ -21,8 +23,6 @@
 			<item value="login"/>
 			<item value="j"/>
 			<item value="getAuthorsOfCommentsForABlog"/>
-			<item value="auth"/>
-			<item value="@ModelAttribute"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -28,7 +28,7 @@
     <div class="our_list_of_links">
 	  <c:forEach items="${blogs}" var="blog" varStatus="status">
 
-		<a href="/blog/${blog.id}">
+		<a href="/blog/${blog.id}" style="color:white">
 
 	    <c:out value="${blog.title} - by ${authorNames[status.index]}"/>
 	  </a>

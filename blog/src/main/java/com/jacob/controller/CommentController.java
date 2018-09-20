@@ -45,6 +45,11 @@ public class CommentController {
 		 //getting auth information 
 		 User tempAuthor = getCurrentAuthUser();
 
+		 //check if comment is empty string if so just reshow blog
+		 if(comment.getContent().trim().length()==0) {
+			  return new ModelAndView("redirect:/blog/" + id);
+		 }
+		 
 		 //saving comment 
 		 comment.setId(commentService.getANewId());
 		 comment.setAuthor_id(tempAuthor.getId());

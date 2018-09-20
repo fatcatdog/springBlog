@@ -244,7 +244,7 @@ public class BlogController {
 		  int likely_id_of_blog = blogService.getANewId();
 		  temp.setAuthor_id(tempAuthorId);
 		  blogService.saveBlog(temp);
-
+		  System.out.println(likely_id_of_blog);
 		  wordInBlogService.saveWordsFromBlog(likely_id_of_blog, temp);
 		  //after user saves blog, we send them to website homepage
 		  return new ModelAndView("redirect:/home");

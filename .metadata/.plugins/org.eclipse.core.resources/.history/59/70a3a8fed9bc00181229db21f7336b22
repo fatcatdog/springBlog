@@ -1,0 +1,45 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+</head>
+<body style="background-color: #5CDB95">
+  <%@ include file="components/header.jsp" %>
+
+    <div class="everything">
+
+<h1>Create Blog</h1>
+
+<form action="saveBlog" method="post">
+        <input type="hidden" name="*{id}"/>
+        <p>Title:</p>
+        <p>${titleErrorMsg}</p>
+		<input type="text" name="title">
+        <p>Content:</p>
+        <p>${contentErrorMsg}</p>
+        <textarea id="content" name="content" rows="5" cols="30"></textarea>
+        <p>${oldTitleHeader}</p>
+		<p>${oldTitle}</p>
+        <p>${oldContentHeader}</p>
+		<p>${oldContent}</p>
+   <br />
+
+    <input class="button" type="submit" value="Publish" />
+</form>
+<br />
+    <form action="signup" method="GET">
+    <input type="submit" value="Go Back" />
+    </form>
+</div>
+</body>
+<%@ include file="components/footer.jsp" %>
+
+</html>
