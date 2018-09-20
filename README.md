@@ -82,9 +82,9 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -As an author, I could be able to add tags, or categories, to blogs that I write.
 
-### Plans For Page Layouts
+### Basic Plans For Page Layouts
 
-![login screenshot](images/basicPlan.jpg)
+![login screenshot](images/basicPlan.jpg){:height="150px"}
 
 ### Plans For Schema (taken from my MySql Development Database)
 
@@ -102,7 +102,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 ![view a blog image](images/viewblog.png)
 
-### How The Project Looked With Intial Crude CSS Effort
+### How The Project Looked With Initial Crude CSS Effort
 
 ![old image of home screen after login](images/oldhome.png)
 
