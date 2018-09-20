@@ -26,7 +26,8 @@ public class UpvoteDAO {
     
 	public void saveUpvote(Upvote upvote) {
 		String sql = "INSERT INTO upvote (id, author_id, blog_id) values (?, ?, ?)";
-	   jdbcTemplate.update(sql, upvote.getId(), upvote.getAuthor_id(), upvote.getBlog_id());    	
+		int tempUpvoteId = getANewId();
+	   jdbcTemplate.update(sql, tempUpvoteId, upvote.getAuthor_id(), upvote.getBlog_id());    	
     }
 	
 	public List<Upvote> getAllUpvotes(){

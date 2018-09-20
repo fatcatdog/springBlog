@@ -17,47 +17,49 @@ import com.jacob.model.Blog;
 @Repository
 public class BlogDAO {
     private final JdbcTemplate jdbcTemplate;
-    
+
     @Autowired
     public BlogDAO(JdbcTemplate jdbcTemplate) {
 	  this.jdbcTemplate = jdbcTemplate;
     }
 
-    //note that getAllBlogs sorts by upvotes, but does not actually work as desired 
-    //for some reason, blogs with 0 or 1 votes, kind of get listed arbitrarily which is probably due to an error in my sql logic here 
-    
+    //note that getAllBlogs sorts by upvotes, but does not actually work as desired
+    //for some reason, blogs with 0 or 1 votes, kind of get listed arbitrarily which is probably due to an error in my sql logic here
+
     public List<Blog> getAllBlogs() {
-    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content FROM blog LEFT JOIN upvote ON blog.id = upvote.blog_id GROUP BY blog.id ORDER BY COUNT(blog.id) DESC";
+      // LEFT JOIN upvote ON blog.id = upvote.blog_id GROUP BY blog.id ORDER BY COUNT(blog.id) DESC
+    	String sql = "SELECT blog.id, blog.author_id, blog.title, blog.content FROM blog";
 	   RowMapper<Blog> rowMapper = new BeanPropertyRowMapper<Blog>(Blog.class);
 	   return this.jdbcTemplate.query(sql, rowMapper);
     }
-    
+
     public void saveBlog(Blog blog) {
 	   String sql = "INSERT INTO blog (id, author_id, title, content) values (?, ?, ?, ?)";
-	   jdbcTemplate.update(sql, blog.getId(), blog.getAuthor_id(), blog.getTitle(), blog.getContent());    	
+	   int tempBlogId = getANewId();
+	   jdbcTemplate.update(sql, tempBlogId, blog.getAuthor_id(), blog.getTitle(), blog.getContent());
     }
-    
+
     public Blog getBlog(int id) {
     	String sql = "SELECT id, author_id, title, content FROM blog WHERE id = ?";
     	 RowMapper<Blog> rowMapper = new BeanPropertyRowMapper<Blog>(Blog.class);
 		 Blog blog = jdbcTemplate.queryForObject(sql, rowMapper, id);
-		return blog; 
+		return blog;
     }
-    
+
     public void updateBlog(Blog blog) {
         String sql = "UPDATE blog SET title=?, content=? WHERE id=?";
         jdbcTemplate.update(sql, blog.getTitle(), blog.getContent(), blog.getId());
-    } 
-    
+    }
+
     public void deleteBlog(long id) {
     	String sql = "DELETE FROM blog WHERE id=?";
     	jdbcTemplate.update(sql, id);
     }
-    
+
 	 public int getANewId() {
 		 String sql = "SELECT MAX(id) from blog";
 		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);
-		 return (number + 1); 
+		 return (number + 1);
 	 }
-	
+
 }

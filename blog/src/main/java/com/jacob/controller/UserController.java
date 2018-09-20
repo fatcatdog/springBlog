@@ -80,7 +80,7 @@ public class UserController {
 	  
 	  //part of our validation checks if user email is in db. if it is not, and not empty string, (we need to check if its a good email which we dont do yet), we proceed
 	 
-	  if(userService.checkIfEmailIsInDb(user.getEmail())) {
+	  if(userService.checkIfEmailIsInDb(user.getEmail().toLowerCase())) {
 		   userExists = userService.findUserByEmail(user.getEmail());		  
 	  } else {
 		   userExists = null; 

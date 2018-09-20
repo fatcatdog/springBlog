@@ -1,6 +1,6 @@
 //@Author: Jacob Duchen
-//pretty straight forward stuff here 
-//i hope to put more of the messy logic in our controllers in here 
+//pretty straight forward stuff here
+//i hope to put more of the messy logic in our controllers in here
 
 package com.jacob.jdbcService;
 
@@ -15,10 +15,10 @@ public class UserService implements UserServiceInterface {
 
 	@Autowired
 	private UserDAO userDao;
-	
+
 	@Override
 	public User findUserByEmail(String email) {
-		return userDao.findUserByEmail(email);
+		return userDao.findUserByEmail(email.toLowerCase());
 	}
 
 	@Override
@@ -30,10 +30,10 @@ public class UserService implements UserServiceInterface {
 	public void saveUser(User user) {
 		userDao.saveUser(user);
 	}
-	
+
 	@Override
 	 public boolean checkIfEmailIsInDb(String email) {
-		return userDao.checkIfEmailIsInDb(email);
+		return userDao.checkIfEmailIsInDb(email.toLowerCase());
 	}
 
 

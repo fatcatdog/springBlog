@@ -27,7 +27,7 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 		List<WordInBlog> results = new ArrayList<WordInBlog>();
 
 		for(int i = 0; i < searchedString.length; i++) {
-			List<WordInBlog> individualWordResults = wordInBlogDAO.getAllWordsInAllBlogsByWordSearched(searchedString[i]);
+			List<WordInBlog> individualWordResults = wordInBlogDAO.getAllWordsInAllBlogsByWordSearched(searchedString[i].toLowerCase());
 
 			for(int j=0; j < individualWordResults.size(); j++) {
 				results.add(individualWordResults.get(j));
@@ -81,8 +81,8 @@ public class WordInBlogService implements WordInBlogServiceInterface {
 		 List<String> uniqueWords = new ArrayList<String>();
 
 		 for(int i = 0; i < words.length; i++) {
-			 if(!uniqueWords.contains(words[i])) {
-				 uniqueWords.add(words[i]);
+			 if(!uniqueWords.contains(words[i].toLowerCase())) {
+				 uniqueWords.add(words[i].toLowerCase());
 			 }
 		 }
 

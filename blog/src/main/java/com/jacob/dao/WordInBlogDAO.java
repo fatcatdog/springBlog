@@ -51,7 +51,8 @@ public class WordInBlogDAO {
 	
     public void saveWordInBlogInDb(WordInBlog wordInBlog) {
 		String sql = "INSERT INTO words_in_blogs (id, blog_id, word) values (?, ?, ?)";
-	   jdbcTemplate.update(sql, wordInBlog.getId(), wordInBlog.getBlog_id(), wordInBlog.getWord());    	
+		int tempWordInBlogId = getANewId();
+	   jdbcTemplate.update(sql, tempWordInBlogId, wordInBlog.getBlog_id(), wordInBlog.getWord());    	
     }
     
 	public void deleteWordInBlogFromDb(int id) {

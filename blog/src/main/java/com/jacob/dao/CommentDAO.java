@@ -24,36 +24,38 @@ public class CommentDAO {
     }
     
 	public Comment getComment(int id) {
-		String sql = "SELECT id, author_id, blog_id, content FROM comment WHERE id = ?";
+		String sql = "SELECT id, author_id, blog_id, content FROM comments WHERE id = ?";
    	 	RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<Comment>(Comment.class);
    	 	Comment comment = jdbcTemplate.queryForObject(sql, rowMapper, id);
 		return comment; 
 	}
 
 	public void deleteComment(int id) {
-		String sql = "DELETE FROM comment WHERE id=?";
+		String sql = "DELETE FROM comments WHERE id=?";
     	jdbcTemplate.update(sql, id);
 	}
 	
     public void saveComment(Comment comment) {
-		String sql = "INSERT INTO comment (id, author_id, blog_id, content) values (?, ?, ?, ?)";
-	   jdbcTemplate.update(sql, comment.getId(), comment.getAuthor_id(), comment.getBlog_id(), comment.getContent());    	
+		String sql = "INSERT INTO comments (id, author_id, blog_id, content) values (?, ?, ?, ?)";
+		int tempCommentId = getANewId();
+	   jdbcTemplate.update(sql, tempCommentId, comment.getAuthor_id(), comment.getBlog_id(), comment.getContent());  
+	  
     }
     
 	public List<Comment> getAllCommentsForABlog(int id){
-		String sql = "SELECT id, author_id, blog_id, content FROM comment WHERE blog_id = ?";
+		String sql = "SELECT id, author_id, blog_id, content FROM comments WHERE blog_id = ?";
     	RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<Comment>(Comment.class);
   	   return this.jdbcTemplate.query(sql, rowMapper, id);
 	}
 	
 	public List<Comment> getAllComments(){
-		String sql = "SELECT id, author_id, blog_id, content FROM comment";
+		String sql = "SELECT id, author_id, blog_id, content FROM comments";
     	RowMapper<Comment> rowMapper = new BeanPropertyRowMapper<Comment>(Comment.class);
   	   return this.jdbcTemplate.query(sql, rowMapper);
 	}
 	
 	 public int getANewId() {
-		 String sql = "SELECT MAX(id) from comment";
+		 String sql = "SELECT MAX(id) from comments";
 		 Integer number = jdbcTemplate.queryForObject(sql, Integer.class);
 		 return (number + 1); 
 	 }

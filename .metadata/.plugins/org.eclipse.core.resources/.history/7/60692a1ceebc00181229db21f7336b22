@@ -1,0 +1,24 @@
+# database configurations
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url= jdbc:mysql://localhost:3306/springBlogDb?useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=Baseball
+
+## hibernate configurations
+#spring.jpa.show-sql=true
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.properties.hibernate.dialet= org.hibernate.dialect.MySQL5Dialect
+
+spring.datasource.tomcat.max-wait=20000
+spring.datasource.tomcat.max-active=50
+spring.datasource.tomcat.max-idle=20
+spring.datasource.tomcat.min-idle=15 
+
+spring.thymeleaf.enabled=false
+## thumeleaf configurations
+#spring.thymeleaf.mode= LEGACYHTML5
+#spring.thymeleaf.cache=false
+
+
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
