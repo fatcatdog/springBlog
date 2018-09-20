@@ -38,6 +38,8 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Improving this readme to better help people looking to copy project
 
+-Better error handling
+
 # Here are a few of my initial user stories that I used when planning the project:
 
 ### General User Stories
@@ -97,6 +99,14 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 <!-- ![mysql schema](images/currentSchema.png) -->
 <img alt="mysql schema wireframe" src="images/currentSchema.png" width="300">
 
+#Reflecting on This Project
+
+I learned a lot completing this project. Most of the "magic" under the hood in Spring is still foreign to me, but I can confidently say I know what every line of code typed does in this project which is a great personal achievement for me.
+
+Initially, I had planned on having blog-author's input tags to enable users to search for blogs including those tags. Most of the blogs I read currently (Medium, Hacker News, Bloomberg, Twitter, Reddit, Etc.) don't really use tags and I thought I would accomplish this requirement in a different way. Instead of having a blog author input tags, when a blog is published, BlogCity gets all unique words from that blog, and stores them in a table with word and blog_id. Then, when a user decides to search for a term, for example, "basketball", we retrieve all blogs that have the word, "basketball", in them. Much like the rest of this project, a lot more can be done to strengthen the business logic of this process.
+
+I was able to accomplish all of my must have user stories. I did accomplish most of my reach goals but I have yet to try implement non-text input objects in blog. I will always remember a Google Developer Expert (I forget his name) say in a conference, "Images basically are the reason why people use the internet," in describing how 90% of internet traffic is really just people sending photos and now videos to each other via various platforms. Being able to upload and send images and/or videos is a functionality a blog in 2018 really just needs to have. Having a written action plan of what to build definitely did prevent me from getting distracted with unnecessary functionalities which was often tempting throughout project.
+
 ### How The Project Currently Looks After CSS Effort
 
 <!-- ![image of home screen after login](images/home.png) -->
@@ -117,7 +127,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 <!-- ![view a blog image](images/viewblog.png) -->
 <img alt="view a blog image" src="images/viewblog.png" width="300">
 
-### How The Project Looked With Initial Crude CSS Effort
+### How The Project Looked With Initial CSS Effort
 ### Old Home Page
 
 <!-- ![old image of home screen after login](images/oldhome.png) -->
