@@ -15,7 +15,6 @@ public class Blog {
  public Blog() {
  }
  
-
 public Blog(int id, int author_id, String title, String content) {
 	super();
 	this.id = id;

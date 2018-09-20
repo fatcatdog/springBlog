@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-<style>
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
 
-body {
-    color: maroon;
-	 margin: auto;
-    width: 75%;
-    border: 5px solid black;
-    padding: 10px;
-    text-align: center;
-  	padding: 20px;
-	font-family: Arial, Helvetica, sans-serif;
-
-    }
-
-</style>
 </head>
-<h1>BlogCity</h1>
-
+<%@ include file="components/header.jsp" %>  
 <body>
     <div>
 <h1>Something went wrong</h1>

@@ -1,0 +1,8 @@
+.everything{
+	text-align:center; 
+}
+
+.our_list_of_links {
+	width: 350px; 
+	margin: 0 auto;
+}

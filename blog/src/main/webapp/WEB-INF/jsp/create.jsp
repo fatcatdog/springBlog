@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-
-<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+
 </head>
-
-<html lang="en">
 <%@ include file="components/header.jsp" %>  
-
 <body>
     <div class="mainContent">
 

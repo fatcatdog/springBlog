@@ -1,4 +1,3 @@
-
 <div class="header-title">
-<h1><a href="/home">BlogCity</a></h1>
+<h1><a href="/home" style="color:white">BlogCity</a></h1>
 </div>

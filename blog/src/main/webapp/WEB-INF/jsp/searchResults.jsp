@@ -1,44 +1,47 @@
-<!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-
-<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
 </head>
+<body style="background-color: #5CDB95;">
+  <%@ include file="components/header.jsp" %>
 
-<%@ include file="components/header.jsp" %>  
-
-<body>
-
-    <div class="mainContent">
-    <div>
-  <h2 align="center">Here are your search results ${userName}</h2>
-    <form action="searchBlogs" method="GET">
+    <div class="everything">
+     <form action="searchBlogs" method="GET">
     	<input type="text" name="searchedWords">
-  		<input type="submit" value="Search Blogs" />
-    </form> 
-    <form action="create" method="GET">
-  		<input type="submit" value="Create Blog" />
-    </form>       
-    <Br/>
+        <Br/>
+        <Br/>
+  		<input class="button" type="submit" value="Search Blogs" />
+    </form>
+ 	    <Br/>
     </div>
+      <h2 class="blog_header">${userName}'s search results</h2>
+    <div class="our_list_of_links">
 	  <c:forEach items="${blogs}" var="blog" varStatus="status">
-	  
+
 		<a href="/blog/${blog.id}">
 
-	    <c:out value="${blog.title} - by ${authorNames[status.index]} - Upvotes: ${upvotes[status.index]} - Comments: ${comments[status.index]}"/><br /><br />
+	    <c:out value="${blog.title} - by ${authorNames[status.index]}"/>
 	  </a>
-	  </c:forEach>	
+	  	  <Br/>
+  	    <c:out value="Upvotes: ${upvotes[status.index]} | Comments: ${comments[status.index]}"/>
+   		<Br/>
+	    <Br/>
+	  </c:forEach>
      </div>
-	    
-  
+
+
 </body>
 
-<%@ include file="components/footer.jsp" %>  
+<%@ include file="components/footer.jsp" %>
 
 </html>

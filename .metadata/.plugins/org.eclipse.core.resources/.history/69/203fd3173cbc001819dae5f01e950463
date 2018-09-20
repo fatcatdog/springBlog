@@ -1,0 +1,22 @@
+.everything{
+	text-align:center; 
+}
+
+.our_list_of_links {
+	width: 40%; 
+	margin: 0 auto;
+}
+
+.blog_header{
+	text-align:center; 
+}
+
+.blog_style{
+	width: 50%; 
+	margin: 0 auto;
+}
+
+.comment_section{
+	text-align:center; 
+	
+}

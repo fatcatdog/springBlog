@@ -1,44 +1,48 @@
-<!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
-<h1><a href="/home">BlogCity</a></h1>
-
-<body>
-    <div>
-    
-<h5>Please Log In</h5>
+<%@ include file="components/header.jsp" %>  
+<body style="background-color: #5CDB95">
+    <div class="everything">
+                          <br />
 
 <form action="login" method="post">
-        Email: <input type="text" name="email">
+        Email <br /><input type="text" name="email" autofocus="autofocus">
     <br />
                  <br />
     
-         Password: <input type="password" name="password" />
+         Password <br /><input type="password" name="password" />
              <br />
                       <br />
                       <br />
          
-    <input type="submit" value="Login" />
+    <input class="button" type="submit" value="Login" />
 </form>
+
 <h5>Or Sign Up</h5>
 
     <form action="signup" method="GET">    
-    <input type="submit" value="Sign Up" />
+    <input class="button" type="submit" value="Sign Up" />
     </form>
     <p>${msg}</p>
         </div>
-</body>
-         <br />
-<div>
-<h1><a href="/home">BlogCity</a></h1>
+        <div class="footer-items">
+<h1><a href="/home"  style="color:white">BlogCity</a></h1>
 <h4>Created by Jacob Duchen</h4>
-<p><a href="mailto:duchenjacob@gmail.com">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
+
+<c:url value="/home" var="homeLink"></c:url>
+<a href="${homeLink}" style="color:white">Home</a>
+<p><a href="mailto:duchenjacob@gmail.com"  style="color:white">Feedback</a></p>
 </div>
+</body>
 </html>

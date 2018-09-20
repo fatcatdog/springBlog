@@ -1,0 +1,40 @@
+.everything{
+	text-align:center; 
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	
+}
+
+.our_list_of_links {
+	width: 40%; 
+	margin: 0 auto;
+}
+
+.blog_header{
+	text-align:center; 
+}
+
+.blog_style{
+	width: 50%; 
+	margin: 0 auto;
+	line-height: 1.6;
+}
+
+.small_blog_style{
+	text-align:center; 
+}
+
+.comment_section{
+	text-align:center;
+	width: 60%; 
+	margin: 0 auto;
+}
+
+.button{
+	font-size: 24px;
+	 color: #fff;
+}
+
+.button2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

@@ -1,59 +1,59 @@
-<!DOCTYPE html>
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 </head>
+<%@ include file="components/header.jsp" %>
+<body style="background-color: #5CDB95">
+<div class="everything">
 
-<h1><a href="/home">BlogCity</a></h1>
-
-<body>
-<div>
-
-<h1>Sign Up</h1>
+<h1>Register</h1>
 	<form action="signup" method="post">
-        First Name: <input type="text" name="firstname">
+        First Name: <input type="text" name="firstname" autofocus="autofocus">
         <br />
                          <br />
-        
+
         Last Name: <input type="text" name="lastname">
 	    <br />
 	                     <br />
-	    
+
         Email: <input type="text" name="email">
     	<br />
     	                 <br />
-    	
+
          Password: <input type="password" name="password" />
          <br />
                           <br />
-         
+
           Confirm Password: <input type="password" name="confirmPassword" />
          <br />
                           <br />
-         
-    <input type="submit" value="Register" />
+
+    <input class="button" type="submit" value="Register" />
 	</form>
 	<p>${msg}</p>
-	
+
 	                 <p>or</p>
-	                
-	<c:url value="/home" var="homeLink"></c:url> 
+
+	<c:url value="/home" var="homeLink"></c:url>
 	<form action="homeLink" method="get">
-	<input type="submit" value="Login" />
+	<input class="button"  type="submit" value="Login" />
 	</form>
 </div>
 </body>
-         <br />
-         <br />
-<div>
-<h1><a href="/home">BlogCity</a></h1>
+    <br />
+<div class="footer-items">
+<h1><a href="/home" style="color:white">BlogCity</a></h1>
 <h4>Created by Jacob Duchen</h4>
-<p><a href="mailto:duchenjacob@gmail.com">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
-<a href="${homeLink}">Login</a></p>
+<p><a href="mailto:duchenjacob@gmail.com" style="color:white">Feedback</a> <c:url value="/home" var="homeLink"></c:url>
+<a href="${homeLink}" style="color:white">Login</a></p>
 </div>
 </html>

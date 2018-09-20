@@ -16,7 +16,6 @@ final class BlogMapper implements RowMapper<Blog>{
 	@Override
 	public Blog mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Blog blog = new Blog();
-		
 		blog.setId((rs.getInt("id")));
 		blog.setAuthor_id((rs.getInt("author_id")));
 		blog.setTitle((rs.getString("title")));
