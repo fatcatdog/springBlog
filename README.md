@@ -2,9 +2,7 @@
 
 This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
 
-As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf.
-<br/>
-<br/>
+As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf initially before replacing those technologies with the ones I ultimately needed.
 
 ### Installing
 
@@ -12,7 +10,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Create a database in your SQL system (mysql or oracle scripts are in folders in the repo. You will have to choose to uncomment out the mysql dependency if you want to run it with mysql)
 
--Run each script in the appropriate sql scripts folder (mysql or oracle). First auth scripts, then blog script, then comment, upvotes, wordinblogs scripts.
+-Run each script in the appropriate sql scripts folder (mysql or oracle). First auth scripts, then blog script, then comment, then upvotes, then wordinblogs scripts.
 
 -Go to blog folder and import it into preferred Java IDE
 
@@ -20,7 +18,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Run project as SpringBoot project however you like
 
--This project's sql will crash with nullpointer errors if there is not one item created in database to start. So, via your sql tool (mysql workbench, Oracle SqlDeveloper, whatever tool you prefer) insert a user (with a pre-bcrypted password), blog, comment,upvote, and wordinblog with the appropriate values.
+-This project's sql will crash with nullpointer errors if there is not one item created in database to start. So, via your sql tool (mysql workbench, Oracle SqlDeveloper, whatever tool you prefer) insert a user (with a pre-bcrypted password), blog, comment, upvote, and wordinblog with the appropriate values. (I plan on adjusting SQL scripts in future so people don't have to do this)
 
 ### Things that are still being worked on:
 
@@ -38,7 +36,9 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Online Deployment
 
-## Here are a few of my initial user stories that I used when planning the project:
+-Improving this readme to better help people looking to copy project
+
+# Here are a few of my initial user stories that I used when planning the project:
 
 ### General User Stories
 
@@ -54,7 +54,11 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Users need to signup to use system.
 
-### More Specific User Stories
+-Users can add tags to the blogs
+
+# More Specific User Stories
+
+### Must Have
 
 -As an author, I must be able to both write blogs and read the blogs of others.
 
@@ -80,11 +84,11 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 ### Plans For Page Layouts
 
-![login screenshot](images/basicPlan.png)
+![login screenshot](images/basicPlan.jpg)
 
 ### Plans For Schema (taken from my MySql Development Database)
 
-![hand written schema](images/basicSchema.png)
+![hand written schema](images/basicSchema.jpg)
 
 ![mysql schema](images/currentSchema.png)
 
