@@ -99,7 +99,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 <!-- ![mysql schema](images/currentSchema.png) -->
 <img alt="mysql schema wireframe" src="images/currentSchema.png" width="300">
 
-#Reflecting on This Project
+# Reflecting on This Project
 
 I learned a lot completing this project. Most of the "magic" under the hood in Spring is still foreign to me, but I can confidently say I know what every line of code typed does in this project which is a great personal achievement for me.
 
