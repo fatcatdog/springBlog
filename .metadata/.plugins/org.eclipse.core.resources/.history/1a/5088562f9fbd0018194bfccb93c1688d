@@ -1,0 +1,4 @@
+FROM 8.5.34-jre8-alpine
+ADD target/docker-springboot-blog.jar docker-springboot-blog.jar
+EXPOSE 8085
+ENTRYPOINT ["java", "-jar", "docker-springboot-blog.jar"]

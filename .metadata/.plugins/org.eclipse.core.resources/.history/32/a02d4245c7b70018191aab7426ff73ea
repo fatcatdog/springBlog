@@ -1,7 +1,0 @@
-package com.jacob.jdbcService;
-
-public interface UserServiceInterface {
-	 public User findUserByEmail(String email);
-	 public User findUserById(int Id);
-	 public void saveUser(User user);
-}

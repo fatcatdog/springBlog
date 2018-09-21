@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
@@ -32,7 +31,6 @@
 <fullyQualifiedTypeName name="javax.xml.stream.events.Comment"/>
 <fullyQualifiedTypeName name="com.jacob.model.Comment"/>
 <fullyQualifiedTypeName name="com.jacob.model.Upvote"/>
-<fullyQualifiedTypeName name="org.junit.Test"/>
 <fullyQualifiedTypeName name="com.jacob.model.User"/>
 <fullyQualifiedTypeName name="org.springframework.boot.context.properties.ConfigurationProperties"/>
 <fullyQualifiedTypeName name="org.springframework.boot.jdbc.DataSourceBuilder"/>
@@ -44,9 +42,7 @@
 <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
 <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="com.jacob.dao.WordInBlogDAO"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="com.jacob.model.WordInBlog"/>
 <fullyQualifiedTypeName name="com.jacob.jdbcService.WordInBlogService"/>
 <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.EnableWebSecurity"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="javax.sql.DataSource"/>
 <fullyQualifiedTypeName name="org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder"/>
 <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
+<fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
+<fullyQualifiedTypeName name="com.jacob.dao.WordInBlogDAO"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="com.jacob.model.WordInBlog"/>
 </qualifiedTypeNameHistroy>

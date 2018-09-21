@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/docker-springboot-blog.jar docker-springboot-blog.jar
+EXPOSE 8085
+ENTRYPOINT ["java", "-jar", "docker-springboot-blog.jar"]

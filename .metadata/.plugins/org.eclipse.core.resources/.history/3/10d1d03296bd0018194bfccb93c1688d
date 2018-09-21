@@ -1,0 +1,2 @@
+FROM openjdk:8
+ADD target/docker-springboot-blog.jar docker-springboot-blog.jar

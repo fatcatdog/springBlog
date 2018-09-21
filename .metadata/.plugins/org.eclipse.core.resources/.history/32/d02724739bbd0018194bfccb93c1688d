@@ -1,0 +1,47 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/everythingelse.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
+</head>
+<body style="background-color: #5CDB95;">
+  <%@ include file="components/header.jsp" %>
+
+    <div class="everything">
+     <form action="searchBlogs" method="GET">
+    	<input type="text" name="searchedWords">
+        <Br/>
+        <Br/>
+  		<input class="button" type="submit" value="Search Blogs" />
+    </form>
+ 	    <Br/>
+    </div>
+      <h2 class="blog_header">${userName}'s search results</h2>
+    <div class="our_list_of_links">
+	  <c:forEach items="${blogs}" var="blog" varStatus="status">
+
+		<a href="/blog/${blog.id}" style="color:white">
+
+	    <c:out value="${blog.title} - by ${authorNames[status.index]}"/>
+	  </a>
+	  	  <Br/>
+  	    <c:out value="Upvotes: ${upvotes[status.index]} | Comments: ${comments[status.index]}"/>
+   		<Br/>
+	    <Br/>
+	  </c:forEach>
+     </div>
+
+
+</body>
+
+<%@ include file="components/footer.jsp" %>
+
+</html>

@@ -61,10 +61,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
    .tokenValiditySeconds(60*60)
    .and().exceptionHandling().accessDeniedPage("/access_denied");
   
-  //for heroku https
-  http.requiresChannel()
-  .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
-  .requiresSecure();
  }
 
  @Bean

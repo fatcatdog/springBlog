@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="/Users/jacob/Desktop" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="false" key="delegateUpdating"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
@@ -61,7 +62,7 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="0" key="pageIndex"/>
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>

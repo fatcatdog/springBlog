@@ -12,4 +12,7 @@
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
 		<item value="472" key="DIALOG_HEIGHT"/>
 	</section>
+	<section name="RefactoringPropertyPage">
+		<item value="true" key="org.eclipse.ltk.ui.refactoring.sortRefactorings"/>
+	</section>
 </section>
