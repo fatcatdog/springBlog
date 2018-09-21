@@ -23,4 +23,4 @@ spring.thymeleaf.enabled=false
 spring.mvc.view.prefix=/WEB-INF/jsp/
 spring.mvc.view.suffix=.jsp
 
-server.port=0
+#server.port=${PORT}

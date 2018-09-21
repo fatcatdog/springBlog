@@ -1,5 +1,4 @@
-//@Author=Jacob Duchen
-//package com.jacob.dao.tests;
+package com.jacob.dao.tests;
 //
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
