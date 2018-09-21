@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+org.springframework.ide.eclipse.core.builders.enable.aopreferencemodelbuilder=true
+org.springframework.ide.eclipse.core.builders.enable.beanmetadatabuilder=true
+org.springframework.ide.eclipse.core.enable.project.preferences=false
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.action-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.actionstate-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.attribute-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.attributemapper-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.beanaction-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.evaluationaction-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.evaluationresult-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.exceptionhandler-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.import-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.inputattribute-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.mapping-org.springframework.ide.eclipse.webflow.core.validator=true
+org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.outputattribute-org.springframework.ide.eclipse.webflow.core.validator=true

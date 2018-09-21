@@ -1,0 +1,45 @@
+package com.jacob.dao.tests;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.jacob.configuration.SecurityConfiguration;
+import com.jacob.dao.UserDAO;
+import com.jacob.dao.WordInBlogDAO;
+import com.jacob.model.User;
+import com.jacob.model.WordInBlog;
+
+@RunWith(SpringRunner.class)
+@ComponentScan(basePackages={"com.jacob"})
+@SpringBootTest(classes = { UserDAO.class, SecurityConfiguration.class })
+@EnableConfigurationProperties
+public class WordInBlogDAOTest {
+
+	WordInBlog expected;
+	WordInBlog actual;
+	
+	@Autowired
+	private WordInBlogDAO wordInBlogDAO;
+	
+	@Test 
+	public void getWordInBlog() {
+		WordInBlog expected = new WordInBlog(100, 2, "thisisprobablynotinthisblog");
+		actual 
+	
+	}
+	
+	@Test 
+	public void saveWordInBlog() {
+		
+	}
+	
+	@Test
+	public void deleteWordInBlog() {
+		
+	}
+}

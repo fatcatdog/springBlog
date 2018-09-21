@@ -5913,3 +5913,30 @@ Contains: Missing com.oracle:ojdbc7:jar:sources:12.1.0
 !MESSAGE Could not resolve artifact com.oracle:ojdbc7:jar:sources:12.1.0
 !SUBENTRY 2 org.eclipse.m2e.core 4 -1 2018-09-20 11:54:29.662
 !MESSAGE Missing com.oracle:ojdbc7:jar:sources:12.1.0
+
+!ENTRY org.eclipse.jface 2 0 2018-09-20 21:46:44.103
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-09-20 21:46:44.103
+!MESSAGE A conflict occurred for COMMAND+R:
+Binding(COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.debug.ui.commands.RunToLine,Run to Line,
+		Resume and break when execution reaches the current line,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3b5b6b70,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.debugging,,,system)
+Binding(COMMAND+R,
+	ParameterizedCommand(Command(org.springframework.ide.eclipse.boot.restart.commands.restart,Trigger Restart,
+		Restart Spring Boot Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6c8f781a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.console,,,system)
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-20 22:54:52.899
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-20 22:54:52.905
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
