@@ -2,28 +2,15 @@
 
 Deployed here: <a href="http://blogcity-env.3tdirw32mi.us-east-1.elasticbeanstalk.com/" alt="link to aws beanstalk project">BlogCity</a>
 
-This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, AWS RDS, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
+This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, AWS RDS, J Unit testing, JSP, and it is deploying on AWS Beanstalk. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
 
 As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf initially before replacing those technologies with the ones I ultimately needed.
 
-
-
-### To Run Project
+### To Install Project With Your Own Database
 
 -Git clone this repo
 
--Import the blog folder into your preferred Java IDE
-
--Find the main class in src/main/java/com.jacob and right click run as SpringBoot App
-
--Read some blogs, add some comments, and let me know what you think :)
-
-
-### To Install Project
-
--Git clone this repo
-
--Create a database in your SQL system (mysql or oracle scripts are in folders in the repo. You will have to choose to uncomment out the mysql dependency if you want to run it with mysql)
+-Create a database in your SQL system (mysql or oracle scripts are in folders in the repo). To use MySql, you will have to choose to uncomment the mysql dependency in Springboot app pom.xml and adjust application.properties settings with appropriate MySql driver)
 
 -Run each script in the appropriate sql scripts folder (mysql or oracle). First auth scripts, then blog script, then comment, then upvotes, then wordinblogs scripts.
 
@@ -49,9 +36,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -Non-text in blogs functionality
 
--Online Deployment
-
--Improving this readme to better help people looking to copy project
+-Improving this readme to better help people looking to copy and learn from project
 
 -Better error handling
 
@@ -120,7 +105,7 @@ I learned a lot completing this project. Most of the "magic" under the hood in S
 
 Initially, I had planned on having blog-author's input tags to enable users to search for blogs with those tags. Most of the blogs I read currently (Medium, Hacker News, Bloomberg, Twitter, Reddit, Etc.) don't really use tags and I thought I would accomplish this requirement without requiring users to input tags manually. Instead of having a blog author input tags, when a blog is published, BlogCity gets all unique words from that blog, and stores them in a table with word and blog_id. Then, when a user decides to search for a term, for example, "basketball", we retrieve all blogs that have the word, "basketball", in them. When blogs are updated or deleted, we update those words accordingly as well. Much like the rest of this project, a lot more can be done to strengthen the business logic of this process but I think it is a cool feature currently.
 
-I was able to accomplish all of my must have user stories. I did accomplish most of my reach goals but I have yet to try implement non-text input objects in blog. I will always remember a Google Developer Expert (I forget his name) say in a conference, "Images basically are the reason why people use the internet," in describing how 90% of internet traffic is really just people sending photos and now videos to each other via various platforms. Being able to upload and send images and/or videos is a functionality a blog in 2018 really just needs to have. Having a written action plan of what to build definitely did prevent me from getting distracted with unnecessary functionalities which was often tempting throughout project.
+I was able to accomplish all of my must have user stories. I did accomplish most of my reach goals but I have yet to try implement non-text input objects in blog. I will always remember a Google Developer Expert (I forget his name) say in a conference, "Images basically are the reason why people use the internet," in describing how 90% of internet traffic is really just people sending photos and now videos to each other via various platforms. Being able to upload and send images and/or videos is a functionality a blog in 2018 really just needs to have. Having a written action plan of what to build helped prevent me from getting distracted with building out unnecessary functionalities which was often tempting throughout building project.
 
 ### How The Project Currently Looks After CSS Effort
 
