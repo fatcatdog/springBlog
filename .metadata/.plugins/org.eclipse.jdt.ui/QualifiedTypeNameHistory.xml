@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
-<fullyQualifiedTypeName name="com.jacob.jdbcService.UpvoteService"/>
 <fullyQualifiedTypeName name="com.jacob.jdbcService.CommentService"/>
 <fullyQualifiedTypeName name="com.jacob.dao.CommentDAO"/>
 <fullyQualifiedTypeName name="junit.framework.Assert"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="com.jacob.dao.WordInBlogDAO"/>
 <fullyQualifiedTypeName name="org.junit.Test"/>
 <fullyQualifiedTypeName name="com.jacob.model.WordInBlog"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.servlet.support.ErrorPageFilter"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.servlet.support.ServletContextApplicationContextInitializer"/>
+<fullyQualifiedTypeName name="org.springframework.boot.builder.SpringApplicationBuilder"/>
+<fullyQualifiedTypeName name="org.springframework.boot.web.servlet.support.SpringBootServletInitializer"/>
 </qualifiedTypeNameHistroy>

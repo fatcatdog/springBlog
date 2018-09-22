@@ -1,9 +1,0 @@
-package com.jacob.mapper;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import com.jacob.model.Blog;
-
-public class RoleMapper implements RowMapper<Role> {
-
-}

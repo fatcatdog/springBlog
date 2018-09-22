@@ -1,8 +1,12 @@
 # BlogCity
 
+Deployed here: <a href="http://blogcity-env.3tdirw32mi.us-east-1.elasticbeanstalk.com/" alt="link to aws beanstalk project">BlogCity</a>
+
 This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, AWS RDS, J Unit testing, and JSP. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
 
 As I am relatively new to Spring and its associated technologies, I spent time learning a few other technologies while developing this project. If you go into this repo's commit history, you will notice I actually built out this project with JPA, Hibernate, MySql, and Thymeleaf initially before replacing those technologies with the ones I ultimately needed.
+
+
 
 ### To Run Project
 

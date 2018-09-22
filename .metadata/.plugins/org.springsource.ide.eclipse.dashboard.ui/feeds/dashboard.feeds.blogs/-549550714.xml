@@ -5,7 +5,154 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-21T09:00:00Z</updated>
+  <updated>2018-09-22T00:28:42Z</updated>
+  <entry>
+    <title>Spring Boot for Apache Geode &amp; Pivotal GemFire 1.0.0.M3 Released!</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/22/spring-boot-for-apache-geode-pivotal-gemfire-1-0-0-m3-released" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>John Blum</name>
+    </author>
+    <id>tag:spring.io,2018-09-21:3410</id>
+    <updated>2018-09-22T00:28:42Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;On behalf of the Spring and Apache Geode communities, I am pleased to announce the third milestone release of &lt;em&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire&lt;/em&gt; (SBDG), version &lt;code&gt;1.0.0.M3&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The bits for 1.0 final GA are nearly complete. There will be 1 more development milestone (RC1) before final GA.  The new &lt;code&gt;1.0.0.M3&lt;/code&gt; bits can be acquired from the Spring &lt;a href="http://repo.spring.io/libs-milestone/org/springframework/geode/spring-geode-starter/1.0.0.M3/"&gt;libs-milestone&lt;/a&gt; repo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="whats-new" class="sect0"&gt;&lt;a class="anchor" href="#whats-new"&gt;&lt;/a&gt;What&amp;#8217;s New&lt;/h1&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;SBDG &lt;code&gt;1.0.0.M3&lt;/code&gt; adds support for using &lt;a href="https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready.html"&gt;Spring Boot&amp;#8217;s Actuator&lt;/a&gt; feature with Apache Geode &amp;amp; Pivotal GemFire (and, by extension, Pivotal Cloud Cache, which is backed by Pivotal GemFire).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Specifically, this support includes Spring Boot &lt;code&gt;HealthIndicators&lt;/code&gt; to assess the state and health of the following GemFire/Geode components:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cache&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DistributedSystem / DistributedMember&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ResourceManager&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Regions&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Indexes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DiskStores&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Continuous Queries&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CacheServers&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pools&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AsyncEventQueues&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GatewaySenders&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GatewayReceivers&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In addition to basic status information, the GemFire/Geode &lt;code&gt;HealthIndicators&lt;/code&gt; provide essential configuration meta-data details along with runtime characteristics/behavior of the GemFire/Geode components themselves.  This includes simple metrics like the cache Region hit/miss counts or the connection load between clients and servers, and so on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;"Essential" configuration meta-data details are provided in 1 convenient location so that you don&amp;#8217;t have to sift through all the command-line arguments, log files, property files and other configuration files just to find the configuration of each GemFire/Geode object used in your application architecture.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;More details about the provided &lt;code&gt;HealthIndicators&lt;/code&gt; is available &lt;a href="https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.BUILD-SNAPSHOT/reference/htmlsingle/#actuator"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="example"&gt;&lt;a class="anchor" href="#example"&gt;&lt;/a&gt;Example&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There is even an undocumented example (already) that you can play with on the &lt;code&gt;samples&lt;/code&gt; branch, &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/tree/samples/samples/boot/actuator"&gt;here&lt;/a&gt;.  The example Spring Boot app is a simple little temperature monitoring service for a temperature sensor, and uses Apache Geode CQ functionality to send temperature events to the client (monitor).  It uses enough Geode components to make the Actuator &lt;code&gt;health&lt;/code&gt; endpoints interesting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id="whats-next" class="sect0"&gt;&lt;a class="anchor" href="#whats-next"&gt;&lt;/a&gt;What&amp;#8217;s Next&lt;/h1&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By RC1, we intend to complete the following:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(More) Samples, complete with documentation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Amp up test coverage covering all manners of UCs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Review the docs for correctness and conciseness.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;As always feedback is welcomed!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-boot-data-geode/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/pulls"&gt;PR&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;StackOverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="springone-platform-2018"&gt;&lt;a class="anchor" href="#springone-platform-2018"&gt;&lt;/a&gt;SpringOne Platform 2018&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Also, don&amp;#8217;t forget about SpringOne Platform 2018 this year!  There is a lot of great &lt;a href="https://springoneplatform.io/2018/speakers"&gt;speakers&lt;/a&gt; and &lt;a href="https://springoneplatform.io/2018/sessions"&gt;content&lt;/a&gt; that you won&amp;#8217;t want to miss.  &lt;strong&gt;Luke Shannon&lt;/strong&gt; and I will be using SBDG in our session, &lt;a href="https://springoneplatform.io/2018/sessions/scaling-spring-boot-applications-in-real-time"&gt;&lt;em&gt;Scaling Spring Boot Application in Real-Time&lt;/em&gt;&lt;/a&gt;, to show you how to apply distributed system patterns and principles to your Spring Boot apps at scale.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Data Lovelace GA released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/21/spring-data-lovelace-ga-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Mark Paluch</name>
+    </author>
+    <id>tag:spring.io,2018-09-21:3407</id>
+    <updated>2018-09-21T18:52:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the Spring Data team, it&amp;rsquo;s my pleasure to announce the general availability of Spring Data Lovelace. This release train ships on top of the just-released Spring Framework 5.1 GA. You can easily consume Spring Data Lovelace with next week&amp;rsquo;s Spring Boot 2.1 M4 release. Spring Data Lovelace ships with a number of major features, improvements, and bugfixes. The most notable topics are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Support for immutable objects&lt;/li&gt;
+  &lt;li&gt;Deferred JPA repository initialization&lt;/li&gt;
+  &lt;li&gt;Support for MongoDB 4.0 Client Sessions and Transactions&lt;/li&gt;
+  &lt;li&gt;New Spring Data JDBC module&lt;/li&gt;
+  &lt;li&gt;Apache Cassandra mapping improvements for Map and tuple types, Lifecycle Callbacks, and Kotlin Extensions&lt;/li&gt;
+  &lt;li&gt;Replica Reads with Spring Data Redis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The release will be automatically picked up by the upcoming Spring Boot milestone. If you want to upgrade your Spring Boot 2.0 project to Lovelace, just set the &lt;code&gt;spring-data-releasetrain.version&lt;/code&gt; property to &lt;code&gt;Lovelace-RELEASE&lt;/code&gt;. Watch out for a blog post next week that explains the most notable changes in more detail. You can find the complete list of all &lt;a href="https://jira.spring.io/issues/?filter=16335"&gt;tickets fixed in our JIRA&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In case you haven&amp;rsquo;t already, make sure you register for this year&amp;rsquo;s &lt;a href="https://springoneplatform.io/"&gt;SpringOne Platform&lt;/a&gt; (Sept. 24th-27th, Washington, D.C.) to learn about the latest additions in Spring Data and even get a preview of the features planned for the next release train. The entire team will be on site and happy to answer questions and take feedback.&lt;/p&gt;
+&lt;p&gt;Planning for the next release train, Moore, named after &lt;a href="https://en.wikipedia.org/wiki/Gordon_Moore"&gt;Gordon Moore&lt;/a&gt;, has &lt;a href="https://github.com/spring-projects/spring-data-commons/wiki/Release-Train-Moore"&gt;already started&lt;/a&gt;. We expect a shorter cycle to reduce the time between our GA releases. That said, let’s round this off with the formalities. Here are the links to the change logs, documentation, and artifacts:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Data Commons 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-commons/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/commons/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/commons/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/commons/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data JPA 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-jpa/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jpa/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jpa/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jpa/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data MongoDB 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-mongodb/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/mongodb/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/mongodb/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/mongodb/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data KeyValue 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-keyvalue/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/keyvalue/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/keyvalue/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/keyvalue/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Gemfire 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-gemfire/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/gemfire/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/gemfire/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/gemfire/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Neo4j 5.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-neo4j/5.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/neo4j/docs/5.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/neo4j/docs/5.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/neo4j/docs/5.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data for Apache Cassandra 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-cassandra/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/cassandra/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/cassandra/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/cassandra/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data for Apache Solr 4.0 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-solr/4.0.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/solr/docs/4.0.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/solr/docs/4.0.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/solr/docs/4.0.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data for Apache Geode 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-geode/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/geode/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/geode/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/geode/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data LDAP 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-ldap/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/ldap/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/ldap/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/ldap/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Envers 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-envers/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/envers/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/envers/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data REST 3.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-rest-webmvc/3.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/rest/docs/3.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/rest/docs/3.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/rest/docs/3.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Redis 2.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-redis/2.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/redis/docs/2.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/redis/docs/2.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/redis/docs/2.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Elasticsearch 3.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-elasticsearch/3.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data Couchbase 3.1 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-couchbase/3.1.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.1.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.1.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.1.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Data JDBC 1.0 GA - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-jdbc/1.0.0.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jdbc/docs/1.0.0.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jdbc/docs/1.0.0.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/jdbc/docs/1.0.0.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Spring Framework 5.1 goes GA</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/21/spring-framework-5-1-goes-ga" />
@@ -1179,46 +1326,5 @@ decoder.setClaimSetConverter(
   &lt;li&gt;Spring Data Elasticsearch 3.0.10 - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-elasticsearch/3.0.10.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.10.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.10.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.10.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Spring Data Couchbase 3.0.10 - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-couchbase/3.0.10.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.10.RELEASE/api"&gt;Javadoc&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.10.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.10.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Vault 2.0.2 released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/10/spring-vault-2-0-2-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mark Paluch</name>
-    </author>
-    <id>tag:spring.io,2018-09-10:3387</id>
-    <updated>2018-09-10T13:39:30Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community, I&amp;#8217;d like to announce the availability of the Spring Vault service release 2.0.2.RELEASE, available from Maven Central.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This release primarily delivers bug fixes and dependency version updates along with some minor improvements.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For a complete list of changes see the &lt;a href="http://docs.spring.io/spring-vault/docs/2.0.2.RELEASE/changelog.txt"&gt;changelog&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-vault/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-vault/docs/2.0.2.RELEASE/reference/html/"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-vault"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Vault 2.1 goes RC</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/10/spring-vault-2-1-goes-rc" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mark Paluch</name>
-    </author>
-    <id>tag:spring.io,2018-09-10:3385</id>
-    <updated>2018-09-10T07:55:21Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the community, I&amp;rsquo;d like to announce the availability of the Spring Vault 2.1 release candidate. Spring Vault 2.1 requires JDK 8 or higher and specifically supports JDK 11 as the next long-term support release. This release ships with 15 tickets fixed along with some refinements for Java 9 to 11. The most notable changes are:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Support for Azure authentication with managed service instances on VMs.&lt;/li&gt;
-  &lt;li&gt;GCP IAM authentication support on behalf of service accounts.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This release is compatible with Vault versions from &lt;code&gt;0.5.2&lt;/code&gt; up to &lt;code&gt;0.11.1&lt;/code&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#next-steps" class="anchor" name="next-steps"&gt;&lt;/a&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;We are aiming for a GA release in early October and expect bugfixes along with dependency upgrades. We&amp;rsquo;re working towards the next Spring Vault 2.2 release to ship with annotation-based configuration for the versioned Vault key-value backend.&lt;/p&gt;
-&lt;p&gt;For a complete list of changes see the &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.0.RC1/changelog.txt"&gt;changelog&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-vault/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.0.RC1/reference/html/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/mp911de/spring-cloud-vault-config-samples/"&gt;Examples&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-vault"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
