@@ -1,6 +1,7 @@
 # BlogCity
 
 Deployed here: <a href="http://blogcity-env.3tdirw32mi.us-east-1.elasticbeanstalk.com/" alt="link to aws beanstalk project">BlogCity</a>
+(The RDS and EB instances are currently stopped so if you would like to message me to try out the app I am happy to un-stop them)
 
 This project, "BlogCity", is a blog system built with Java 8, SpringBoot, SpringMVC, Spring Security, JDBC, Oracle SQL, AWS RDS, J Unit testing, JSP, and it is deploying on AWS Beanstalk. The blog aspect of the web app has full CRUD functionality, upvotes can be created and deleted, and comments can be created and deleted.
 

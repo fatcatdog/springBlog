@@ -54,8 +54,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-
 		<dependency>
 		 <groupId>org.apache.tomcat.embed</groupId>
 		 <artifactId>tomcat-embed-jasper</artifactId>
@@ -75,54 +73,12 @@
             <version>12.1.0</version>
         </dependency>
 	</dependencies>
-<repositories>
-  <repository>
-    <id>maven.oracle.com</id>
-    <name>oracle-maven-repo</name>
-    <url>https://maven.oracle.com</url>
-    <layout>default</layout>
-    <releases>
-      <enabled>true</enabled>
-      <updatePolicy>always</updatePolicy>
-    </releases>
-  </repository>
-  </repositories>
-  <pluginRepositories>
-  <pluginRepository>
-    <id>maven.oracle.com</id>
-    <name>oracle-maven-repo</name> 
-    <url>https://maven.oracle.com</url>
-    <layout>default</layout>
-    <releases>
-      <enabled>true</enabled>
-      <updatePolicy>always</updatePolicy>
-    </releases>
-  </pluginRepository>
-</pluginRepositories>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-      <groupId>com.spotify</groupId>
-      <artifactId>docker-maven-plugin</artifactId>
-<!--       <version>VERSION GOES HERE</version>
- -->      <configuration>
-        <imageName>example</imageName>
-        <baseImage>java</baseImage>
-        <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-        <!-- copy the service's jar file from target into the root directory of the image --> 
-        <resources>
-           <resource>
-             <targetPath>/</targetPath>
-             <directory>${project.build.directory}</directory>
-             <include>${project.build.finalName}.jar</include>
-           </resource>
-        </resources>
-      </configuration>
-    </plugin>
 		</plugins>
 		
 		<finalName>docker-springboot-blog</finalName>

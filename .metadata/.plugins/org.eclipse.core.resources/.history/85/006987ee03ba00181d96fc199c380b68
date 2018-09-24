@@ -1,8 +1,0 @@
-package com.jacob.dao.test;
-
-import com.jacob.dao.BlogDAO;
-
-public class BlogDAOTest {
-BlogDAO blogDao; 
-
-}
