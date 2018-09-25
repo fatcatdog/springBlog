@@ -26,7 +26,7 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 
 -The UX/UI is still a work in progress.
 
--I occasionally get SQL errors if you test the flawed logic of my system. So as those flaws are discovered, the system will need to be continually updated.
+-I occasionally get SQL errors if you test the flawed logic of my system with edge cases. So as those flaws are discovered, the system will need to be continually updated.
 
 -There is still much refactoring in the Controllers and Services that could be done to make the project more readable and efficient
 
@@ -39,6 +39,8 @@ As I am relatively new to Spring and its associated technologies, I spent time l
 -Improving this readme to better help people looking to copy and learn from project
 
 -Better error handling
+
+-If a user creates profile using an email with an uppercase later, they will never be able to login :(
 
 # Here are a few of my initial user stories that I used when planning the project:
 
